@@ -6,11 +6,6 @@ require 'sinatra'
 
 
 
-require 'sendgrid-ruby'
-include SendGrid
-require 'json'
-
-
 
 disable :protection
 enable :sessions
