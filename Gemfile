@@ -13,12 +13,3 @@ gem 'reel', '~> 0.6.1'
 gem 'http', '~> 5.0', '>= 5.0.4'
 gem 'webrick', '~> 1.7'
 
-gem 'chassis-pony', '~> 1.0.0'
-
-gem 'pony', '~> 1.13', '>= 1.13.1'
-
-gem 'sendgrid-ruby', '~> 6.6'
-
-gem 'kramdown', '~> 2.3', '>= 2.3.1'
-
-

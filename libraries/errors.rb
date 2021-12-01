@@ -1,3 +1,0 @@
-before do
-  @errors = []
-end
