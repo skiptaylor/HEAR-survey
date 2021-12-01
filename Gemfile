@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby "3.0.2"
+ruby "2.7.4"
 
 gem 'chronic', '~> 0.10.2'
 gem 'coffee-script', '>= 2.4.1'

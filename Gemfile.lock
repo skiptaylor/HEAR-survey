@@ -112,8 +112,7 @@ GEM
     websocket-extensions (0.1.5)
 
 PLATFORMS
-  x86_64-darwin-20
-  x86_64-unknown
+  ruby
 
 DEPENDENCIES
   chassis-pony (~> 1.0.0)
@@ -134,7 +133,7 @@ DEPENDENCIES
   webrick (~> 1.7)
 
 RUBY VERSION
-   ruby 3.0.2p107
+   ruby 2.7.4p191
 
 BUNDLED WITH
-   2.2.22
+   2.1.4
