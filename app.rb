@@ -4,7 +4,7 @@ require 'bundler/setup'
 require 'sinatra'
 require 'sinatra/chassis/helpers'
 
-require 'sinatra/reloader' if development?
+
 
 require 'sendgrid-ruby'
 include SendGrid
