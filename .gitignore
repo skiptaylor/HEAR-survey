@@ -1,0 +1,8 @@
+.DS_Store
+/.bundle
+/data/*.sqlite3
+/log/*
+!/log/messages.log
+.sass-cache
+
+sendgrid.env
