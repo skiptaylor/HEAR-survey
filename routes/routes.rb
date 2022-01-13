@@ -1,52 +1,51 @@
 get '/?' do
-	erb :'/home'
+  erb :'/home'
 end
 
 get '/home/?' do
 	erb :'/home'
 end
 
-get '/question0/?' do
-	erb :'/question0'
+get '/questions/question0/?' do
+	erb :'/questions/question0'
 end
 
-get '/question2/?' do
-	erb :'/question2'
+get '/questions/question2/?' do
+	erb :'/questions/question2'
 end
 
-get '/question3/?' do
-	erb :'/question3'
+get '/questions/question3/?' do
+	erb :'/questions/question3'
 end
 
-get '/question4/?' do
-	erb :'/question4'
+get '/questions/question4/?' do
+	erb :'/questions/question4'
 end
 
-get '/question5/?' do
-	erb :'/question5'
+get '/questions/question5/?' do
+	erb :'/questions/question5'
 end
 
-get '/question6/?' do
-	erb :'/question6'
+get '/questions/question6/?' do
+	erb :'/questions/question6'
 end
 
-get '/question7/?' do
-	erb :'/question7'
+get '/questions/question7/?' do
+	erb :'/questions/question7'
 end
 
-get '/question8/?' do
-	erb :'/question8'
+get '/questions/question8/?' do
+	erb :'/questions/question8'
 end
 
-get '/question9/?' do
-	erb :'/question9'
+get '/questions/question9/?' do
+	erb :'/questions/question9'
 end
 
-get '/question10/?' do
-	erb :'/question10'
+get '/questions/question10/?' do
+	erb :'/questions/question10'
 end
 
-get '/question11/?' do
-	erb :'/question11'
+get '/questions/question11/?' do
+	erb :'/questions/question11'
 end
-

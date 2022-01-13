@@ -15,7 +15,6 @@
 		<link type="text/css" rel="stylesheet" href="/css/buttons_altered.css" />
 		<link type="text/css" rel="stylesheet" href="/css/normalize.css" />
 		
-	
 	  	<script type="text/javascript" src="/js/jquery-3.5.1.min.js"></script>
 	  	<script type="text/javascript" src="/js/modal.js"></script>
 		<script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script>
@@ -24,20 +23,16 @@
 		<script type="text/javascript" src="/js/gen_validatorv4.js"></script>
 		<script type="text/javascript" src="/js/application.js"></script>
 		
-		<link rel="preconnect" href="https://fonts.googleapis.com"> 
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
-		
-		
 		<link rel="shortcut icon" href="/img/favicon.ico">
 	</head>
 
 	<body>
 		
-		<% unless request.path_info.include? "/home" %>
+		<% if request.path_info.include? "/questions" %>
 		
 	   <nav class="navbar sticky-top navbar-expand-md navbar-dark" style="background-color: #000000;">
 	 	  <div class="container">  
-	 	    <a class="navbar-brand mb-2" href="/home"><img src="img/logo-white-notag.svg" width="136px"></a>
+	 	    <a class="navbar-brand mb-2" href="/home"><img src="../img/logo-white-notag.svg" width="136px"></a>
 	 	    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 	 	      <span class="navbar-toggler-icon"></span>
 	 	    </button>
@@ -45,57 +40,57 @@
 			 
 	 	      <ul class="navbar-nav mr-auto ml-4">
 	 	        <li class="nav-item pull-right">
-	 				  <a class="nav-link" href="/question0">
+	 				  <a class="nav-link" href="/questions/question0">
 	 					  Page 1
 	 				  </a>
 	 			  </li>
 	 			 <li class="nav-item  pull-right">
-	 				  <a class="nav-link" href="/question2">
+	 				  <a class="nav-link" href="/questions/question2">
 	 					  Page 2
 	 				  </a>
 	 			  </li>
  	 			 <li class="nav-item  pull-right">
- 	 				  <a class="nav-link" href="/question3">
+ 	 				  <a class="nav-link" href="/questions/question3">
  	 					  Page 3
  	 				  </a>
  	 			  </li>
  	 			 <li class="nav-item  pull-right">
- 	 				  <a class="nav-link" href="/question4">
+ 	 				  <a class="nav-link" href="/questions/question4">
  	 					  Page 4
  	 				  </a>
  	 			  </li>
  	 			 <li class="nav-item  pull-right">
- 	 				  <a class="nav-link" href="/question5">
+ 	 				  <a class="nav-link" href="/questions/question5">
  	 					  Page 5
  	 				  </a>
  	 			  </li>
  	 			 <li class="nav-item  pull-right">
- 	 				  <a class="nav-link" href="/question6">
+ 	 				  <a class="nav-link" href="/questions/question6">
  	 					  Page 6
  	 				  </a>
  	 			  </li>
   	 			 <li class="nav-item  pull-right">
-  	 				  <a class="nav-link" href="/question7">
+  	 				  <a class="nav-link" href="/questions/question7">
   	 					  Page 7
   	 				  </a>
   	 			  </li>
   	 			 <li class="nav-item  pull-right">
-  	 				  <a class="nav-link" href="/question8">
+  	 				  <a class="nav-link" href="/questions/question8">
   	 					  Page 8
   	 				  </a>
   	 			  </li>
   	 			 <li class="nav-item  pull-right">
-  	 				  <a class="nav-link" href="/question9">
+  	 				  <a class="nav-link" href="/questions/question9">
   	 					  Page 9
   	 				  </a>
   	 			  </li>
   	 			 <li class="nav-item  pull-right">
-  	 				  <a class="nav-link" href="/question10">
+  	 				  <a class="nav-link" href="/questions/question10">
   	 					  Page 10
   	 				  </a>
   	 			  </li>
   	 			 <li class="nav-item  pull-right">
-  	 				  <a class="nav-link" href="/question11">
+  	 				  <a class="nav-link" href="/questions/question11">
   	 					  Page 11
   	 				  </a>
   	 			  </li>
@@ -106,7 +101,7 @@
 	 	</nav>
 		<% end %>
 		<main role="main">
-    	  <% if erb :'/home', layout: false %>
+    	  <% if erb :'/home' %>
     	<div class="content">
 	    	 <div class="container">
 	    	
@@ -116,7 +111,7 @@
 		</div> <!-- content -->
 	<% end %>
 		</main>
-		<% unless request.path_info.include? "/home" %>
+		<% if request.path_info.include? "/questions" %>
 		<footer>
 			<p class="center" style="font-size: 0.7em;">&copy; <%= Time.now.strftime("%Y") %> <strong>Career Training Concepts Inc.</strong> &nbsp;  &nbsp; 888-326-9229 &nbsp;  &nbsp; All rights reserved.<br />Reproduction in whole or in part without permission is prohibited.</p>
 		</footer>

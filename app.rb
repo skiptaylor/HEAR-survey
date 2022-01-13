@@ -5,8 +5,6 @@ require 'sinatra'
 
 
 
-
-
 disable :protection
 enable :sessions
 set :session_secret, 'secret123'
@@ -16,17 +14,6 @@ set :session_secret, 'secret123'
 end
 
 
-
-# require_directory([
-# 'config',
-# 'settings',
-# 'modules',
-# 'helpers',
-# 'libraries',
-# 'models',
-# 'controllers',
-# 'routes'
-# ])
 
 
 # configure :production do
@@ -38,5 +25,4 @@ end
 #     end
 #   end
 # end
-
 
