@@ -47,7 +47,6 @@ input	{
 }
 
 
-
 .infobox {
 	/*border: 1px solid rgb(256, 256, 257, 0.4);
    border-left: 5px solid rgb(256, 256, 257, 0.4);
@@ -61,7 +60,6 @@ input	{
 .stick	{
 	bottom: 0;
 }
-
 
 .curv	{
 	font-family: 'Open Sans', sans-serif;
@@ -208,39 +206,79 @@ ul.question-list li	{
 .list-input	{
 	font-family: 'Neucha', cursive;
 	font-size: 1.4em;
+	color: #166e57;
 	width: 80%;
 	margin-top: 5px;
-	border: none;
+	border: 1px solid #b6e5e1;
 	border-bottom: 2px solid #1abd9c;
+    -webkit-border-radius: 6px;
+       -moz-border-radius: 6px;
+            border-radius: 6px;
 }
 
 .short-input	{
 	font-family: 'Neucha', cursive;
 	font-size: 1.4em;
-	width: 140px;
+	color: #166e57;
+	width: 120px;
 	margin-top: 5px;
-	border: none;
+	border: 1px solid #b6e5e1;
 	border-bottom: 2px solid #1abd9c;
+    -webkit-border-radius: 6px;
+       -moz-border-radius: 6px;
+            border-radius: 6px;
 }
 
 .norm-input	{
 	font-family: 'Neucha', cursive;
 	font-size: 1.4em;
+	color: #166e57;
 	width: 100%;
 	margin-top: 5px;
-	border: none;
+	border: 1px solid #b6e5e1;
 	border-bottom: 2px solid #1abd9c;
+    -webkit-border-radius: 6px;
+       -moz-border-radius: 6px;
+            border-radius: 6px;
 }
 
 .reg-input	{
 	font-family: 'Neucha', cursive;
 	font-size: 1.4em;
+	color: #166e57;
 	margin-top: 5px;
-	border: none;
+	border: 1px solid #b6e5e1;
 	border-bottom: 2px solid #1abd9c;
+    -webkit-border-radius: 6px;
+       -moz-border-radius: 6px;
+            border-radius: 6px;
 }
 
+.input-text	{
+	font-family: 'Neucha', cursive;
+	font-size: 1.4em;
+	color: #166e57;
+	margin-top: 5px;
+	border: 1px solid #b6e5e1;
+	border-bottom: 2px solid #1abd9c;
+    -webkit-border-radius: 6px;
+       -moz-border-radius: 6px;
+            border-radius: 6px;
+}
 
+.input-box	{
+   border: 1px solid #999;
+   color: #166e57;
+   -webkit-border-radius: 22px;
+      -moz-border-radius: 22px;
+           border-radius: 22px;
+}
+
+textarea{
+	line-height: 1.7em;
+	padding: 0 10px;
+	color: #166e57;
+}
 
 blockquote	{
 	margin: 9px 0px 30px 0;
@@ -433,13 +471,6 @@ select.year {
   -webkit-background-clip: padding-box;
      -moz-background-clip: padding-box;
           background-clip: padding-box;
-}
-
-.input-box	{
-   border: 1px solid #999;
-   -webkit-border-radius: 22px;
-      -moz-border-radius: 22px;
-           border-radius: 22px;
 }
 
 .alert	{
