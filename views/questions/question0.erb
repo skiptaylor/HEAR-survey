@@ -8,21 +8,20 @@
 			<div class="col-md-12">
 				<h2>Select one of the values below and describe how you believe you live it.</h2>
 				<ul class="question-list">
-					<li>Loyalty &nbsp; &nbsp; &nbsp;<input type="text" id="fname" name="fname" class="list-input"></li>
-					<li>Duty &nbsp; &nbsp; &nbsp;<input type="text" id="fname" name="fname" class="list-input"></li>
-					<li>Respect &nbsp; &nbsp; &nbsp;<input type="text" id="fname" name="fname" class="list-input"></li>
-					<li>Selfless Service &nbsp; &nbsp; &nbsp;<input type="text" id="fname" name="fname" class="list-input"></li>
-					<li>Honor &nbsp; &nbsp; &nbsp;<input type="text" id="fname" name="fname" class="list-input"></li>
-					<li>Integrity &nbsp; &nbsp; &nbsp;<input type="text" id="fname" name="fname" class="list-input"></li>
-					<li>Personal Courage &nbsp; &nbsp; &nbsp;<input type="text" id="fname" name="fname" class="list-input"></li>
+					<li>Loyalty<input type="text" id="fname" name="fname" style="width: 100%;" class="list-input"></li>
+					<li>Duty<input type="text" id="fname" name="fname" style="width: 100%;" class="list-input"></li>
+					<li>Respect<input type="text" id="fname" name="fname" style="width: 100%;" class="list-input"></li>
+					<li>Selfless Service <input type="text" id="fname" name="fname" style="width: 100%;" class="list-input"></li>
+					<li>Honor <input type="text" id="fname" name="fname" style="width: 100%;" class="list-input"></li>
+					<li>Integrity<input type="text" id="fname" name="fname" style="width: 100%;" class="list-input"></li>
+					<li>Personal Courage<input type="text" id="fname" name="fname" style="width: 100%;" class="list-input"></li>
 				</ul>
 				<h2>Mark below how important you think it is to treat others in a manner consistent with these seven character traits.</h2>
 				<div class="row">
-					<div class="col-lg-7" id="arrow" style="margin: 0 0 30px 0;">
-						
-						
-						<input type="range" min="0" max="100" id="fader" step="10" oninput="outputUpdate(value)">
-						<!-- <output for="fader" id="volume">50</output> -->
+					<div class="col-lg-7" id="arrow">
+						<input type="range" min="0" max="100" id="fader" step="5" oninput="outputUpdate(value)">
+					
+						<h2 style="text-align: center; padding: 20px 0 0 0;"><output for="fader" id="volume" style="text-align: center;">50</output>%</h2>
 					</div>
 				</div>
 			
@@ -49,9 +48,9 @@
 	
 <style>
 	input[type=range] {
-	  height: 56px;
+	  height: 76px;
 	  -webkit-appearance: none;
-	  margin: 28px 0 0 0;
+	  margin: 0;
 	  width: 100%;
 	  background-color: transparent;
 	}
@@ -60,7 +59,7 @@
 	}
 	input[type=range]::-webkit-slider-runnable-track {
 	  width: 100%;
-	  height: 20px;
+	  height: 120px;
 	  cursor: pointer;
 	  animation-duration: 0.5s;
 	  box-shadow: 0px 0px 0px #000000;
@@ -71,13 +70,13 @@
 	input[type=range]::-webkit-slider-thumb {
 	  box-shadow: 0px 0px 0px #000000;
 	  border: 0px solid #2497E3;
-	  height: 64px;
-	  width: 4px;
-	  border-radius: 0px;
+	  height: 74px;
+	  width: 7px;
+	  border-radius: 3px;
 	  background: black;
 	  cursor: pointer;
 	  -webkit-appearance: none;
-	  margin-top: -32px;
+	  margin-top: 40px;
 	}
 	
 </style>
