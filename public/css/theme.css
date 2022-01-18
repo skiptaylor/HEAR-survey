@@ -43,9 +43,9 @@ input	{
 	background-image: url("../img/arrow-important.svg");
 	background-repeat: no-repeat;
 	background-size: 100%;
-	background-position: top center;
+	background-position: center;
 	margin: 0;
-	padding: 3px 0 15px 0;
+	padding: 0;
 }
 
 
