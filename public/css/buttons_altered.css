@@ -38,15 +38,15 @@ button.close {
   font-size: 14px;
   font-weight: 600;
   line-height: 20px;
-  color: #353535;
+  color: #034fc8;
   text-align: center;
   vertical-align: middle;
   cursor: pointer;
-  background-color: #efefef;
-  border: 1px solid #1abd9c;
-  -webkit-border-radius: 18px;
-     -moz-border-radius: 18px;
-          border-radius: 18px;
+  background-color: #ffffff;
+  border: 1px solid #034fc8;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
   *zoom: 1;
 }
 
@@ -113,9 +113,9 @@ button {
 .btn-large {
   padding: 11px 19px;
   font-size: 17.5px;
-  -webkit-border-radius: 22px;
-     -moz-border-radius: 22px;
-          border-radius: 22px;
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
 }
 
 .btn-large [class^="icon-"],
@@ -126,9 +126,9 @@ button {
 .btn-small {
   padding: 2px 10px;
   font-size: 11.9px;
-  -webkit-border-radius: 14px;
-     -moz-border-radius: 14px;
-          border-radius: 14px;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
 }
 
 .btn-small [class^="icon-"],
@@ -144,9 +144,9 @@ button {
 .btn-mini {
   padding: 0 6px;
   font-size: 10.5px;
-  -webkit-border-radius: 12px;
-     -moz-border-radius: 12px;
-          border-radius: 12px;
+  -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+          border-radius: 3px;
 }
 
 .btn-block {
@@ -181,8 +181,8 @@ input[type="button"].btn-block {
 .btn-primary {
   color: #ffffff;
   text-shadow: none;
-  background-color: #026afc;
-  border-color: #026afc;
+  background-color: #034fc8;
+  border-color: #034fc8;
 /*-webkit-text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.4);
 	-moz-text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.4);
 	 	  text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.4);*/
@@ -196,8 +196,8 @@ input[type="button"].btn-block {
 .btn-primary.disabled,
 .btn-primary[disabled] {
   color: #ffffff;
-  background-color: #025bda;
-  border-color: #025bda;
+  background-color: #013ea1;
+  border-color: #013ea1;
 /*-webkit-text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.4);
 	-moz-text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.4);
 	 	  text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.4);*/
@@ -315,8 +315,8 @@ input[type="button"].btn-block {
 .btn-success {
    color: #ffffff;
    text-shadow: none;
-   background-color: #1abd9c;
-   border-color: #1abd9c;
+   background-color: #0d9154;
+   border-color: #0d9154;
 	/*-webkit-text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.4);
 		-moz-text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.4);
 		 	  text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.4);*/
@@ -330,8 +330,8 @@ input[type="button"].btn-block {
 .btn-success.disabled,
 .btn-success[disabled] {
   color: #ffffff;
-  background-color: #17ac8f;
-  *background-color: #17ac8f;
+  background-color: #09663b;
+  *background-color: #09663b;
 /*-webkit-text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.4);
 	-moz-text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.4);
 	 	  text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.4);*/
@@ -350,8 +350,8 @@ input[type="button"].btn-block {
 .btn-info {
    color: #ffffff;
    text-shadow: none;
-   background-color: #3dadfd;
-   border-color: #3dadfd;
+   background-color: #0190de;
+   border-color: #0190de;
 	/*-webkit-text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.4);
 		-moz-text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.4);
 		 	  text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.4);*/
@@ -365,8 +365,8 @@ input[type="button"].btn-block {
 .btn-info.disabled,
 .btn-info[disabled] {
   color: #ffffff;
-  background-color: #0092ef;
-  *background-color: #0092ef;
+  background-color: #017abc;
+  *background-color: #017abc;
 /*-webkit-text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.4);
 	-moz-text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.4);
 	 	  text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.4);*/
