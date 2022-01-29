@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 ruby "2.7.5"
 
+gem 'sprockets', '~> 4.0', '>= 4.0.2'
 gem 'do_postgres', '~> 0.10.15'
 gem 'chronic', '~> 0.10.2'
 gem 'sinatra', '~> 2.1'
