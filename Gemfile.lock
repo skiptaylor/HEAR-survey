@@ -122,6 +122,7 @@ GEM
 
 PLATFORMS
   arm64-darwin-21
+  x86_64-linux
 
 DEPENDENCIES
   chassis-datamapper (~> 1.0.1)
@@ -136,7 +137,6 @@ DEPENDENCIES
   do_postgres (~> 0.10.15)
   rake (~> 13.0.6)
   sinatra (~> 2.1)
-  sinatra-chassis (>= 1.1.1)
   sinatra-contrib (~> 2.1)
 
 RUBY VERSION
