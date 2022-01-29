@@ -44,7 +44,6 @@ post '/questions/question0_edit/?' do
    :honor        => params[:honor],
    :integrity    => params[:integrity],
    :courage      => params[:courage],
-   :service      => params[:service],
    :importance   => params[:importance],
    :thoughts1    => params[:thoughts1],
    :thoughts2    => params[:thoughts2],
