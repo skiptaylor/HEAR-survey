@@ -110,6 +110,12 @@ GEM
       rack-test (>= 0.6.2)
       sass (>= 3.2.9)
       sinatra (>= 1.4.3)
+    sinatra-contrib (2.1.0)
+      multi_json
+      mustermann (~> 1.0)
+      rack-protection (= 2.1.0)
+      sinatra (= 2.1.0)
+      tilt (~> 2.0)
     stringex (1.5.1)
     tilt (2.0.10)
     uuidtools (2.2.0)
@@ -131,6 +137,8 @@ DEPENDENCIES
   do_postgres (~> 0.10.15)
   rake (~> 13.0.6)
   sinatra (~> 2.1)
+  sinatra-chassis (>= 1.1.1)
+  sinatra-contrib (>= 1.4.4)
 
 RUBY VERSION
    ruby 2.7.5p203
