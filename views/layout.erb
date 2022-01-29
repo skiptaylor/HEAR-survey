@@ -32,86 +32,61 @@
 		
 		<% if request.path_info.include? "/questions" %>
 		
-	   <nav class="navbar sticky-top navbar-expand-md navbar-dark" style="background-color: #000000;">
-	 	  <div class="container">  
-	 	    <a class="navbar-brand mb-2" href="/home"><img src="../img/logo-white-notag.svg" width="136px"></a>
-	 	    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-	 	      <span class="navbar-toggler-icon"></span>
-	 	    </button>
-	 	    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-			 
-	 	      <ul class="navbar-nav mr-auto ml-4">
-	 	        <li class="nav-item pull-right">
-	 				  <a class="nav-link" href="/questions/question0">
-	 					  1
-	 				  </a>
-	 			  </li>
-	 			 <li class="nav-item  pull-right">
-	 				  <a class="nav-link" href="/questions/question2">
-	 					  2
-	 				  </a>
-	 			  </li>
- 	 			 <li class="nav-item  pull-right">
- 	 				  <a class="nav-link" href="/questions/question3">
- 	 					  3
- 	 				  </a>
- 	 			  </li>
- 	 			 <li class="nav-item  pull-right">
- 	 				  <a class="nav-link" href="/questions/question4">
- 	 					  4
- 	 				  </a>
- 	 			  </li>
- 	 			 <li class="nav-item  pull-right">
- 	 				  <a class="nav-link" href="/questions/question5">
- 	 					  5
- 	 				  </a>
- 	 			  </li>
- 	 			 <li class="nav-item  pull-right">
- 	 				  <a class="nav-link" href="/questions/question6">
- 	 					  6
- 	 				  </a>
- 	 			  </li>
-  	 			 <li class="nav-item  pull-right">
-  	 				  <a class="nav-link" href="/questions/question7">
-  	 					  7
-  	 				  </a>
-  	 			  </li>
-  	 			 <li class="nav-item  pull-right">
-  	 				  <a class="nav-link" href="/questions/question8">
-  	 					  8
-  	 				  </a>
-  	 			  </li>
-  	 			 <li class="nav-item  pull-right">
-  	 				  <a class="nav-link" href="/questions/question9">
-  	 					  9
-  	 				  </a>
-  	 			  </li>
-  	 			 <li class="nav-item  pull-right">
-  	 				  <a class="nav-link" href="/questions/question10">
-  	 					  10
-  	 				  </a>
-  	 			  </li>
-  	 			 <li class="nav-item  pull-right">
-  	 				  <a class="nav-link" href="/questions/question11">
-  	 					  11
-  	 				  </a>
-  	 			  </li>
-	 	      </ul>
 		
-	 	    </div>
-	 	 </div>
-	 	</nav>
+		<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+		  <div class="container">
+		    <a class="navbar-brand" href="/home"><img src="../img/logo-white-notag.svg" width="136px"></a>
+		    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+		      <span class="navbar-toggler-icon"></span>
+		    </button>
+		    <div class="collapse navbar-collapse" id="mynavbar">
+				<ul class="navbar-nav me-auto" style="margin-left: 32px;">
+			  <li class="nav-item dropdown">
+			    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Survey Pages</a>
+			    <ul class="dropdown-menu">
+			      <li><a class="dropdown-item <%= active '/questions/question0' %>" href="/questions/question0">Page 1</a></li>
+			      <li><a class="dropdown-item <%= active '/questions/question2' %>" href="/questions/question2">Page 2</a></li>
+			      <li><a class="dropdown-item <%= active '/questions/question3' %>" href="/questions/question3">Page 3</a></li>
+				  <li><a class="dropdown-item <%= active '/questions/question4' %>" href="/questions/question4">Page 4</a></li>
+				  <li><a class="dropdown-item <%= active '/questions/question5' %>" href="/questions/question5">Page 5</a></li>
+				  <li><a class="dropdown-item <%= active '/questions/question6' %>" href="/questions/question6">Page 6</a></li>
+				  <li><a class="dropdown-item <%= active '/questions/question7' %>" href="/questions/question7">Page 7</a></li>
+				  <li><a class="dropdown-item <%= active '/questions/question8' %>" href="/questions/question8">Page 8</a></li>
+				  <li><a class="dropdown-item <%= active '/questions/question9' %>" href="/questions/question9">Page 9</a></li>
+				  <li><a class="dropdown-item <%= active '/questions/question10' %>" href="/questions/question10">Page 10</a></li>
+				  <li><a class="dropdown-item <%= active '/questions/question11' %>" href="/questions/question11">Page 11</a></li>
+			    </ul>
+			  </li>
+			 </ul>
+		      <div class="out pull-right">
+				 <a class="nav-link" href="#"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16" style="margin-top: -3px;">
+  <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+</svg> &nbsp;<%= @user.name %></a> 
+			</div>
+			<div class="out pull-right">  
+			  <a class="nav-link" href="/sign-out">
+				 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+				   <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
+				   <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+				 </svg> &nbsp;Sign out
+			  </a>
+		  	  </div>
+			  
+		  </div>
+		</nav>
+
 		<% end %>
+		
 		<main role="main">
-    	  <% if erb :'/home' %>
+    	<% if erb :'/home' %>
     	<div class="content">
 	    	 <div class="container">
-	    	
+	    		 
 				<%= yield %>       
 				
 			</div> <!-- container -->			
 		</div> <!-- content -->
-	<% end %>
+		<% end %>
 		</main>
 		<% if request.path_info.include? "/questions" %>
 		<footer>
@@ -121,3 +96,9 @@
 
 	</body>
 </html>
+
+<script>
+	function goBack() {
+	window.history.back();
+}
+</script>

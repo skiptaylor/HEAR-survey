@@ -19,12 +19,20 @@
 						<h5 class="curv" style="font-size: 3rem; text-align: center;">Building Respect and Ending Bullying<br /> and Cruelty in Your School</h5>
 					</div>
 				</div>
-				<div class="row" style="margin: 1em 0 1em 0; color: white;">
-					<div class="col-md-6" style="text-align: right; border-right: 1px solid white;">
-						<button class="btn btn-large">Create account</button>
-					</div>
-					<div class="col-md-6" style="text-align: left;">
-						<a href="/questions/question0" class="btn btn-large" >Sign in here</a>
+				<div class="row">
+					<!-- <div class="col-md-6">
+						<% unless session[:user] %>
+						<a style="float: right;" href="/sign-up" class="btn btn-large" >Sign up</a>
+						<% else %>
+						<h5 style="float: right; color: white; margin-top: 6px;"><%= @user.name %></h5>
+						<% end %>
+					</div> -->
+					<div class="col-md-12" style="text-align: center;">
+						<% if session[:user] %>
+						<a onclick="goBack()" class="btn btn-large" >Continue</a>
+						<% else %>
+						<a href="/sign-in" class="btn btn-large" >Take the Survey</a>
+						<% end %>
 					</div>
 				</div>
 				<div class="row" style="margin: 3em 0 3em 0">
@@ -37,5 +45,11 @@
 						<img src="img/arngcamo.svg">
 					</div>
 				</div>
+				<%= session[:user] %>
 			</div>
 	</body>
+<script>
+	function goBack() {
+	window.history.back();
+}
+</script>

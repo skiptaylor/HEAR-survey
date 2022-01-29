@@ -4,50 +4,45 @@
 				<p class="page-header">Let’s examine some character attributes.</p>
 			</div>
 		</div>
+		<form class="form" method="post">
 		<div class="row" style="margin-bottom: 7em">
 			<div class="col-md-12">
 				<h2>Select one of the values below and describe how you believe you live it.</h2>
 				<ul class="question-list">
-					<li>Loyalty<br /><input type="text" id="fname" name="fname" style="width: 100%;" class="list-input"></li>
-					<li>Duty<br /><input type="text" id="fname" name="fname" style="width: 100%;" class="list-input"></li>
-					<li>Respect<br /><input type="text" id="fname" name="fname" style="width: 100%;" class="list-input"></li>
-					<li>Selfless Service<br /><input type="text" id="fname" name="fname" style="width: 100%;" class="list-input"></li>
-					<li>Honor<br /><input type="text" id="fname" name="fname" style="width: 100%;" class="list-input"></li>
-					<li>Integrity<br /><input type="text" id="fname" name="fname" style="width: 100%;" class="list-input"></li>
-					<li>Personal Courage<br /><input type="text" id="fname" name="fname" style="width: 100%;" class="list-input"></li>
+					<li>Loyalty<br /><p class="answ"><%= @user.loyalty %></p></li>
+					<li>Duty<br /><p class="answ"><%= @user.duty %></p></li>
+					<li>Respect<br /><p class="answ"><%= @user.respect %></p></li>
+					<li>Selfless Service<br /><p class="answ"><%= @user.service %></p></li>
+					<li>Honor<br /><p class="answ"><%= @user.honor %></p></li>
+					<li>Integrity<br /><p class="answ"><%= @user.integrity %></p></li>
+					<li>Personal Courage<br /><p class="answ"><%= @user.courage %></p></li>
 				</ul>
 				<h2>Mark below how important you think it is to treat others in a manner consistent with these seven character traits.</h2>
+			
 				<div class="row">
 					<div class="col-lg-7" id="arrow" style="height: 120px; margin: 0px 0 24px 0;">
-						<input type="range" min="0" max="100" id="fader" step="5" style="vertical-align: center;" oninput="outputUpdate(value)">
-					
-						<h2 style="text-align: center; height: 120; margin-top: -1%;"><output for="fader" id="volume" style="text-align: center;">50</output>%</h2>
+						<input type="range" name="range" step="5" min="0" max="100" value="<%= @user.importance %>" disabled>
 					</div>
 				</div>
+				
+				<h2 style="margin-bottom: 2px;">Why? <span style="font-weight: 200; font-size: 16px;">(your thoughts)</span> </h2>
+				<p class="answ"><%= @user.thoughts1 %></p>
 			
-				<h2 style=" margin-bottom: 2px;">Why? <span style="font-weight: 200; font-size: 16px;">(your thoughts)</span> </h2>
-				<input type="text" id="fname" name="fname" style="margin-bottom: 14px; width: 100%;" class="list-input">
+				<h2 style="margin-bottom: 2px;">Why? <span style="font-weight: 200; font-size: 16px;">(thoughts from class discussion)</span> </h2> 
+				<p class="answ"><%= @user.thoughts2 %></p>
 			
-				<h2 style=" margin-bottom: 2px;">Why? <span style="font-weight: 200; font-size: 16px;">(thoughts from class discussion)</span> </h2> 
-				<input type="text" id="fname" name="fname" style="margin-bottom: 12px; width: 100%;" class="list-input">
-			
-				<p style=" margin-bottom: 2px;">Can you think of a role model you believe demonstrates some of these character traits? </p> 
-				<input type="text" id="fname" name="fname" style="margin-bottom: 12px; width: 100%;" class="list-input"></p>
+				<p style="margin-bottom: 2px;">Can you think of a role model you believe demonstrates some of these character traits? </p> 
+				<p class="answ"><%= @user.rolemodel %></p>
 			
 				<br />
-				<button class="btn btn-success">Save this page</button> &nbsp; <button class="btn btn-info">Edit this page</button> <a href="/questions/question2" class="btn btn-primary" style="float: right;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-right" viewBox="0 0 16 16">
+				<p style="float: right;"><a href="/questions/question0_edit" class="btn btn-info">Edit this page</a> &nbsp;&nbsp;&nbsp;<a href="/questions/question2_edit" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-right" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"/>
   <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"/>
-</svg> Next</a>
+</svg> Next</a></p>
 			</div>
+		</form>
 		</div> 
-	
-	
-<script>
-	function outputUpdate(vol) {
-		document.querySelector('#volume').value = vol;
-	}
-</script>
+
 	
 <style>
 	input[type=range] {

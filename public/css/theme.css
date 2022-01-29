@@ -2,6 +2,13 @@
 
 @import url(https://fonts.googleapis.com/css2?family=Neucha&display=swap);
 
+@import url(https://fonts.googleapis.com/css2?family=Kalam&family=Shadows+Into+Light&display=swap);
+
+
+/*font-family: 'Kalam', cursive;
+font-family: 'Shadows Into Light', cursive;*/
+
+
 html,
 
 body {
@@ -78,55 +85,77 @@ input	{
            transition: all .3s ease-in-out;
 }
 
-.navbar-inverse ul.nav li.a:hover 	{
+ul.nav li.a:hover 	{
 	color: #ffffff;
 }
 
-.navbar-inverse .brand,
-.navbar-inverse .nav > li > a {
+div.out a	{
+	color: #aac7d1;
+}
+
+div.out a:hover	{
+	color: #fff;
+}
+
+
+/*.navbar-dark .brand,
+.navbar-dark .nav > li > a {
   color: #c0c0c0;
   margin: 0px;
 }
 
-.navbar-inverse .brand:hover,
-.navbar-inverse .nav > li > a:hover,
-.navbar-inverse .brand:focus,
-.navbar-inverse .nav > li > a:focus,
-.navbar-inverse .brand:active,
-.navbar-inverse .nav > li > a:active {
+.brand:hover,
+.nav > li > a:hover,
+.brand:focus,
+.nav > li > a:focus,
+.brand:active,
+.nav > li > a:active {
   color: red;
 }
 
-.navbar-inverse .brand {
+.navbar-dark .brand {
   color: #ffffff;
 }
 
-.navbar-inverse .navbar-text {
+.navbar-dark .navbar-text {
 }
 
-.navbar-inverse .nav > li > a:focus,
-.navbar-inverse .nav > li > a:hover,
-.navbar-inverse .nav > li > a:active {
+.navbar-dark .nav > li > a:focus,
+.navbar-dark .nav > li > a:hover,
+.navbar-dark .nav > li > a:active {
   color: #ffffff;
   background-color: transparent;
 }
 
-.navbar-inverse .nav .active > a,
-.navbar-inverse .nav .active > a:hover,
-.navbar-inverse .nav .active > a:focus,
-.navbar-inverse .nav .active > a:active {
+.navbar-dark .nav .active > a,
+.navbar-dark .nav .active > a:hover,
+.navbar-dark .nav .active > a:focus,
+.navbar-dark .nav .active > a:active {
   color: #ffffff;
   background-color: transparent;
 }
 
-.navbar-inverse .navbar-link {
+.navbar-dark .navbar-link {
 }
 
-.navbar-inverse .navbar-link:hover,
-.navbar-inverse .navbar-link:focus,
-.navbar-inverse .navbar-link:active {
+.navbar-dark .navbar-link:hover,
+.navbar-dark .navbar-link:focus,
+.navbar-dark .navbar-link:active {
   color: red;
 }
+
+li.dorpdown-item:active	{
+	color: red;
+}
+
+a.dropdown-toggle	{
+	color: #fff;
+}
+
+a.dropdown-toggle:hover	{
+	color: #dedddf;
+}*/
+
 
 
 p, h2, h3, h4, h5, h6 	{
@@ -206,7 +235,7 @@ ul.question-list li	{
 }
 
 .list-input	{
-	font-family: 'Neucha', cursive;
+	font-family: 'Kalam', cursive;
 	font-size: 1.4em;
 	color: #166e57;
 	width: 80%;
@@ -229,10 +258,13 @@ textarea:focus	{
     box-shadow: 0 0 0 0.25rem rgba(0, 244, 140, 0.25);
 }
 
+  
+  
+  
 .short-input	{
-	font-family: 'Neucha', cursive;
+	font-family: 'Kalam', cursive;
 	font-size: 1.4em;
-	color: #166e57;
+	color: #3f856e;
 	width: 120px;
 	margin-top: 5px;
 	border: 1px solid #8aa0a8;
@@ -243,9 +275,9 @@ textarea:focus	{
 }
 
 .norm-input	{
-	font-family: 'Neucha', cursive;
+	font-family: 'Kalam', cursive;
 	font-size: 1.4em;
-	color: #166e57;
+	color: #3f856e;
 	width: 100%;
 	margin-top: 5px;
 	border: 1px solid #8aa0a8;
@@ -256,9 +288,9 @@ textarea:focus	{
 }
 
 .reg-input	{
-	font-family: 'Neucha', cursive;
+	font-family: 'Kalam', cursive;
 	font-size: 1.4em;
-	color: #166e57;
+	color: #3f856e;
 	margin-top: 5px;
 	border: 1px solid #b6e5e1;
 	border-bottom: 2px solid #1abd9c;
@@ -268,9 +300,9 @@ textarea:focus	{
 }
 
 .input-text	{
-	font-family: 'Neucha', cursive;
+	font-family: 'Kalam', cursive;
 	font-size: 1.4em;
-	color: #166e57;
+	color: #3f856e;
 	margin-top: 5px;
 	border: 1px solid #8aa0a8;
 	border-bottom: 2px solid #8aa0a8;
@@ -291,6 +323,49 @@ textarea{
 	line-height: 1.7em;
 	padding: 0 10px;
 	color: #166e57;
+}
+
+p.answ	{
+	font-family: 'Kalam', cursive;
+	font-size: 1.4em;
+	color: #3f856e;
+	margin-top: 8px;
+	padding-Bottom: 4px;
+	border-bottom: 1px solid #5fc7a4;
+}
+
+
+input[type=range] {
+  height: 76px;
+  -webkit-appearance: none;
+  margin: 20px 0 0 0;
+  width: 100%;
+  background-color: transparent;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 80%;
+  text-align: center;
+  height: 120px;
+  cursor: pointer;
+  box-shadow: 0px 0px 0px #000000;
+  background: transparent;
+  border-radius: 0px;
+  border: none;
+  top: 0;
+}
+input[type=range]::-webkit-slider-thumb {
+  box-shadow: 0px 0px 0px #000000;
+  border: 0px solid #2497E3;
+  height: 74px;
+  width: 7px;
+  border-radius: 7px;
+  background: black;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: 3%;
 }
 
 blockquote	{
@@ -583,4 +658,22 @@ div#alert {
   color: #fff;
   text-decoration: none;
   background-color: #007bff;
+}
+
+.nojavascript {
+	display: none;
+	position: fixed;
+	width: 100%;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 12px;
+	line-height: 0.8em;
+	display: block;
+	background-color: #000000;
+	padding: 7px 0;
+	margin: 48px auto 0 auto;
+	text-align: center;
+	color: #ffd218;
+	font-weight: 300;
+	z-index: 1444;
+}
 

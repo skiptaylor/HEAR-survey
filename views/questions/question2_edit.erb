@@ -24,12 +24,13 @@ and work to be fair and just. That is at the heart of being a good person and ci
 				<img src="../img/all-characters.svg" style="text-align: center; width: 80%">
 			</div>
 		</div>
+		<form class="form" method="post">
 		<div class="row" style="margin-bottom: 2em">
 			<div class="col-md-12">		
 				<h2>Now let’s contrast these values. What is bullying?</h2>
 				<br />
-				<p><strong>How do you define bullying?</strong></p>
-				<p class="answ"><%= @user.define_bullying %></p>
+				<p><strong>How do you define bullying?</strong><br />
+					<textarea type="text" id="define_bullying" name="define_bullying" class="norm-input" rows="3"><%= @user.define_bullying %></textarea></p>
 				
 				<p>Most school districts have their own definitions of bullying but one popular definition says, “Bullying is unwanted harmful behavior that involves an imbalance of power and happens over and over again.” Bullying behavior is a relationship problem which affects those directly involved as well as bystanders, families, and the larger community. Note: the repeat behavior is by the person who bullies. On Monday the target might be one person, on Tuesday another, and on Wednesday another, etc.</p>
 			</div>
@@ -57,10 +58,10 @@ and work to be fair and just. That is at the heart of being a good person and ci
 		
 		<div class="row" style="margin-bottom: 7em">
 			<div class="col-md-12">
-				<p style="float: right;"><a href="/questions/question2_edit" class="btn btn-info">Edit this page</a> &nbsp;&nbsp;&nbsp;<a href="/questions/question3" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-right" viewBox="0 0 16 16">
-				  <path fill-rule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z"/>
-				  <path fill-rule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z"/>
-				</svg> Next</a></p>
+				
+				<p style="float: right;"><a onclick="goBack()" class="btn btn-secondary"  >Cancel</a>&nbsp;&nbsp;&nbsp;<input type="submit" class="btn btn-success" value="Save this page" />
+				</p>
+			</form>
 			</div>
 		</div>
 	
