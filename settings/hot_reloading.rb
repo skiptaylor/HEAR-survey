@@ -2,4 +2,4 @@
 #
 # Note that this doesn't recognize DB changes.
 
-require 'sinatra/reloader' if development?
+# require 'sinatra/reloader' if development?
