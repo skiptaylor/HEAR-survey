@@ -2,21 +2,21 @@ source 'https://rubygems.org'
 
 ruby "2.7.5"
 
-gem 'sinatra-asset-pipeline', '~> 2.2.0'
-gem 'do_postgres', '~> 0.10.15'
-gem 'chronic', '~> 0.10.2'
-gem 'sinatra', '~> 2.1'
-gem 'sinatra-chassis', '>= 1.1.1'
-gem 'sinatra-contrib', '>= 1.4.4', require: false
+gem 'chronic', '~> 0.9.1'
+gem 'coffee-script', '>= 2.2.0'
+gem 'jsmin', '>= 1.0.1'
+gem 'kramdown', '>= 0.14.2'
+gem 'sass', '>= 3.2.9'
+gem 'sinatra', '>= 1.4.6'
+gem 'sinatra-chassis', '>= 1.1.1', require: 'sinatra/chassis'
+gem 'sinatra-contrib', '>= 1.4.4', require: 'sinatra/contrib'
 
 gem 'chassis-datamapper', '~> 1.0.1'
+gem 'chassis-pony', '~> 1.0.0'
 
-gem 'rake', '~> 12.3'
+gem 'rake', '~> 10.4.2'
 
-gem 'datamapper', '~> 1.2'
-gem 'dm-core', '~> 1.2', '>= 1.2.1'
-gem 'dm-migrations', '~> 1.2'
-gem 'dm-validations', '~> 1.2'
-gem 'dm-timestamps', '~> 1.2'
-gem 'dm-postgres-adapter', '~> 1.2.0'
 gem 'data_mapper', '~> 1.2.0'
+gem 'dm-sqlite-adapter', '~> 1.2.0', group: :development
+gem 'dm-postgres-adapter', '~> 1.2.0', group: :production
+
