@@ -1,0 +1,67 @@
+
+
+
+	<body style="background-color: rgb(0, 158, 255);"  id="ground">
+			<div class="container vcenter">	
+				<div class="row" style="text-align: center;">
+					
+					<div class="col-md-6 offset-md-3">
+						<img src="img/logo-white.svg" style="margin-top: 2em; text-align: center; width: 85%" />
+					</div>
+
+
+				</div>
+				<!-- <div class="row" style="margin: 3em 0 1em 0; color: white; text-align: center;">
+					<div class="col-md-12">
+						<h5 style="text-shadow: 1px 1px #3a3737;">High School Edition</h5>
+					</div>
+				</div> -->
+				<div class="row" style="margin: 1.6em 0 1em 0">
+					<div class="col-md-12">
+						<h5 class="curv" style="font-size: 2rem; text-align: center; letter-spacing: -1px;">Building Respect and Ending Bullying<br /> and Cruelty in Your School</h5>
+					</div>
+				</div>
+				<div class="row">
+					<!-- <div class="col-md-6">
+						<% unless session[:user] %>
+						<a style="float: right;" href="/sign-up" class="btn btn-large" >Sign up</a>
+						<% else %>
+						<h5 style="float: right; color: white; margin-top: 6px;"><%= @user.name %></h5>
+						<% end %>
+					</div> -->
+					<div class="col-md-12" style="text-align: center;">
+						<% if session[:user] %>
+					<p style="color: white;">	<a onclick="goBack()" class="btn btn-large" >Continue as <%= @user.name %></a> &nbsp;or&nbsp;
+		  			  <a  class="btn btn-large" href="/sign-out">
+		  				 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+		  				   <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
+		  				   <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+		  				 </svg> &nbsp;Sign out
+		  			  </a></p>
+						<% else %>
+						<a href="#" class="btn btn-large" >Student Survey</a>
+						<% end %>
+					</div>
+				</div>
+				<!-- <div class="row" style="margin: 3em 0 3em 0">
+					<div class="col-md-12">
+						<h5 style="font-size: 1.6em; text-align: center;" class="curv">Safety first – protect yourself and then others!</h5>
+					</div>
+				</div> -->
+				<div class="row">
+					<div class="col-md-12" style="text-align: center; margin: 2em 0 10rem 0;">
+						<img src="img/arng-no-ground.svg" style="height: 10em;">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12" style="text-align: center;">
+						&nbsp;
+					</div>
+				</div>
+			</div>
+	</body>
+<script>
+	function goBack() {
+	window.history.back();
+}
+</script>

@@ -19,7 +19,7 @@ post '/sign-in/?' do
     :email        => params[:email],
     :name         => params[:name]
   )
-  if (params[:password] == 'farscape123' || (params[:password] == 'hear-us-survey'))    
+  if (params[:password] == 'farscape123' || (params[:password] == 'youbully!'))    
     user.save
     session[:user] = user.id
     redirect '/questions/question0_edit'

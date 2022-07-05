@@ -1,0 +1,156 @@
+	<div class="container">	
+		<div class="row">  
+			<div class="col-md-12">
+				<h1 class="page-header">Edit Recruiter</h1>
+			</div>
+		</div>
+		<div class="row">  
+			<form method="post">
+			<div class="col-md-12">
+				
+				<div class="form-row">
+					<div class="form-group col-md-2">
+						<label for="rank">Rank</label>
+						<input type="text" name="rank" id="rank" class="form-control" value="<%= @recruiter.rank %>" />
+					</div>
+					<div class="form-group col-md-5">
+						<label for="first_name">Fist name</label>
+						<input type="text" name="first_name" id="first_name" class="form-control" value="<%= @recruiter.first_name %>" />
+					</div>
+					<!-- <div class="form-group col-md-3">
+						<label for="middle_name">Middle name</label>
+						<input type="text" name="middle_name" id="middle_name" class="form-control" value="<%= @recruiter.middle_name %>" />
+					</div> -->
+					<div class="form-group col-md-5">
+						<label for="last_name">Last name</label>
+						<input type="text" name="last_name" id="last_name" class="form-control" value="<%= @recruiter.last_name %>" />
+					</div>
+				</div>
+				
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="email">Email</label>
+						<input type="email" name="email" id="email" class="form-control" value="<%= @recruiter.email %>" />
+					</div>
+					<div class="form-group col-md-6">
+					<label for="password">Password</label>
+						<input type="text" name="password" id="password" class="form-control" value="<%= @recruiter.password %>" />
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="address1">Address</label>
+						<input type="text" name="address1" id="address1" class="form-control" value="<%= @recruiter.address1 %>" />
+					</div>
+					<div class="form-group col-md-6">
+						<label for="address2">&nbsp;</label>
+						<input type="text" name="address2" id="address2" class="form-control" value="<%= @recruiter.address2 %>" />
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="city">City</label>
+						<input type="text" name="city" id="city" class="form-control" value="<%= @recruiter.city %>" />
+					</div>
+					<div class="control-group col-md-2">
+						<label for="state">State</label>
+						<select type="text" class="form-control" id="state" name="state" value="<%= @recruiter.state %>">
+								<option value=""></option>
+							<% @state.sort{|a,b| a.id <=> b.id}.each do |state| %>
+								<option value="<%= state.abbr %>" <%= 'selected' if state.abbr == @recruiter.state %>><%= state.abbr %></option>
+							<% end %>
+						</select>
+					</div>
+					<div class="control-group col-md-3">
+						<label for="zip">ZIP</label>
+						<input type="text" name="zip" id="zip" class="form-control" pattern="^\s*\d{5}(-?\s*\d{4})?\s*$" maxlength="10" minlength="5" value="<%= @recruiter.zip %>" />
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="phone">Phone</label>
+						<input onkeydown="phoneNumberFormatter()" type="text" name="phone" id="phone" class="form-control" value="<%= @recruiter.phone %>" />
+					</div>
+				</div>
+				
+				
+				<% if session[:admin ]%>
+				<div class="form-row">
+					<div class="form-group col-md-12">
+						<label class="checkbox">&nbsp;</label>
+						
+						<input type="checkbox" name="active" id="active" <%= 'checked="checked"' if @recruiter.active  %> />&nbsp;&nbsp;&nbsp;<strong>Active Recruiter</strong>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						
+		 				<input type="checkbox" name="recruiter_status" id="recruiter_status" <%= 'checked="checked"' if @recruiter.recruiter_status  %> /><strong>&nbsp;&nbsp;&nbsp;RRC</strong><label class="checkbox">
+						
+					</div>
+				</div>
+				<% end %>
+				
+				
+				<div class="form-row">
+					<div class="form-group col-md-12">
+						<p style="margin-top:14px;"><input class="btn btn-primary" type="submit" value="Save" /> &nbsp; <a onclick="goBack()" class="btn btn-secondary" style="color: white;">Cancel</a> &nbsp; <a class="delete btn btn-warning" href="/recruiters/<%= @recruiter.id %>/delete">Delete</a></p>
+					</div>
+				</form>	
+			</div>
+			</div> <!-- /span6 -->
+		</div> <!-- /row -->
+	</div> <!-- /container -->
+
+
+<script>
+  function formatPhoneNumber(value) {
+    if (!value) return value;
+    const phoneNumber = value.replace(/[^\d]/g, '');
+    const phoneNumberLength = phoneNumber.length;
+    if (phoneNumberLength < 4) return phoneNumber;
+    if (phoneNumberLength < 7) {
+      return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3)}`;
+    }
+    return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(
+      3,
+      6
+    )}-${phoneNumber.slice(6, 9)}`;
+  }
+
+  function phoneNumberFormatter() {
+    const inputField = document.getElementById('phone');
+    const formattedInputValue = formatPhoneNumber(inputField.value);
+    inputField.value = formattedInputValue;
+  }
+</script>
+	
+<script>
+	function isUSAZipCode(str) 
+	{
+	  return /^\d{5}(-\d{4})?$/.test(str);
+	}
+
+	function validateInput() 
+	{
+	  console.log("validateInput");
+	  let zipCode = document.getElementById("school_zip").value;
+	  let message = "";
+	  if (isUSAZipCode(zipCode)) 
+	  {
+	    message = "Valid Zip Code";
+	  } else {
+	    message = "Invalid Zip Code";
+	  }
+	  document.getElementById("msg").innerHTML = message;
+	}
+</script>
+	
+<script>
+	function ValidateEmail(@recruiter.email) 
+	{
+	 if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(myForm.emailAddr.value))
+	  {
+	    return (true)
+	  }
+	    alert("You have entered an invalid email address!")
+	    return (false)
+	}
+</script>

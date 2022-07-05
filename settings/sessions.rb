@@ -4,7 +4,7 @@
 
 enable :sessions
 
-set :session_secret, 'farscape123'
+set :session_secret, 'youbully!'
 
 set :protection, except: :session_hijacking
 

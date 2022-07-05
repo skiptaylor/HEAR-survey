@@ -23,24 +23,22 @@ body {
 #ground	{
 	margin: 0;
 	padding: 0;
-	background-image: url("../img/cover-group.png");
+	background-image: url("../img/cover-group-multiply.svg");
 	background-repeat: no-repeat;
-	background-size: 74%;
-	background-position: center 20px;
-	/*background-color: rgb(0, 158, 255);*/
-  	/*background-color: rgb(11, 128, 256);*/
+	background-size: 90%;
+	background-position: center 60px;
 }
 
-#soldier	{
+/*#soldier	{
 	margin: 0;
 	padding: 0;
 	min-height: 100vh;
-	background-image: url("/img/soldier.png");
+	background-image: url("/img/soldier.png"); 
 	background-repeat: no-repeat;
 	background-size: 60%;
 	background-position: center top;
 }
-
+*/
 
 input	{
 	padding: 7px;
@@ -414,11 +412,12 @@ footer	{
 	position: fixed;
 	background-color: rgb(0, 0, 0);
 	color: white;
-	font-size: 1em;
+	font-size: 0.9em;
 	text-align: center;
-	padding: 9px 0 0 0;
+	padding: 6px 0 0 0;
 	margin: 0;
 	border: none;
+	line-height: 1.2em;
 }
 
 .link-row:hover {

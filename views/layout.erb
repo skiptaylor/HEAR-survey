@@ -6,10 +6,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="CTC">
+	
 	   <link href="/css/bootstrap-grid.min.css" rel="stylesheet">
 		<link href="/css/bootstrap-reboot.min.css" rel="stylesheet">
 		<link href="/css/bootstrap.min.css" rel="stylesheet">
-		
 		<link rel="stylesheet" type="text/css" media="screen" href="/css/font-awesome.min.css" />
 		<link rel="stylesheet" type="text/css" media="screen" href="/css/font-awesome-ie7.min.css" />
 		<link type="text/css" rel="stylesheet" href="/css/buttons_altered.css" />
@@ -30,38 +30,31 @@
 
 	<body>
 		
-		<% if request.path_info.include? "/questions" %>
-		
-		
 		<nav class="navbar navbar-expand-md navbar-dark bg-dark">
 		  <div class="container">
-		    <a class="navbar-brand" href="/home"><img src="../img/logo-white-notag.svg" width="136px"></a>
+		    <a class="navbar-brand" href="/index"><img src="../img/logo-white-notag.svg" width="136px"></a>
 		    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
 		      <span class="navbar-toggler-icon"></span>
 		    </button>
 		    <div class="collapse navbar-collapse" id="mynavbar">
 				<ul class="navbar-nav me-auto" style="margin-left: 32px;">
 			  <li class="nav-item dropdown">
-			    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Survey Pages</a>
+			    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Recruiter</a>
 			    <ul class="dropdown-menu">
-			      <li><a class="dropdown-item <%= active '/questions/question0' %>" href="/questions/question0">Page 1</a></li>
-			      <li><a class="dropdown-item <%= active '/questions/question2' %>" href="/questions/question2">Page 2</a></li>
-			      <li><a class="dropdown-item <%= active '/questions/question3' %>" href="/questions/question3">Page 3</a></li>
-				  <li><a class="dropdown-item <%= active '/questions/question4' %>" href="/questions/question4">Page 4</a></li>
-				  <li><a class="dropdown-item <%= active '/questions/question5' %>" href="/questions/question5">Page 5</a></li>
-				  <li><a class="dropdown-item <%= active '/questions/question6' %>" href="/questions/question6">Page 6</a></li>
-				  <li><a class="dropdown-item <%= active '/questions/question7' %>" href="/questions/question7">Page 7</a></li>
-				  <li><a class="dropdown-item <%= active '/questions/question8' %>" href="/questions/question8">Page 8</a></li>
-				  <li><a class="dropdown-item <%= active '/questions/question9' %>" href="/questions/question9">Page 9</a></li>
-				  <li><a class="dropdown-item <%= active '/questions/question10' %>" href="/questions/question10">Page 10</a></li>
-				  <li><a class="dropdown-item <%= active '/questions/question11' %>" href="/questions/question11">Page 11</a></li>
+				<% if session[:recruiter] %>
+					<li><a class="dropdown-item <%= active 'recprofile' %>" href="/recruiters/recprofile">Account</a></li>
+					<li><a class="dropdown-item <%= active 'about' %>" href="/recruiters/about">About H•E•A•R</a></li>
+				 <% else %>
+				 	<li><a class="dropdown-item <%= active 'signin' %>" href="/recruiters/signin">Sign in</a></li>
+					<li><a class="dropdown-item <%= active 'noaccount' %>" href="/recruiters/noaccount">Create account</a></li>
+				 <% end %>
 			    </ul>
 			  </li>
 			 </ul>
 		      <div class="out pull-right">
 				 <a class="nav-link" href="#"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16" style="margin-top: -3px;">
   <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-</svg> &nbsp;<%= @user.name %></a> 
+</svg> &nbsp;</a> 
 			</div>
 			<div class="out pull-right">  
 			  <a class="nav-link" href="/sign-out">
@@ -74,25 +67,32 @@
 			  
 		  </div>
 		</nav>
-
-		<% end %>
 		
 		<main role="main">
-    	<% if erb :'/home' %>
     	<div class="content">
 	    	 <div class="container">
 	    		 
+				<%= alert %>
 				<%= yield %>       
 				
 			</div> <!-- container -->			
 		</div> <!-- content -->
-		<% end %>
 		</main>
-		<% if request.path_info.include? "/questions" %>
+		
 		<footer>
-			<p class="center" style="font-size: 0.7em;">&copy; <%= Time.now.strftime("%Y") %> <strong>Career Training Concepts Inc.</strong> &nbsp;  &nbsp; 888-326-9229 &nbsp;  &nbsp; All rights reserved.<br />Reproduction in whole or in part without permission is prohibited.</p>
+		<div class="row">
+			<div class="col-md-3 d-none d-sm-block">
+				<p> </p>
+			</div>
+			<div class="col-md-6">
+				<p class="center" style="font-size: 0.7em;">&copy; <%= Time.now.strftime("%Y") %> <strong>Career Training Concepts Inc.</strong>
+				<br />All rights reserved. Reproduction in whole or in part without permission is prohibited.</p>
+			</div>
+			<div class="col-md-3 d-none d-sm-block">
+				<p style="padding-top: 12px;"><a href="#" class="btn btn-mini btn-secondary">Admin</a></p>
+			</div>
+		</div>
 		</footer>
-		<% end %>	
 
 	</body>
 </html>

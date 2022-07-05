@@ -1,0 +1,111 @@
+
+	<div class="container">	
+		<div class="row">
+			<div class="col-md-12">
+				<h1 class="page-header">Recruiter Profile</h1>
+			</div>
+			<div class="col-md-6">
+				<h3>
+					<%= @recruiter.rank %> <%= @recruiter.first_name %> <%= @recruiter.last_name %><br />
+
+				</h3>
+				<p><span class="badge badge-info"><% if @recruiter.recruiter_status == true %>RRC<% end %></span></p>
+				<p>
+					<%= @recruiter.address1 %><br />
+					<% unless @recruiter.address2 = "" %><%= @recruiter.address2 %><br /><% end %>
+					<%= @recruiter.city %> <%= @recruiter.state %> &nbsp;<%= @recruiter.zip %><br />
+				</p>
+				<p>
+					<%= @recruiter.email %><br />
+					<%= @recruiter.phone %>
+				</p>	
+				
+				<p><a href="/recruiters/<%= @recruiter.id %>/edit/" class="btn" >Edit recruiter</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/recruiters/signout" class="btn btn-secondary btn-sm" style="background-color: #000000;"><i class="icon-signout"> </i> &nbsp;Sign out</a></p>
+				<span style="color: #919191;"><strong>PROTECT YOUR PRIVACY.</strong>
+				If you are using a public or shared device <strong>sign out</strong> when finished.</span> <br /><br />
+			</div>
+			
+			
+			
+			
+			<div class="col-md-6">	
+				<h5>Find School for your account.</h5>
+				<p>
+					<form method="get" class="form-search form-inline">
+					  <input type="text" name="zip" class="form-control search-query" placeholder="School Zip"/>  &nbsp;  
+					  <button type="submit" class="btn btn-success">Search</button>
+					</form>
+		  		</p>
+				<p style="color: #08297b; font-size: 1.15em; font-weight: bold;">Edit school to assign to recruiter account.</p>
+				<% if @results %>
+				<p>
+					<% @results.each do |c| %>
+						<hr />
+						<span style="font-size: 1.2rem;"><%= c.school_name %></span> &nbsp; <small style="color: #08297b;"><strong><%= "(Not Activated)" unless c.active %></strong></small><br />
+						<%= c.school_city %> <%= c.school_state %> &nbsp;<%= c.school_zip %> <a href="/arng/schools/<%= c.id %>/edit" class="btn btn-small" style="float: right;">Edit</a> <% unless c.active %><% else %><br />
+						School ID &nbsp;&nbsp;<span class="password-show"><%= c.school_password %></span> &nbsp; &nbsp; &nbsp; <% end %>
+					<% end %>
+				</p> 
+				<% end %>
+				<% if ( @results.count < 1 ) && ( params[:zip] == nil ) %>
+				
+				<% elsif ( @results.count == 0 ) && ( params[:zip] != '' ) %>
+					<hr />
+					<span class="password-show">No school found for <%= params[:zip] %></span>
+				<% else ( @results.count > 0 ) && ( params[:zip] != '' ) %>
+				
+				<% end %>
+					<hr />
+					<p style="line-height: 1.3em;" class="semi-bold"><a href="/arng/schools/new" style="margin: 2px 0 12px 12px;" class="btn btn-success pull-right">Register</a>After submitting your school's zip, if your school is not listed above, you can register a new school now.
+					<hr />
+					
+					
+				<!-- <p style="line-height: 1.3em;">If your school is listed as <strong>Not Activated</strong>, use the edit button next to school to finish registration. Call 888-326-9229 with problems.</p> -->
+				<p style="color: #08297b; font-size: 1.15em; font-weight: bold;">Schools that you are assigned to will be available in the School Accounts list below.</p>
+			</div>
+		
+		
+		
+		
+		
+		
+		</div>
+		<div class="row">	
+		
+			<div class="col-md-12">
+				<h1 class="page-header">School Accounts</h1>
+				
+				<table class="table table-striped table-hover table-sm" style="margin-bottom: 28px;">
+					<tr>
+						<!-- <th style="text-align: center; color: #af4532;">ID</th> -->
+						
+						<th>School</th>
+						
+						<th>School ID</th>
+						<!-- <th style="text-align: right;"></th> -->
+						<th style="text-align: right;"></th>
+					</tr>
+
+					<% @school.sort_by(&:updated_at).each do |school| %>
+					<% unless school.school_password == '' || school.school_password == nil %>
+					<% if session[:recruiter] == school.recruiter_id %>
+					
+					<tr>
+						
+						<td><%= school.school_name %></td>
+						
+						<td><%= school.school_password %></td>
+						<!-- <td style="text-align: right;"><a href="/recruiter/school/<%= school.id %>/presentation/new" class="btn btn-small">Register Class</a></td> -->
+						<td style="text-align: right;"><a href="/arng/schools/<%= school.id %>/edit" class="btn btn-mini">Edit</a> &nbsp; &nbsp; &nbsp; <a href="/arng/schools/<%= school.id %>/school_report" class="btn btn-mini btn-info">Get Reports</a></td>
+					</tr>
+					<% end %>
+					<% end %>
+					<% end %>
+				</table>
+				<br /><br />
+			</div> <!-- /span -->
+		</div> <!-- /row -->
+	</div> <!-- /container -->
+
+
+			

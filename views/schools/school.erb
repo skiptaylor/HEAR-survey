@@ -1,0 +1,53 @@
+<div class="container-white">
+	<div class="container">	
+		<div class="row">  
+			<div class="col-md-12">
+				<h1 class="page-header">School</h1>
+			</div>
+			<div class=" col-md-8 offset2 sign-in" style="padding: 24px 12px; margin-bottom: 60px;">
+				<div class="col-md-8">
+					 
+					<h3 style="color: #1abd9c; font-weight: 700;">Registration Successful</h3>
+					
+					<h5><%= @school.school_name %></h5>
+					<p><%= @school.school_address1 %> <%= @school.school_address2 %><br />
+						<%= @school.school_city %>, <%= @school.school_state %> &nbsp;<%= @school.school_zip %></p>
+					<p><strong>Educator:</strong> &nbsp; &nbsp; <%= @school.first_name %> <%= @school.middle_initial %> <%= @school.last_name %><br />
+					<strong>Counselor/teacher email:</strong> &nbsp; &nbsp; <%= @school.email %>
+					</p>
+					<div class="well well-small span7" style="text-align: center; margin: 9px 0 18px 0; padding-top: 8px;">
+						<hr />
+							<small>School ID</small>
+						
+						 
+							<h6 style="color: #b5011c;"><%= @school.school_password %></h6>
+						
+							
+						
+						<strong>Write School ID down <br />to provide to students at presentation.</strong>
+						<hr />
+					</div>
+					
+					<p style="clear: left;"><strong>Recruiter:</strong> &nbsp; &nbsp; <%= @school.recruiter.rank %> <%= @school.recruiter.first_name %> <%= @school.recruiter.middle_name %> <%= @school.recruiter.last_name %></p>
+					<p><small>Recruiter ID for testing&nbsp; &nbsp;<strong><%= @school.recruiter_id %></strong></small></p>
+				</div>
+				<div class="span7">
+					<hr />
+
+					<% if session[:recruiter] %>
+					<p style="margin: 1rem 0 0 1rem;">
+						<a href="/arng/schools/<%= @school.id %>/edit" class="btn btn-small">Edit School</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/recruiters/<%= session[:recruiter] %>/profile" class="btn btn-small">Recruiter Profile</a>
+					</p>
+					<% end %>
+					
+					<% if session[:admin] %>
+					<p style="margin: 1rem 0 0 1rem;">
+						<a href="/arng/schools/<%= @school.id %>/edit" class="btn btn-small">Edit School</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/recruiters/recruiters" class="btn btn-small">Recruiters</a>
+					</p>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+

@@ -1,0 +1,149 @@
+	<div class="container">	
+		<div class="row">  
+			<div class="col-md-12">
+				<h1 class="page-header">School Registration</h1>
+				<h5>Register your school to get a School ID.</h5>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-8">
+									
+				<form method="post" id="register-school" class="school form-horizontal">
+				
+				<p style="display: none;">
+				  <label class="checkbox">
+				    <input type="checkbox" name="cd" id="cd" checked <%= 'checked="checked"' if @school.cd  %> />
+				  </label>
+				</p>
+				
+				<p style="font-size: 1.1em; margin: 1em 0 1.5em 0;"><strong>School Information</strong></p>
+				
+
+				<div class="form-row">
+					<div class="form-group col-md-10">
+						<label for="school_name">School name</label>
+						<input type="text" class="form-control" name="school_name" id="school_name" value="<%= @school.school_name %>" /> 
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-10">
+						<label for="school_address1">School Address</label>
+						<input type="text" class="form-control" name="school_address1" id="school_address1" value="<%= @school.school_address1 %>" /> 
+						<input type="text" class="form-control" name="school_address2" id="school_address2" style="margin-top: -1px;" value="<%= @school.school_address2 %>" /> 
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="school_city">City</label>
+						<input type="text" class="form-control" name="school_city" id="school_city" value="<%= @school.school_city %>" /> 
+					</div>
+					<div class="form-group col-md-2">
+						<label for="school_state">State</label>
+						<select type="text"  class="form-control" id="school_state" name="school_state" value="<%= @school.school_state %>">
+								<option value="None"></option>
+							<% @state.sort_by(&:id).each do |state| %>
+								<option value="<%= state.abbr %>" <%= 'selected' if state.abbr == @school.school_state %>><%= state.abbr %></option>
+							<% end %>
+						</select>
+					</div>
+				<% unless @school.active %>
+					<div class="form-group col-md-4">
+						<label for="school_zip">Zip</label>
+						<input type="text" class="form-control" name="school_zip" id="school_zip" value="<%= @school.school_zip %>" />
+					</div>
+				<% else %>
+					<div class="form-group col-md-4">
+						<label for="school_zip">Zip</label>
+						<input type="text" class="form-control" name="school_zip" id="school_zip" value="<%= @school.school_zip %>" />
+					</div>
+				<% end %>
+				</div>
+				
+				
+				<p style="font-size: 1.1em; margin: 1em 0 1.5em 0;"><strong>Educator’s Contact Information</strong></p>
+				
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="first_name">Educator’s First name</label>
+						<input type="text" class="form-control" name="first_name" id="first_name" value="<%= @school.first_name %>" /> 
+					</div>
+					<div class="form-group col-md-6">
+						<label for="last_name">Educator’s Last name</label>
+						<input type="text" class="form-control" name="last_name" id="last_name" value="<%= @school.last_name %>" /> 
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="control-group col-md-10">
+						<label for="email">Counselor/teacher email</label>
+						<input type="email" class="form-control" name="email" id="email" value="<%= @school.email %>" /> 
+					</div>
+				</div>
+				<br />
+				<div class="form-row">
+					<div class="control-group col-md-9">
+						<div class="controls" style="text-align: left;">
+							<input class="btn btn-success" type="submit" value="Save" />&nbsp;&nbsp;&nbsp;<a onclick="goBack()" class="btn">Cancel</a>
+						</div>
+					</div>
+				</div>
+				<div class="form-row invisible">
+					<div class="control-group col-md-6">
+						<label for="school_password">School ID</label>
+						<input type="text" class="form-control hidden" name="school_password" id="school_password" value="<%= @school.school_password %>" /> 
+					</div>
+				</div>
+			</div>
+			
+			<div class="col-md-4">
+								
+				<div class="form-row" style="display: none;">
+					<div class="control-group">	
+						
+						<label for="active"></label>
+						<input type="checkbox" name="active" id="active" style="font-size: 2em;" <%= 'checked="checked"' if @school.active  %> /> <span style="font-size: 17px; padding: 0 0 0 5px;"><strong>Active</strong></span>
+						<br />
+					</div>
+				</div>
+				
+				 <div class="well" style="text-align: center; border-top: 3px solid #1abd9c; border-bottom: 3px solid #1abd9c; display: none;">
+				<% if @school.active == true %> 
+					School ID
+					<h6 style="color: #b5011c;"><%= @school.school_password %></h6>
+				<% else %>
+					<h5 class="muted">SCHOOL</h5>
+				<% end %>
+				 </div>
+				 
+				 
+				 <!-- <p style="font-size: 1.1em; margin: 1em 0 1em 0;"><strong>ARNG Rep</strong></p> -->
+ 				<div class="form-row" style="display: none;">
+					
+ 					<div class="control-group">
+ 						<label for="recruiter_id">Recruiter</label>
+ 						<select type="text" id="recruiter_id" name="recruiter_id" class="form-control">
+ 							
+							<option><%= session[:recruiter] %></option>
+
+
+ 						</select>
+ 					</div>
+ 				</div>
+ 				<br /><br />
+				
+ 				
+			 	</form>
+			</div>
+			
+		</div>
+		
+	</div> <!-- /container -->
+
+<script  type="text/javascript">
+	var frmvalidator = new Validator("register-school");
+	frmvalidator.addValidation("school_name","req","Please enter your School Name");
+	frmvalidator.addValidation("school_address1","req","Please enter your School Address");
+	frmvalidator.addValidation("school_city","req","Please enter your School City");
+	frmvalidator.addValidation("school_state","req","Please enter your School State");
+	frmvalidator.addValidation("school_zip","req","Please enter your School Zip");
+	frmvalidator.addValidation("ng_rep","req","Please enter your National Guard Rep");
+</script>
