@@ -1,0 +1,231 @@
+	<div class="container">	
+		<div class="row">  
+			<div class="col-md-12">
+		      <h1 class="page-header">Edit Account</h1>
+			</div>
+		</div>
+		<form class="form-horizontal" method="post" id="resume_tool">
+		<div class="form-row">
+			<div class="form-group col-md-6"> 
+				<label for="school_password">School ID</label>
+				<input type="text" class="form-control" placeholder="" name="school_password" id="school_password" aria-describedby="schoolpasswordHelp" value="<%= @student.school_password %>" />
+					<small id="schoolpasswordHelp" class="form-text">If you do not know your School ID, please contact your school Counselor or teacher.</small>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-6">
+				<label for="email">Personal Email Address</label>
+				<input type="text" class="form-control" placeholder="" name="email" id="email" aria-describedby="emailHelp" value="<%= @student.email %>" />
+					<small id="emailHelp" class="form-text">You will use your personal email to access your account.</small>
+			</div>
+			<div class="form-group col-md-6">
+				<label for="password">Personal Password</label>
+				<input type="text" class="form-control" placeholder="" name="password" id="password" aria-describedby="passwordHelp" value="<%= @student.password %>" />
+					<small id="passwordHelp" class="form-text">This personal password will be used with your email to access your account.</small>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-4">
+				<label for="first_name">First Name</label>
+				<input type="text" name="first_name" id="first_name" class="form-control" placeholder="" value="<%= @student.first_name %>" />
+			</div>
+			<!-- <div class="form-group col-md-4">
+				<label for="middle_name">Middle Name</label>
+				<input type="text" name="middle_name" id="middle_name" class="form-control" placeholder="" value="<%= @student.middle_name %>" />
+			</div> -->
+			<div class="form-group col-md-4">
+				<label for="last_name">Last Name</label>
+				<input type="text" name="last_name" id="last_name" class="form-control" placeholder="" value="<%= @student.last_name %>" />
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-6">
+				<label for="address">Address</label>
+				<input type="text" name="address" id="address" class="form-control" placeholder="" value="<%= @student.address %>" />
+			</div>
+			<div class="form-group col-md-6">
+				<label for="address2">Address</label>
+				<input type="text" name="address2" id="addres2" class="form-control" placeholder="" value="<%= @student.address2 %>" />
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-6">
+				<label for="city">City</label>
+				<input type="text" name="city" id="city" class="form-control"  placeholder=""value="<%= @student.city %>" />
+			</div>
+			<div class="form-group col-md-2">
+				<label for="state">State</label>
+				<select type="text" id="state" name="state" class="form-control" value="<%= @student.state %>">
+					<option value=""></option>
+					<% @state.sort{|a,b| a.id <=> b.id}.each do |state| %>
+					<option value="<%= state.abbr %>" <%= 'selected' if state.abbr == @student.state %>><%= state.abbr %></option>
+					<% end %>
+				</select>
+			</div>
+			<div class="form-group col-md-2">
+				<label class="control-label"for="zip">Zip</label>
+				<input type="text" name="zip" id="zip" class="form-control" placeholder="" pattern="^\s*\d{5}(-?\s*\d{4})?\s*$" maxlength="10" minlength="5" value="<%= @student.zip %>" />
+			</div>
+		</div>
+		<div class="form-row">		
+			<div class="form-group col-md-6">
+				<label for="phone">Phone</label>
+				<input onkeydown="phoneNumberFormatter()" type="text" name="phone" id="phone" class="form-control" placeholder="" value="<%= @student.phone %>" />
+			</div>
+		</div>
+		<div class="form-row" hidden>		
+			<div class="form-group col-md-6">
+				<label for="school_id">School</label>
+				<input type="text" name="school_id" id="school_id" class="form-control" placeholder="" value="<%= @student.school_id %>" />
+			</div>
+		</div>
+		
+		<div class="form-row">
+			<div class="control-group">		
+				<label for="grade">Grade level</label>
+				<select type="text" class="form-control" name="grade" id="grade" style="text-align: center; margin-bottom: 10px;" >
+					<option value="Select one">-- Select one --</option>
+					<option <%= 'selected' if @student.grade == '9' %> value="9">9</option>
+					<option <%= 'selected' if @student.grade == '10' %> value="10">10</option>
+					<option <%= 'selected' if @student.grade == '11' %> value="11">11</option>
+					<option <%= 'selected' if @student.grade == '12' %> value="12">12</option>
+					<option <%= 'selected' if @student.grade == 'College' %> value="College">College</option>
+					<option <%= 'selected' if @student.grade == 'Other' %> value="Other">Other</option>
+				</select>
+			</div>
+		</div>
+		
+		<div class="form-row">
+			<div class="form-group col-md-6">
+				<label for="future1">Future Plans  &nbsp; <span style="font-weight: 300;">(Check all that apply)</span></label>
+				
+			<div class="custom-control custom-checkbox">
+				<input type="checkbox" class="custom-control-input" id="future1" name="future1" <%= 'checked="checked"' if @student.future1  %> />
+				<label class="custom-control-label" for="future1">&nbsp;Enter technical college/trade school</label>
+			</div>
+			<div class="custom-control custom-checkbox">
+				<input type="checkbox" class="custom-control-input" id="future2" name="future2" <%= 'checked="checked"' if @student.future2  %> />
+				<label class="custom-control-label" for="future2">&nbsp;Work full-time</label>
+			</div>
+			<div class="custom-control custom-checkbox">
+				<input type="checkbox" class="custom-control-input" id="future3" name="future3" <%= 'checked="checked"' if @student.future3  %> />
+				<label class="custom-control-label" for="future3">&nbsp; Work part-time</label>
+			</div>
+			<div class="custom-control custom-checkbox">
+				<input type="checkbox" class="custom-control-input" id="future4" name="future4" <%= 'checked="checked"' if @student.future4  %> />
+				<label class="custom-control-label" for="future4">&nbsp; Enter the military</label>
+			</div>
+			<div class="custom-control custom-checkbox">
+				<input type="checkbox" class="custom-control-input" id="future5" name="future5" <%= 'checked="checked"' if @student.future5  %> />
+				<label class="custom-control-label" for="future5">&nbsp; Go to college</label>
+			</div>
+			<div class="custom-control custom-checkbox">
+				<input type="checkbox" class="custom-control-input" id="future6" name="future6" <%= 'checked="checked"' if @student.future6  %> />
+				<label class="custom-control-label" for="future6">&nbsp; I have money to pay for education</label>
+			</div>
+			<div class="custom-control custom-checkbox">
+				<input type="checkbox" class="custom-control-input" id="future7" name="future7" <%= 'checked="checked"' if @student.future7  %> />
+				<label class="custom-control-label" for="future7">&nbsp; Counting on parents for money for education</label>
+			</div>
+			<div class="custom-control custom-checkbox">
+				<input type="checkbox" class="custom-control-input" id="future8" name="future8" <%= 'checked="checked"' if @student.future8  %> />
+				<label class="custom-control-label" for="future8">&nbsp; Considering sources of financial aid or scholarships</label>
+			</div>
+			
+		</div>
+	</div>
+		
+		
+				
+		<div class="form-row">				
+			<div class="form-group col-md-6" style="text-align: right;">
+
+			
+				<label for="account"></label>
+				<button class="btn btn-primary" id="account" type="submit">Save</button> &nbsp;&nbsp;&nbsp;&nbsp;<a onclick="goBack()" class="btn">Cancel</a>
+			</div>
+		</div>
+		</form>
+	</div>
+
+
+<script type="text/javascript">
+	EnableSubmit = function(val) {
+	var submit = document.getElementById("account");
+		if (val.checked == true) {
+        submit.disabled = false;
+    	}
+		else {
+        submit.disabled = true;
+	  	}
+	}
+</script>
+</div>
+
+<script  type="text/javascript">
+	var frmvalidator = new Validator("resume_tool");
+	frmvalidator.addValidation("first_name","req","Please enter your First Name");
+	frmvalidator.addValidation("last_name","req","Please enter your Last Name");
+	frmvalidator.addValidation("address","req","Please enter your Address");
+	frmvalidator.addValidation("city","req","Please enter your City");
+	frmvalidator.addValidation("state","req","Please enter your State");
+	frmvalidator.addValidation("zip","req","Please enter your Zip");
+	frmvalidator.addValidation("phone","req","Please enter your phone");
+</script>
+
+<script>
+  function formatPhoneNumber(value) {
+    if (!value) return value;
+    const phoneNumber = value.replace(/[^\d]/g, '');
+    const phoneNumberLength = phoneNumber.length;
+    if (phoneNumberLength < 4) return phoneNumber;
+    if (phoneNumberLength < 7) {
+      return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3)}`;
+    }
+    return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(
+      3,
+      6
+    )}-${phoneNumber.slice(6, 9)}`;
+  }
+
+  function phoneNumberFormatter() {
+    const inputField = document.getElementById('phone');
+    const formattedInputValue = formatPhoneNumber(inputField.value);
+    inputField.value = formattedInputValue;
+  }
+</script>
+	
+<script>
+	function isUSAZipCode(str) 
+	{
+	  return /^\d{5}(-\d{4})?$/.test(str);
+	}
+
+	function validateInput() 
+	{
+	  console.log("validateInput");
+	  let zipCode = document.getElementById("school_zip").value;
+	  let message = "";
+	  if (isUSAZipCode(zipCode)) 
+	  {
+	    message = "Valid Zip Code";
+	  } else {
+	    message = "Invalid Zip Code";
+	  }
+	  document.getElementById("msg").innerHTML = message;
+	}
+</script>
+	
+<script>
+	function ValidateEmail(@student.email) 
+	{
+	 if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(myForm.emailAddr.value))
+	  {
+	    return (true)
+	  }
+	    alert("You have entered an invalid email address!")
+	    return (false)
+	}
+</script>
+
+		

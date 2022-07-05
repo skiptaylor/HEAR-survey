@@ -166,7 +166,7 @@ post "/recruiters/signin/?" do
         session[:recruiter] = recruiter.id
         
         flash[:alert] = 'Welcome back! You are now signed in.'
-        redirect "/arng/leads"
+        redirect "/index"
       else
         flash[:alert] = 'Your password is incorrect.'
         erb :"/recruiter/signin"
@@ -217,6 +217,6 @@ get "/recruiters/signout/?" do
   session[:recruiter] = nil
   session.clear
   flash[:alert] = 'You are now signed out.'
-  redirect "/arng/arng"
+  redirect "/index"
 end
 

@@ -17,15 +17,15 @@ end
 
 # end
 
-get "/student/reports/create/?" do 
+get "/student/create/?" do 
   @subscription = Subscription.all
   @school = School.all
   @state = State.all
   @presentation = Presentation.all
-  erb :'student/reports/create'
+  erb :'student/create'
 end
 
-post '/student/reports/create/?' do
+post '/student/create/?' do
   subscription = Subscription.all
   school = School.all
   state = State.all
@@ -55,28 +55,28 @@ post '/student/reports/create/?' do
             unless params[:password] == ''
               @student = Student.create(
               :email            => params[:email],
-              :password         => params[:password],
-              :name             => params[:name],
               :first_name       => params[:first_name],
-              :middle_name      => params[:middle_name],
               :last_name        => params[:last_name],
-              :address          => params[:address],
-              :city             => params[:city],
-              :state            => params[:state],
-              :zip              => params[:zip],
               :phone            => params[:phone],
               :school_password  => params[:school_password],
               :school_id        => params[:school_id],
               :sub_code         => params[:sub_code],
               :grade            => params[:grade],
-              :future1          => params[:future1],
-              :future2          => params[:future2],
-              :future3          => params[:future3],
-              :future4          => params[:future4],
-              :future5          => params[:future5],
-              :future6          => params[:future6],
-              :future7          => params[:future7],
-              :future8          => params[:future8],
+              :gender           => params[:gender],
+              :ethnicity        => params[:ethnicity],
+              :question_1       => params[:question_1], 
+              :question_2       => params[:question_2], 
+              :question_3       => params[:question_3], 
+              :question_4       => params[:question_4], 
+              :question_5       => params[:question_5], 
+              :question_6       => params[:question_6], 
+              :question_7       => params[:question_7], 
+              :question_8       => params[:question_8], 
+              :question_9       => params[:question_9], 
+              :question_10      => params[:question_10],
+              :question_11      => params[:question_11],
+              :question_12      => params[:question_12],
+              :school_id        => params[:school_id],
               :presentation_id  => params[:presentation_id]
               )
             
@@ -99,40 +99,40 @@ post '/student/reports/create/?' do
               @student.save
                         
               flash[:alert] = 'Welcome to the Occupations Guide. You are now signed in.'
-              redirect '/student/reports/report/report_profile'
+              redirect '/student/edit_student'
             else
               flash[:alert] = 'Please create a personal password that will be used to sign into your account.'
-              erb :"student/reports/create"
+              erb :"student/create"
             end
           
           else
             flash[:alert] = 'This email already exists. Maybe you need to sign in.'
-            erb :"student/reports/create"
+            erb :"student/create"
           end
         
         else
            flash[:alert] = 'The Student Access Codes must match. Try typing them again.'
-           erb :"student/reports/create"
+           erb :"student/create"
          end
 
       else
          flash[:alert] = 'This Student Access Codes has already been used. Try typing it again.'
-         erb :"student/reports/create"
+         erb :"student/create"
       end
 
      else
          flash[:alert] = 'This Student Access Code is incorrect. Try typing it again.'
-        erb :"student/reports/create"
+        erb :"student/create"
       end
       
     else
       flash[:alert] = 'That is not a valid School ID.'
-      erb :"student/reports/create"
+      erb :"student/create"
     end 
     
   else
     flash[:alert] = 'You must enter a valid School ID'
-    erb :"student/reports/create"
+    erb :"student/create"
   end
     
 end
@@ -145,7 +145,7 @@ get '/student/reports/report/report_profile/?' do
   erb :'/student/reports/report_profile'
 end
 
-get "/student/reports/signin/?" do
+get "/student/signin/?" do
   
   unless session[:student]
     
@@ -153,16 +153,16 @@ get "/student/reports/signin/?" do
 	session.clear
   @school = School.all 
   @student = Student.all
-  erb :"student/reports/signin"
+  erb :"student/signin"
   
   else
     
-  redirect("/student/reports/report/report_profile")
+  redirect("/index")
   
   end
 end
 
-post '/student/reports/signin/?' do
+post '/student/signin/?' do
   
   params[:email].strip!
   params[:password].strip!
@@ -175,32 +175,32 @@ post '/student/reports/signin/?' do
         session[:student] = student.id
         
         flash[:alert] = 'Welcome back! You are now signed in.'
-        redirect("/student/reports/report/report_profile")
+        redirect("/student")
         
       else
         flash[:alert] = 'Your password is incorrect.'
-        erb :"student/reports/signin"
+        erb :"student/signin"
       end
     else
       flash[:alert] = 'We can\'t find an account with that email address. Maybe you need to create one.'
-      erb :"student/reports/signin"
+      erb :"student/signin"
     end
     
   else
     flash[:alert] = 'You must enter a valid email.'
-    erb :"student/reports/signin"
+    erb :"student/signin"
   end
     
 end
 
-get '/student/reports/:id/edit/?' do
+get '/student/:id/edit/?' do
   @state = State.all
   @school = School.all
   @student = Student.get(params[:id])
   erb :'/student/reports/edit_student'
 end
 
-post '/student/reports/:id/edit/?' do
+post '/student/:id/edit/?' do
   
   params[:password].strip!
   params[:password].downcase!
@@ -215,32 +215,32 @@ post '/student/reports/:id/edit/?' do
   
   student = Student.get(params[:id]).update(
   :email            => params[:email],
-  :password         => params[:password],
-  :name             => params[:name],
   :first_name       => params[:first_name],
-  :middle_name      => params[:middle_name],
   :last_name        => params[:last_name],
-  :address          => params[:address],
-  :city             => params[:city],
-  :state            => params[:state],
-  :zip              => params[:zip],
   :phone            => params[:phone],
   :school_password  => params[:school_password],
   :school_id        => params[:school_id],
   :sub_code         => params[:sub_code],
   :grade            => params[:grade],
-  :future1          => params[:future1],
-  :future2          => params[:future2],
-  :future3          => params[:future3],
-  :future4          => params[:future4],
-  :future5          => params[:future5],
-  :future6          => params[:future6],
-  :future7          => params[:future7],
-  :future8          => params[:future8],
+  :gender           => params[:gender],
+  :ethnicity        => params[:ethnicity],
+  :question_1       => params[:question_1], 
+  :question_2       => params[:question_2], 
+  :question_3       => params[:question_3], 
+  :question_4       => params[:question_4], 
+  :question_5       => params[:question_5], 
+  :question_6       => params[:question_6], 
+  :question_7       => params[:question_7], 
+  :question_8       => params[:question_8], 
+  :question_9       => params[:question_9], 
+  :question_10      => params[:question_10],
+  :question_11      => params[:question_11],
+  :question_12      => params[:question_12],
+  :school_id        => params[:school_id],
   :presentation_id  => params[:presentation_id]
   )
   
-  redirect("/student/reports/report/report_profile")
+  redirect("/student/")
   
   else
     

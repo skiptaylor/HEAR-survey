@@ -1,8 +1,8 @@
 helpers do
   
-  def auth_user
-    unless session[:user] || session[:admin]
-      # flash[:alert] = 'You do not have permission to see that page.'
+  def auth_recruiter
+    unless session[:recruiter] || session[:admin]
+      flash[:alert] = 'You do not have permission to see that page.'
       redirect '/'
     end
   end

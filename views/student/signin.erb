@@ -1,0 +1,82 @@
+<style>
+
+.signdiv {
+	height: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+.form-signin .checkbox {
+  font-weight: 400;
+}
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
+}
+</style>
+
+  <div class="container text-center">
+	  <div class="signdiv">
+		  <form class="form-signin" method="post">
+			  <h1 class="h3 mb-3 font-weight-normal">Student Sign in</h1>
+			  <label for="inputEmail" class="sr-only">Email address</label>
+			  <input type="email" name="email" id="email" class="form-control" placeholder="Email address" value="<%= params[:email] %>" required autofocus>
+			  <% if @errors.include? :email_not_found %>
+			  <span class="help-inline">That email address isn't in our system. Maybe you need to <a href="/student/reports/create">create an account</a>.</span>
+			  <% end %>
+			  <label for="inputPassword" class="sr-only">Password</label>
+			  <input type="password" name="password" id="password" class="form-control" placeholder="Personal password" value="<%= params[:password] %>" required>
+			  <% if @errors.include?(:password_not_matched) && !@errors.include?(:email_not_found) %>
+			  <span class="help-inline">Wrong password.</span>
+			  <% end %>
+			  <button class="btn btn-lg btn-primary pull-left" type="submit">Sign in</button>
+			  <button onclick="goBack()" class="btn btn-secondary pull-right">Cancel</button>
+			  <div class="checkbox mb-3">
+				  <label>
+					  <p style="padding-top:1em;"><small><strong>Forget your password?</strong> <br />Fill in your account email address and we will email you a link to reset your password.<br /><a href="#" id="reset-password" class="btn btn-mini" style="margin-top: 12px;">Reset my password</a></small></p>
+				  </label>
+			  </div>
+		  </form>
+	  </div>
+	</div>

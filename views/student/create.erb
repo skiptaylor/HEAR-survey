@@ -1,0 +1,170 @@
+	<div class="container">	
+		<div class="row">  
+			<div class="col-md-12">
+		      <h1 class="page-header">Create New Account</h1>
+			</div>
+		</div>
+		<form class="form-horizontal" method="post" id="student_report">
+		<div class="form-row">
+			<div class="form-group col-md-5 offset-md-3"> 
+				<label for="school_password">School ID</label>
+				<input type="text" class="form-control" placeholder="" name="school_password" id="school_password" aria-describedby="schoolpasswordHelp" value="<%= params[:school_password] %>" />
+					<small id="schoolpasswordHelp" class="form-text">This code will be furnished by the ARNG Rep.</small>
+			</div>
+		</div>
+		
+		<div class="form-row">
+			<div class="form-group col-md-5 offset-md-3"> 
+				<label for="sub_code">Student Access Code<!-- &nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" onclick="myFunction()"> --></label>
+				<input type="text" class="form-control" placeholder="" name="sub_code" id="sub_code" value="<%= params[:sub_code] %>" />
+				<label for="sub_code2" style="margin-top: 7px;">Please Type Access Code Again<!-- &nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" onclick="ourFunction()">&nbsp; <small>Show password</small> --></label>
+				<input type="text" class="form-control" placeholder="" name="sub_code2" id="sub_code2" aria-describedby="schoolpasswordHelp" value="<%= params[:sub_code2] %>" />
+					<small id="schoolpasswordHelp" class="form-text">This code will be furnished by the ARNG Rep.</small>
+			</div>
+		</div>
+		
+		
+		<div class="form-row">
+			<div class="form-group col-md-5 offset-md-3">
+				<label for="email">Personal Email Address</label>
+				<input type="email" class="form-control" placeholder="" name="email" id="email" aria-describedby="emailHelp" value="<%= params[:email] %>" />
+					<small id="emailHelp" class="form-text">You will use your personal email to access your account.</small>
+			</div>
+			<div class="form-group col-md-5 offset-md-3">
+				<label for="password">Personal Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" onclick="myFunction()">&nbsp; <small>Show password</small></label>
+				<input type="password" class="form-control" placeholder="" name="password" id="password" aria-describedby="passwordHelp" value="<%= params[:password] %>" />
+					<small id="passwordHelp" class="form-text">This password will be used with your email to access your account.</small>
+			</div>
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-5 offset-md-3">
+				<label for="first_name">First Name</label>
+				<input type="text" name="first_name" id="first_name" class="form-control" placeholder="" value="<%= params[:first_name] %>" />
+			</div>
+			<div class="form-group col-md-5 offset-md-3">
+				<label for="last_name">Last Name</label>
+				<input type="text" name="last_name" id="last_name" class="form-control" placeholder="" value="<%= params[:last_name] %>" />
+			</div>
+			
+			<div class="form-group col-md-3 offset-md-3">			
+				<label for="grade">Grade level</label>
+				<select type="text" class="form-control" name="grade" id="grade" style="text-align: center;" >
+					<option value="Select one">-- Select one --</option>
+					<option <%= 'selected' if @grade == '9' %> value="9">9</option>
+					<option <%= 'selected' if @grade == '10' %> value="10">10</option>
+					<option <%= 'selected' if @grade == '11' %> value="11">11</option>
+					<option <%= 'selected' if @grade == '12' %> value="12">12</option>
+					<option <%= 'selected' if @grade == 'College' %> value="College">College</option>
+					<option <%= 'selected' if @grade == 'Other' %> value="Other">Other</option>
+				</select>
+			</div>
+
+			<div class="form-group col-md-5 offset-md-3">
+				<label for="future1">Future Plans  &nbsp; <span style="font-weight: 300;">(Check all that apply)</span></label>
+				
+			<div class="custom-control custom-checkbox">
+				<input type="checkbox" class="custom-control-input" id="future1" name="future1" <%= 'checked="checked"' if @future1  %> />
+				<label class="custom-control-label" for="future1">&nbsp;Enter technical college/trade school</label>
+			</div>
+			<div class="custom-control custom-checkbox">
+				<input type="checkbox" class="custom-control-input" id="future2" name="future2" <%= 'checked="checked"' if @future2  %> />
+				<label class="custom-control-label" for="future2">&nbsp;Work full-time</label>
+			</div>
+			<div class="custom-control custom-checkbox">
+				<input type="checkbox" class="custom-control-input" id="future3" name="future3" <%= 'checked="checked"' if @future3  %> />
+				<label class="custom-control-label" for="future3">&nbsp; Work part-time</label>
+			</div>
+			<div class="custom-control custom-checkbox">
+				<input type="checkbox" class="custom-control-input" id="future4" name="future4" <%= 'checked="checked"' if @future4  %> />
+				<label class="custom-control-label" for="future4">&nbsp; Enter the military</label>
+			</div>
+			<div class="custom-control custom-checkbox">
+				<input type="checkbox" class="custom-control-input" id="future5" name="future5" <%= 'checked="checked"' if @future5  %> />
+				<label class="custom-control-label" for="future5">&nbsp; Go to college</label>
+			</div>
+			<div class="custom-control custom-checkbox">
+				<input type="checkbox" class="custom-control-input" id="future6" name="future6" <%= 'checked="checked"' if @future6  %> />
+				<label class="custom-control-label" for="future6">&nbsp; I have money to pay for education</label>
+			</div>
+			<div class="custom-control custom-checkbox">
+				<input type="checkbox" class="custom-control-input" id="future7" name="future7" <%= 'checked="checked"' if @future7  %> />
+				<label class="custom-control-label" for="future7">&nbsp; Counting on parents for money for education</label>
+			</div>
+			<div class="custom-control custom-checkbox">
+				<input type="checkbox" class="custom-control-input" id="future8" name="future8" <%= 'checked="checked"' if @future8  %> />
+				<label class="custom-control-label" for="future8">&nbsp; Considering sources of financial aid or scholarships</label>
+			</div>
+			
+		</div>		
+		
+			<div class="form-group col-md-5 offset-md-3">
+				<label for="account"></label>
+				<button class="btn btn-primary" id="account" type="submit">Create Account</button>&nbsp;&nbsp;&nbsp;&nbsp;<a onclick="goBack()" class="btn btn-secondary" id="cancel" style="color: #ffffff;">Cancel</a>
+			</div>
+		</div>
+		
+		
+		
+		</form>
+	</div>
+
+
+	
+</div>
+
+<!-- <script type="text/javascript">
+function myFunction() {
+  var x = document.getElementById("password");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+</script> -->
+
+<!-- <script type="text/javascript">
+function ourFunction() {
+  var x = document.getElementById("sub_code2");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+</script> -->
+
+<script type="text/javascript">
+	EnableSubmit = function(val) {
+		var submit = document.getElementById("account");
+		if (val.checked == true) {
+			submit.disabled = false;
+		}
+		else {
+			submit.disabled = true;
+		}
+	}
+</script>
+
+<script>
+	window.onload = function() {
+		const sub_code = document.getElementById('sub_code');
+		sub_code.onpaste = function(e) {
+			e.preventDefault();
+		}
+		const sub_code2 = document.getElementById('sub_code2');
+		sub_code2.onpaste = function(g) {
+			g.preventDefault();
+		}
+	}
+</script>
+
+<script  type="text/javascript">
+	var frmvalidator = new Validator("student_report");
+	frmvalidator.addValidation("first_name","req","Please enter your First Name");
+	frmvalidator.addValidation("last_name","req","Please enter your Last Name");
+	frmvalidator.addValidation("grade","maxlen=7","Please select your grade");
+</script>
+
+
+		
