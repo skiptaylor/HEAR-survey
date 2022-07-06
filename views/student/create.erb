@@ -1,6 +1,9 @@
 <style>
-	select.form-conttrol option input {
-		padding: 0;
+	input {
+		border-color; blue;
+	}
+	.select-input {
+	  color: red;
 	}
 </style>
 
@@ -14,7 +17,7 @@
 	<div class="row">
 		<div class="col-md-5">
 			<h6>Attendance Record</h6>
-			<p>Please create an Attendance Record for your school for this anti-bullying presentation.</p>
+			<p style="font-weight: 500;">Please create an Attendance Record for your school for this anti-bullying presentation.</p>
 			<div class="form-group"> 
 				<label for="school_password">School ID</label>
 				<input type="text" class="form-control" placeholder="" name="school_password" id="school_password" aria-describedby="schoolpasswordHelp" value="<%= params[:school_password] %>" />
@@ -52,16 +55,19 @@
 					<input type="email" class="form-control" placeholder="" name="email" id="email" aria-describedby="emailHelp" value="<%= params[:email] %>" />
 				</div>
 			</div>
-			<div class="form-row" style="marin-bottom: 10em;">
+			<div class="form-row">
 				<div class="form-group">
 					<label for="phone">Phone <small id="emailHelp" class="help-text">&nbsp;&nbsp;&nbsp;Optional</small></label>
 					<input type="text" class="form-control" placeholder="" name="phone" id="phone" aria-describedby="phoneHelp" value="<%= params[:phone] %>" />
 				</div>
 			</div>
+			<div class="form-row" style="text-align: center;">
+				<img src="/img/vgroup.png" width="90%">
+			</div>
 		</div>	
 		<div class="col-md-7">	
 			<h6>Research</h6>
-			<p>Demographic information (for research purposes)</p>
+			<p style="font-weight: 500;">Demographic information (for research purposes)</p>
 			<div class="form-group">			
 				<label for="gender">Gender</label>
 				<select type="text" class="form-select form-select-sm" name="gender" id="gender" style="width: 15em;" >
@@ -95,7 +101,7 @@
 				</select>
 			</div>
 			<div class="form-group" style="margin-top: 12px;">
-				<p>Please indicate how much you agree or disagree with the following statements.</p>
+				<p style="font-weight: 500;">Please indicate how much you agree or disagree with the following statements.</p>
 			
 			<ol>
 				<li>Bullying is a problem in my school.
@@ -231,14 +237,16 @@
 					</div>
 				</li>
 			</ol>
-			
+			<div class="" style="margin-top: 2em; text-align: left;">
+				<button class="btn btn-primary" id="account" type="submit">Save Record</button>&nbsp;&nbsp;&nbsp;&nbsp;<a onclick="goBack()" class="btn btn-secondary" id="cancel" style="color: #ffffff;">Cancel</a>
+			</div>
 			
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-12" style="margin-top: 2em; text-align: right;">
+		<!-- <div class="col-md-12" style="margin-top: em; text-align: right;">
 			<button class="btn btn-primary" id="account" type="submit">Save Record</button>&nbsp;&nbsp;&nbsp;&nbsp;<a onclick="goBack()" class="btn btn-secondary" id="cancel" style="color: #ffffff;">Cancel</a>
-		</div>
+		</div> -->
 	</div>
 	</form>
 </div>    <!-------- /container -------->
