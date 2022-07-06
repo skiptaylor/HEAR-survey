@@ -428,17 +428,23 @@ select.year {
 	opacity: 0.4;
 }
 
+
+
+
+
+
+
 div#alert {
 	display: none;
 	position: absolute;
 	width: 100%;
 	font-family: 'Open Sans', sans-serif;
-	line-height: 2em;
+	line-height: 3em;
 	display: block;
 	background-color: #336df0;
 	opacity: 0.8;
-	padding: 4px 4px;
-	margin: 4px auto 0 auto;
+	padding: 3px 3px;
+	margin: 0 auto 0 auto;
 	text-align: center;
 	color: #ffffff;
 	font-weight: 800;
@@ -446,7 +452,7 @@ div#alert {
 }
 
 
-div#ground	{
+/*div#ground	{
 	background-image: url("../img/eCDweb.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -456,7 +462,7 @@ div#ground	{
         -o-transition: all .3s ease-in-out;
            transition: all .3s ease-in-out;
 }
-
+*/
 input, textarea, select	{
 	border: 1px solid #92bd97 !important;
 	outline: 0px solid #92bd97 !important;
@@ -465,15 +471,6 @@ input, textarea, select	{
            outline-radius: 6px;
 }
 
-.logo-e	{
-	font-style: italic;
-	color: #1abd9c;
-}
-
-.logo-e-white	{
-	font-style: italic;
-	color: #ffffff;
-}
 
 .dropdown-item {
   display: block;

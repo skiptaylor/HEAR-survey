@@ -1,54 +1,78 @@
-	<div class="container">	
-		<div class="row">  
-			<div class="col-md-12">
-		      <h1 class="page-header">Create New Account</h1>
-			</div>
+<style>
+	select.form-conttrol option input {
+		padding: 0;
+	}
+</style>
+
+<div class="container" style="margin-bottom: 5em;">	
+	<div class="row">  
+		<div class="col-md-12">
+			<h1 class="page-header">Student Survey</h1>
 		</div>
-		<form class="form-horizontal" method="post" id="student_report">
-		<div class="form-row">
-			<div class="form-group col-md-5 offset-md-3"> 
+	</div>
+	<form class="form-horizontal" method="post" id="student">
+	<div class="row">
+		<div class="col-md-5">
+			<h6>Attendance Record</h6>
+			<p>Please create an Attendance Record for your school for this anti-bullying presentation.</p>
+			<div class="form-group"> 
 				<label for="school_password">School ID</label>
 				<input type="text" class="form-control" placeholder="" name="school_password" id="school_password" aria-describedby="schoolpasswordHelp" value="<%= params[:school_password] %>" />
-					<small id="schoolpasswordHelp" class="form-text">This code will be furnished by the ARNG Rep.</small>
+				<small id="schoolpasswordHelp" class="form-text">This code will be furnished by the ARNG Rep.</small>
 			</div>
-		</div>
-		
-		<div class="form-row">
-			<div class="form-group col-md-5 offset-md-3"> 
-				<label for="sub_code">Student Access Code<!-- &nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" onclick="myFunction()"> --></label>
+			<div class="form-group"> 
+				<label for="sub_code">Student Access Code</label>
 				<input type="text" class="form-control" placeholder="" name="sub_code" id="sub_code" value="<%= params[:sub_code] %>" />
-				<label for="sub_code2" style="margin-top: 7px;">Please Type Access Code Again<!-- &nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" onclick="ourFunction()">&nbsp; <small>Show password</small> --></label>
+				<small id="schoolpasswordHelp" class="form-text">This code will be furnished by the ARNG Rep.</small>
+			</div>	
+			<div class="form-group">
+				<label for="sub_code2" style="margin-top: 7px;">Please Type Access Code Again</label>
 				<input type="text" class="form-control" placeholder="" name="sub_code2" id="sub_code2" aria-describedby="schoolpasswordHelp" value="<%= params[:sub_code2] %>" />
-					<small id="schoolpasswordHelp" class="form-text">This code will be furnished by the ARNG Rep.</small>
 			</div>
-		</div>
-		
-		
-		<div class="form-row">
-			<div class="form-group col-md-5 offset-md-3">
-				<label for="email">Personal Email Address</label>
-				<input type="email" class="form-control" placeholder="" name="email" id="email" aria-describedby="emailHelp" value="<%= params[:email] %>" />
-					<small id="emailHelp" class="form-text">You will use your personal email to access your account.</small>
-			</div>
-			<div class="form-group col-md-5 offset-md-3">
-				<label for="password">Personal Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" onclick="myFunction()">&nbsp; <small>Show password</small></label>
-				<input type="password" class="form-control" placeholder="" name="password" id="password" aria-describedby="passwordHelp" value="<%= params[:password] %>" />
-					<small id="passwordHelp" class="form-text">This password will be used with your email to access your account.</small>
-			</div>
-		</div>
-		<div class="form-row">
-			<div class="form-group col-md-5 offset-md-3">
+			<div class="form-group">
 				<label for="first_name">First Name</label>
 				<input type="text" name="first_name" id="first_name" class="form-control" placeholder="" value="<%= params[:first_name] %>" />
 			</div>
-			<div class="form-group col-md-5 offset-md-3">
+			<div class="form-group">
 				<label for="last_name">Last Name</label>
 				<input type="text" name="last_name" id="last_name" class="form-control" placeholder="" value="<%= params[:last_name] %>" />
 			</div>
-			
-			<div class="form-group col-md-3 offset-md-3">			
-				<label for="grade">Grade level</label>
-				<select type="text" class="form-control" name="grade" id="grade" style="text-align: center;" >
+			<div style="margin: 24px 0;">
+				<h6>Optional</h6>
+				<div class="form-check">
+					<div class="" style="width: 100%;">
+						<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"><em>I feel the National Guard Values discussed in this presentation are of interest and I would like more information about the National Guard.</em>
+					</div>
+				</div>
+			</div>
+			<h6 style="margin-top: 24px;">Contact Information</h6>
+			<div class="form-row">
+				<div class="form-group">
+					<label for="email">Personal Email Address <small id="emailHelp" class="help-text">&nbsp;&nbsp;&nbsp;Optional</small></label>
+					<input type="email" class="form-control" placeholder="" name="email" id="email" aria-describedby="emailHelp" value="<%= params[:email] %>" />
+				</div>
+			</div>
+			<div class="form-row" style="marin-bottom: 10em;">
+				<div class="form-group">
+					<label for="phone">Phone <small id="emailHelp" class="help-text">&nbsp;&nbsp;&nbsp;Optional</small></label>
+					<input type="text" class="form-control" placeholder="" name="phone" id="phone" aria-describedby="phoneHelp" value="<%= params[:phone] %>" />
+				</div>
+			</div>
+		</div>	
+		<div class="col-md-7">	
+			<h6>Research</h6>
+			<p>Demographic information (for research purposes)</p>
+			<div class="form-group">			
+				<label for="gender">Gender</label>
+				<select type="text" class="form-select form-select-sm" name="gender" id="gender" style="width: 15em;" >
+					<option value="Select one">-- Select one --</option>
+					<option <%= 'selected' if @gender == 'Male' %> value="Male">Male</option>
+					<option <%= 'selected' if @gender == 'Female' %> value="Female">Female</option>
+				</select>
+			</div>
+			<div class="form-group">			
+				<label for="grade">Grade</label>
+				<select type="text" class="form-select form-select-sm" name="grade" id="grade" style="width: 15em;" >
 					<option value="Select one">-- Select one --</option>
 					<option <%= 'selected' if @grade == '9' %> value="9">9</option>
 					<option <%= 'selected' if @grade == '10' %> value="10">10</option>
@@ -58,61 +82,169 @@
 					<option <%= 'selected' if @grade == 'Other' %> value="Other">Other</option>
 				</select>
 			</div>
-
-			<div class="form-group col-md-5 offset-md-3">
-				<label for="future1">Future Plans  &nbsp; <span style="font-weight: 300;">(Check all that apply)</span></label>
-				
-			<div class="custom-control custom-checkbox">
-				<input type="checkbox" class="custom-control-input" id="future1" name="future1" <%= 'checked="checked"' if @future1  %> />
-				<label class="custom-control-label" for="future1">&nbsp;Enter technical college/trade school</label>
+			<div class="form-group">			
+				<label for="ethnicity">Race/Ethnicity</label>
+				<select type="text" class="form-select form-select-sm" name="ethnicity" id="ethnicity" style="width: 15em;" >
+					<option value="Select one">-- Select one --</option>
+					<option <%= 'selected' if @ethnicity == 'African American' %> value="African American">African American</option>
+					<option <%= 'selected' if @ethnicity == 'Asian' %> value="Asian">Asian</option>
+					<option <%= 'selected' if @ethnicity == 'Multiracial' %> value="Multiracial">Multiracial</option>
+					<option <%= 'selected' if @ethnicity == 'Hispanic' %> value="Hispanic">Hispanic</option>
+					<option <%= 'selected' if @ethnicity == 'White' %> value="White">White</option>
+					<option <%= 'selected' if @ethnicity == 'Other' %> value="Other">Other</option>
+				</select>
 			</div>
-			<div class="custom-control custom-checkbox">
-				<input type="checkbox" class="custom-control-input" id="future2" name="future2" <%= 'checked="checked"' if @future2  %> />
-				<label class="custom-control-label" for="future2">&nbsp;Work full-time</label>
-			</div>
-			<div class="custom-control custom-checkbox">
-				<input type="checkbox" class="custom-control-input" id="future3" name="future3" <%= 'checked="checked"' if @future3  %> />
-				<label class="custom-control-label" for="future3">&nbsp; Work part-time</label>
-			</div>
-			<div class="custom-control custom-checkbox">
-				<input type="checkbox" class="custom-control-input" id="future4" name="future4" <%= 'checked="checked"' if @future4  %> />
-				<label class="custom-control-label" for="future4">&nbsp; Enter the military</label>
-			</div>
-			<div class="custom-control custom-checkbox">
-				<input type="checkbox" class="custom-control-input" id="future5" name="future5" <%= 'checked="checked"' if @future5  %> />
-				<label class="custom-control-label" for="future5">&nbsp; Go to college</label>
-			</div>
-			<div class="custom-control custom-checkbox">
-				<input type="checkbox" class="custom-control-input" id="future6" name="future6" <%= 'checked="checked"' if @future6  %> />
-				<label class="custom-control-label" for="future6">&nbsp; I have money to pay for education</label>
-			</div>
-			<div class="custom-control custom-checkbox">
-				<input type="checkbox" class="custom-control-input" id="future7" name="future7" <%= 'checked="checked"' if @future7  %> />
-				<label class="custom-control-label" for="future7">&nbsp; Counting on parents for money for education</label>
-			</div>
-			<div class="custom-control custom-checkbox">
-				<input type="checkbox" class="custom-control-input" id="future8" name="future8" <%= 'checked="checked"' if @future8  %> />
-				<label class="custom-control-label" for="future8">&nbsp; Considering sources of financial aid or scholarships</label>
-			</div>
+			<div class="form-group" style="margin-top: 12px;">
+				<p>Please indicate how much you agree or disagree with the following statements.</p>
 			
-		</div>		
-		
-			<div class="form-group col-md-5 offset-md-3">
-				<label for="account"></label>
-				<button class="btn btn-primary" id="account" type="submit">Create Account</button>&nbsp;&nbsp;&nbsp;&nbsp;<a onclick="goBack()" class="btn btn-secondary" id="cancel" style="color: #ffffff;">Cancel</a>
-			</div>
+			<ol>
+				<li>Bullying is a problem in my school.
+					<div class="form-group" style="margin: 0.2em 0 0.5em 0;">			
+						<select type="text" class="form-select form-select-sm" name="question_1" id="question_1" style="width: 14em;" >
+							<option value="Select one">-- Select one --</option>
+							<option <%= 'selected' if @question_1 == 'Strongly Agree' %> value="Strongly Agree">Strongly Agree</option>
+							<option <%= 'selected' if @question_1 == 'Agree' %> value="Agree">Agree</option>
+							<option <%= 'selected' if @question_1 == 'Disagree' %> value="Disagree">Disagree</option>
+							<option <%= 'selected' if @question_1 == 'Strongly Disagree' %> value="Strongly Disagree">Strongly Disagree</option>
+						</select>
+					</div>
+				</li>
+				<li>I have witnessed bullying within the past school year.
+					<div class="form-group" style="margin: 0.2em 0 0.5em 0;">			
+						<select type="text" class="form-select form-select-sm" name="question_2" id="question_2" style="width: 14em;" >
+							<option value="Select one">-- Select one --</option>
+							<option <%= 'selected' if @question_2 == 'Strongly Agree' %> value="Strongly Agree">Strongly Agree</option>
+							<option <%= 'selected' if @question_2 == 'Agree' %> value="Agree">Agree</option>
+							<option <%= 'selected' if @question_2 == 'Disagree' %> value="Disagree">Disagree</option>
+							<option <%= 'selected' if @question_2 == 'Strongly Disagree' %> value="Strongly Disagree">Strongly Disagree</option>
+						</select>
+					</div>
+				</li>
+				<li>I feel safe at my school.
+					<div class="form-group" style="margin: 0.2em 0 0.5em 0;">			
+						<select type="text" class="form-select form-select-sm" name="question_3" id="question_3" style="width: 14em;" >
+							<option value="Select one">-- Select one --</option>
+							<option <%= 'selected' if @question_3 == 'Strongly Agree' %> value="Strongly Agree">Strongly Agree</option>
+							<option <%= 'selected' if @question_3 == 'Agree' %> value="Agree">Agree</option>
+							<option <%= 'selected' if @question_3 == 'Disagree' %> value="Disagree">Disagree</option>
+							<option <%= 'selected' if @question_3 == 'Strongly Disagree' %> value="Strongly Disagree">Strongly Disagree</option>
+						</select>
+					</div>
+				</li>
+				<li>Students at my school reach out to help one another.
+					<div class="form-group" style="margin: 0.2em 0 0.5em 0;">			
+						<select type="text" class="form-select form-select-sm" name="question_4" id="question_4" style="width: 14em;" >
+							<option value="Select one">-- Select one --</option>
+							<option <%= 'selected' if @question_4 == 'Strongly Agree' %> value="Strongly Agree">Strongly Agree</option>
+							<option <%= 'selected' if @question_4 == 'Agree' %> value="Agree">Agree</option>
+							<option <%= 'selected' if @question_4 == 'Disagree' %> value="Disagree">Disagree</option>
+							<option <%= 'selected' if @question_4 == 'Strongly Disagree' %> value="Strongly Disagree">Strongly Disagree</option>
+						</select>
+					</div>
+				</li>
+				<li>My school's faculty and staff actively work to create a positive, caring environment.
+					<div class="form-group" style="margin: 0.2em 0 0.5em 0;">			
+						<select type="text" class="form-select form-select-sm" name="question_5" id="question_5" style="width: 14em;" >
+							<option value="Select one">-- Select one --</option>
+							<option <%= 'selected' if @question_5 == 'Strongly Agree' %> value="Strongly Agree">Strongly Agree</option>
+							<option <%= 'selected' if @question_5 == 'Agree' %> value="Agree">Agree</option>
+							<option <%= 'selected' if @question_5 == 'Disagree' %> value="Disagree">Disagree</option>
+							<option <%= 'selected' if @question_5 == 'Strongly Disagree' %> value="Strongly Disagree">Strongly Disagree</option>
+						</select>
+					</div>
+				</li>
+				<li>Appreciating diversity is an important part of my school's culture.
+					<div class="form-group" style="margin: 0.2em 0 0.5em 0;">			
+						<select type="text" class="form-select form-select-sm" name="question_6" id="question_6" style="width: 14em;" >
+							<option value="Select one">-- Select one --</option>
+							<option <%= 'selected' if @question_6 == 'Strongly Agree' %> value="Strongly Agree">Strongly Agree</option>
+							<option <%= 'selected' if @question_6 == 'Agree' %> value="Agree">Agree</option>
+							<option <%= 'selected' if @question_6 == 'Disagree' %> value="Disagree">Disagree</option>
+							<option <%= 'selected' if @question_6 == 'Strongly Disagree' %> value="Strongly Disagree">Strongly Disagree</option>
+						</select>
+					</div>
+				</li>
+				<li>This presentation helped me understand what bullying is and why people bully others.
+					<div class="form-group" style="margin: 0.2em 0 0.5em 0;">			
+						<select type="text" class="form-select form-select-sm" name="question_7" id="question_7" style="width: 14em;" >
+							<option value="Select one">-- Select one --</option>
+							<option <%= 'selected' if @question_7 == 'Strongly Agree' %> value="Strongly Agree">Strongly Agree</option>
+							<option <%= 'selected' if @question_7 == 'Agree' %> value="Agree">Agree</option>
+							<option <%= 'selected' if @question_7 == 'Disagree' %> value="Disagree">Disagree</option>
+							<option <%= 'selected' if @question_7 == 'Strongly Disagree' %> value="Strongly Disagree">Strongly Disagree</option>
+						</select>
+					</div>
+				</li>
+				<li>This presentation influenced my commitment to respecting and including others.
+					<div class="form-group" style="margin: 0.2em 0 0.5em 0;">			
+						<select type="text" class="form-select form-select-sm" name="question_8" id="question_8" style="width: 14em;" >
+							<option value="Select one">-- Select one --</option>
+							<option <%= 'selected' if @question_8 == 'Strongly Agree' %> value="Strongly Agree">Strongly Agree</option>
+							<option <%= 'selected' if @question_8 == 'Agree' %> value="Agree">Agree</option>
+							<option <%= 'selected' if @question_8 == 'Disagree' %> value="Disagree">Disagree</option>
+							<option <%= 'selected' if @question_8 == 'Strongly Disagree' %> value="Strongly Disagree">Strongly Disagree</option>
+						</select>
+					</div>
+				</li>
+				<li>This presentation gave me useful ideas for what to do if I witness bullying or cruelty.
+					<div class="form-group" style="margin: 0.2em 0 0.5em 0;">			
+						<select type="text" class="form-select form-select-sm" name="question_9" id="question_9" style="width: 14em;" >
+							<option value="Select one">-- Select one --</option>
+							<option <%= 'selected' if @question_9 == 'Strongly Agree' %> value="Strongly Agree">Strongly Agree</option>
+							<option <%= 'selected' if @question_9 == 'Agree' %> value="Agree">Agree</option>
+							<option <%= 'selected' if @question_9 == 'Disagree' %> value="Disagree">Disagree</option>
+							<option <%= 'selected' if @question_9 == 'Strongly Disagree' %> value="Strongly Disagree">Strongly Disagree</option>
+						</select>
+					</div>
+				</li>
+				<li>The character values discussed in H&bull;E&bull;A&bull;R are important to me.
+					<div class="form-group" style="margin: 0.2em 0 0.5em 0;">			
+						<select type="text" class="form-select form-select-sm" name="question_10" id="question_10" style="width: 14em;" >
+							<option value="Select one">-- Select one --</option>
+							<option <%= 'selected' if @question_10 == 'Strongly Agree' %> value="Strongly Agree">Strongly Agree</option>
+							<option <%= 'selected' if @question_10 == 'Agree' %> value="Agree">Agree</option>
+							<option <%= 'selected' if @question_10 == 'Disagree' %> value="Disagree">Disagree</option>
+							<option <%= 'selected' if @question_10 == 'Strongly Disagree' %> value="Strongly Disagree">Strongly Disagree</option>
+						</select>
+					</div>
+				</li>
+				<li>The presenter communicated clearly and effectively.
+					<div class="form-group" style="margin: 0.2em 0 0.5em 0;">			
+						<select type="text" class="form-select form-select-sm" name="question_11" id="question_11" style="width: 14em;" >
+							<option value="Select one">-- Select one --</option>
+							<option <%= 'selected' if @question_11 == 'Strongly Agree' %> value="Strongly Agree">Strongly Agree</option>
+							<option <%= 'selected' if @question_11 == 'Agree' %> value="Agree">Agree</option>
+							<option <%= 'selected' if @question_11 == 'Disagree' %> value="Disagree">Disagree</option>
+							<option <%= 'selected' if @question_11 == 'Strongly Disagree' %> value="Strongly Disagree">Strongly Disagree</option>
+						</select>
+					</div>
+				</li>
+				<li>The presenter was knowledgeable on the topic.
+					<div class="form-group" style="margin: 0.2em 0 0.5em 0;">			
+						<select type="text" class="form-select form-select-sm" name="question_12" id="question_12" style="width: 14em;" >
+							<option value="Select one">-- Select one --</option>
+							<option <%= 'selected' if @question_12 == 'Strongly Agree' %> value="Strongly Agree">Strongly Agree</option>
+							<option <%= 'selected' if @question_12 == 'Agree' %> value="Agree">Agree</option>
+							<option <%= 'selected' if @question_12 == 'Disagree' %> value="Disagree">Disagree</option>
+							<option <%= 'selected' if @question_12 == 'Strongly Disagree' %> value="Strongly Disagree">Strongly Disagree</option>
+						</select>
+					</div>
+				</li>
+			</ol>
+			
+			
 		</div>
-		
-		
-		
-		</form>
 	</div>
+	<div class="row">
+		<div class="col-md-12" style="margin-top: 2em; text-align: right;">
+			<button class="btn btn-primary" id="account" type="submit">Save Record</button>&nbsp;&nbsp;&nbsp;&nbsp;<a onclick="goBack()" class="btn btn-secondary" id="cancel" style="color: #ffffff;">Cancel</a>
+		</div>
+	</div>
+	</form>
+</div>    <!-------- /container -------->
 
 
-	
-</div>
-
-<!-- <script type="text/javascript">
+<script type="text/javascript">
 function myFunction() {
   var x = document.getElementById("password");
   if (x.type === "password") {
@@ -121,9 +253,9 @@ function myFunction() {
     x.type = "password";
   }
 }
-</script> -->
+</script>
 
-<!-- <script type="text/javascript">
+<script type="text/javascript">
 function ourFunction() {
   var x = document.getElementById("sub_code2");
   if (x.type === "password") {
@@ -132,7 +264,7 @@ function ourFunction() {
     x.type = "password";
   }
 }
-</script> -->
+</script>
 
 <script type="text/javascript">
 	EnableSubmit = function(val) {
@@ -160,7 +292,7 @@ function ourFunction() {
 </script>
 
 <script  type="text/javascript">
-	var frmvalidator = new Validator("student_report");
+	var frmvalidator = new Validator("student");
 	frmvalidator.addValidation("first_name","req","Please enter your First Name");
 	frmvalidator.addValidation("last_name","req","Please enter your Last Name");
 	frmvalidator.addValidation("grade","maxlen=7","Please select your grade");

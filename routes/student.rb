@@ -32,8 +32,6 @@ post '/student/create/?' do
   presentation = Presentation.all
   
   params[:email].strip!
-  params[:password].strip!
-  params[:password].downcase!
   params[:school_password].strip!
   params[:school_password].downcase!
   params[:sub_code].strip!
@@ -52,7 +50,7 @@ post '/student/create/?' do
           if params[:sub_code] == params[:sub_code2]
 
           unless student = Student.first(:email => params[:email])
-            unless params[:password] == ''
+            
               @student = Student.create(
               :email            => params[:email],
               :first_name       => params[:first_name],
@@ -76,7 +74,6 @@ post '/student/create/?' do
               :question_10      => params[:question_10],
               :question_11      => params[:question_11],
               :question_12      => params[:question_12],
-              :school_id        => params[:school_id],
               :presentation_id  => params[:presentation_id]
               )
             
@@ -100,9 +97,6 @@ post '/student/create/?' do
                         
               flash[:alert] = 'Welcome to the Occupations Guide. You are now signed in.'
               redirect '/student/edit_student'
-            else
-              flash[:alert] = 'Please create a personal password that will be used to sign into your account.'
-              erb :"student/create"
             end
           
           else
@@ -130,12 +124,12 @@ post '/student/create/?' do
       erb :"student/create"
     end 
     
-  else
+  
     flash[:alert] = 'You must enter a valid School ID'
     erb :"student/create"
   end
     
-end
+
 
 get '/student/reports/report/report_profile/?' do
   @subscription = Subscription.all
@@ -236,7 +230,6 @@ post '/student/:id/edit/?' do
   :question_10      => params[:question_10],
   :question_11      => params[:question_11],
   :question_12      => params[:question_12],
-  :school_id        => params[:school_id],
   :presentation_id  => params[:presentation_id]
   )
   

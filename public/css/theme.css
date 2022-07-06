@@ -19,6 +19,9 @@ body {
 	line-height: 24px;
 }
 
+.container	{
+	
+}
 	
 #ground	{
 	margin: 0;
@@ -181,18 +184,19 @@ h2	{
 
 
 .page-header	{
-	font-size: 2.1rem;
+	font-size: 1.8rem;
 	font-weight: 700;
 	letter-spacing: -1px;
 	color: #017abc;
-	margin: 20px 0 18px 0;
-	padding-bottom: 18px;
-	line-height: 1.2em;
-	border-bottom: 1px solid #000000;
+	margin: 24px 0 24px 0;
+	padding-bottom: 14px;
+	line-height: 0.8em;
+	border-bottom: 1px solid #6c99ea;
 }
 
 .textfield	{
 	font-family: 'Open Sans', helvetica, sans-serif;
+	border: 1px solid #6c99ea;
 }
 
 h4	{
@@ -208,11 +212,12 @@ h5	{
 	margin: 0px 0 14px 0;
 }
 h6	{
-	font-weight: 800;
-	font-size: 1.2em;
+	font-weight: 500;
+	font-size: 1.5em;
 	line-height: 1.2em;
 	padding: 0 0 10px 0;
 	margin: 0;
+	letter-spacing: -1px;
 }
 h3	{
 	font-size: 1.8em;
@@ -232,7 +237,7 @@ ul.question-list li	{
 	
 }
 
-.list-input	{
+/*.list-input	{
 	font-family: 'Kalam', cursive;
 	font-size: 1.4em;
 	color: #166e57;
@@ -244,22 +249,25 @@ ul.question-list li	{
        -moz-border-radius: 6px;
             border-radius: 6px;
 }
-
+*/
 .list-input:focus,
 .short-input:focus,
 .norm-input:focus,
 .reg-input:focus,
 .input-text:focus,
 textarea:focus	{
-    border-color: #8aa0a8;
+    border-color: #6c99ea;
     outline: 0;
     box-shadow: 0 0 0 0.25rem rgba(0, 244, 140, 0.25);
 }
 
+.help-text 	{
+	font-size: 0.75rem;
+	font-weight: 400;
+}
   
   
-  
-.short-input	{
+/*.short-input	{
 	font-family: 'Kalam', cursive;
 	font-size: 1.4em;
 	color: #3f856e;
@@ -273,7 +281,6 @@ textarea:focus	{
 }
 
 .norm-input	{
-	font-family: 'Kalam', cursive;
 	font-size: 1.4em;
 	color: #3f856e;
 	width: 100%;
@@ -286,7 +293,6 @@ textarea:focus	{
 }
 
 .reg-input	{
-	font-family: 'Kalam', cursive;
 	font-size: 1.4em;
 	color: #3f856e;
 	margin-top: 5px;
@@ -296,21 +302,20 @@ textarea:focus	{
        -moz-border-radius: 6px;
             border-radius: 6px;
 }
-
+*/
 .input-text	{
-	font-family: 'Kalam', cursive;
 	font-size: 1.4em;
 	color: #3f856e;
 	margin-top: 5px;
-	border: 1px solid #8aa0a8;
-	border-bottom: 2px solid #8aa0a8;
+	border: 1px solid #6c99ea;
+	border-bottom: 2px solid #94a4c6;
     -webkit-border-radius: 6px;
        -moz-border-radius: 6px;
             border-radius: 6px;
 }
 
 .input-box	{
-   border: 1px solid #999;
+   border: 1px solid #6c99ea;
    color: #166e57;
    -webkit-border-radius: 22px;
       -moz-border-radius: 22px;
@@ -318,6 +323,7 @@ textarea:focus	{
 }
 
 textarea{
+	border: 1px solid #6c99ea;
 	line-height: 1.7em;
 	padding: 0 10px;
 	color: #166e57;
@@ -467,7 +473,8 @@ dl dd	{
 }
 
 label	{
-	font-weight: 600;
+	font-weight: 500;
+	margin: 9px 0 5px 0;
 }
 
 p.question	{
@@ -626,8 +633,8 @@ div#alert {
 	display: block;
 	background-color: #336df0;
 	opacity: 0.8;
-	padding: 4px 4px;
-	margin: 4px auto 0 auto;
+	padding: 0;
+	margin: 0 auto 0 auto;
 	text-align: center;
 	color: #ffffff;
 	font-weight: 800;
