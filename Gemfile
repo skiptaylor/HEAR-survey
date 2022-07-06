@@ -10,6 +10,8 @@ gem 'sinatra', '>= 1.4.6'
 gem 'sinatra-chassis', '>= 1.1.1', require: 'sinatra/chassis'
 gem 'sinatra-contrib', '>= 1.4.4', require: 'sinatra/contrib'
 
+gem 'rake', '~> 13.0', '>= 13.0.6'
+
 gem 'chassis-datamapper', '~> 1.0.1'
 gem 'chassis-pony', '~> 1.0.0'
 
