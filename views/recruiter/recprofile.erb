@@ -9,7 +9,6 @@
 					<%= @recruiter.rank %> <%= @recruiter.first_name %> <%= @recruiter.last_name %><br />
 
 				</h3>
-				<p><span class="badge badge-info"><% if @recruiter.recruiter_status == true %>RRC<% end %></span></p>
 				<p>
 					<%= @recruiter.address1 %><br />
 					<% unless @recruiter.address2 = "" %><%= @recruiter.address2 %><br /><% end %>

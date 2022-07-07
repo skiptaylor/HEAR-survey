@@ -26,6 +26,10 @@ class Student
   property :question_11, String
   property :question_12, String
   
+  property :sub_code,    String
+  
+  property :contact_me,  Boolean, :default => false
+  
   belongs_to :school, required: false
     
 end 

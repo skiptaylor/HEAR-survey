@@ -42,7 +42,7 @@
 			    <ul class="dropdown-menu">
 				<% if session[:recruiter] %>
 					<li><a class="dropdown-item <%= active 'about' %>" href="/recruiters/about">About H•E•A•R</a></li>
-					<li><a class="dropdown-item <%= active 'recprofile' %>" href="/recruiters/recprofile">Account</a></li>
+					<li><a class="dropdown-item <%= active 'recprofile' %>" href="/recruiters/<%= session[:recruiter] %>/profile">Account</a></li>
 					<li><a class="dropdown-item <%= active 'register' %>" href="/recruiters/presentation_edit">Presentation</a></li>
 				 <% else %>
 				 	<li><a class="dropdown-item <%= active 'noaccount' %>" href="/recruiters/noaccount">Create account</a></li>

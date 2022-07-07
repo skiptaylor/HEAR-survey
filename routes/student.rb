@@ -41,7 +41,7 @@ post '/student/create/?' do
 
   unless params[:school_password] == ''
     
-    if school = School.first(:school_password => params[:school_password]) 
+    if school = School.first(:school_password => params[:school_password])
       
       if subscription = Subscription.first(:sub_code => params[:sub_code])
 
@@ -76,7 +76,9 @@ post '/student/create/?' do
               :question_12      => params[:question_12],
               :presentation_id  => params[:presentation_id]
               )
-            
+              
+              params[:contact_me]   ? student.update(:contact_me => true)    : student.update(:contact_me => false)
+              
               session[:student] = @student.id
               
               @student.school_id = school.id
@@ -95,12 +97,12 @@ post '/student/create/?' do
 
               @student.save
                         
-              flash[:alert] = 'Welcome to the Occupations Guide. You are now signed in.'
-              redirect '/student/edit_student'
+              flash[:alert] = 'Thank you for participating in the HEAR Survey.'
+              redirect '/student/thank-you'
             end
           
           else
-            flash[:alert] = 'This email already exists. Maybe you need to sign in.'
+            flash[:alert] = 'This email already exists.'
             erb :"student/create"
           end
         
@@ -122,13 +124,13 @@ post '/student/create/?' do
     else
       flash[:alert] = 'That is not a valid School ID.'
       erb :"student/create"
-    end 
-    
-  
+    end
+
+
     flash[:alert] = 'You must enter a valid School ID'
     erb :"student/create"
-  end
-    
+   end
+ 
 
 
 get '/student/reports/report/report_profile/?' do
@@ -232,6 +234,8 @@ post '/student/:id/edit/?' do
   :question_12      => params[:question_12],
   :presentation_id  => params[:presentation_id]
   )
+  
+  params[:contact_me]   ? student.update(:contact_me => true)   : student.update(:contact_me => false)
   
   redirect("/student/")
   

@@ -1,0 +1,104 @@
+	<div class="container">	
+		<div class="row">  
+			<div class="col-md-12">
+				<h1 class="page-header">School Registration</h1>
+				<h5>Register your school to get a School ID.</h5>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-8">
+									
+				<form method="post" id="new" class="school form-horizontal">
+					
+				
+				<p style="font-size: 1.1em; margin: 1em 0 1.5em 0;"><strong>Educator’s Contact Information</strong></p>
+				
+				<div class="form-row">
+					<div class="form-group col-md-5">
+						<label for="first_name">Educator’s First name</label>
+						<input type="text" class="form-control" name="first_name" id="first_name" value="<%= @school.first_name %>" /> 
+					</div>
+					<div class="form-group col-md-5">
+						<label for="last_name">Educator’s Last name</label>
+						<input type="text" class="form-control" name="last_name" id="last_name" value="<%= @school.last_name %>" /> 
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-10">
+						<label for="school_name">School name</label>
+						<input type="text" class="form-control" name="school_name" id="school_name" value="<%= @school.school_name %>" /> 
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-10">
+						<label for="school_address1">School Address</label>
+						<input type="text" class="form-control" name="school_address1" id="school_address1" value="<%= @school.school_address1 %>" /> 
+						<input type="text" class="form-control" name="school_address2" id="school_address2" value="<%= @school.school_address2 %>" /> 
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="school_city">City</label>
+						<input type="text" class="form-control" name="school_city" id="school_city" value="<%= @school.school_city %>" /> 
+					</div>
+					<div class="form-group col-md-2">
+						<label for="school_state">State</label>
+						<select type="text"  class="form-control" id="school_state" name="school_state" value="<%= @school.school_state %>">
+								<option value="None"></option>
+							<% @state.sort{|a,b| a.id <=> b.id}.each do |state| %>
+								<option value="<%= state.abbr %>" <%= 'selected' if state.abbr == @school.school_state %>><%= state.abbr %></option>
+							<% end %>
+						</select>
+					</div>
+				
+					<div class="form-group col-md-4">
+						<label for="school_zip">Zip</label>
+						<input type="text" class="form-control" name="school_zip" id="school_zip" value="<%= @school.school_zip %>" />
+					</div>
+				
+					
+				</div>
+				<div class="form-row">
+					<div class="control-group col-md-9">
+						<label for="email">Counselor/teacher email</label>
+						<input type="email" class="form-control" name="email" id="email" value="<%= @school.email %>" /> 
+					</div>
+					<div class="control-group col-md-3">
+						<label for="number_seniors">Number students</label>
+						<input type="text" class="form-control" name="number_seniors" id="number_seniors" value="<%= @school.number_seniors %>" /> 
+					</div>
+				</div>
+				
+			</div>
+			
+			<div class="col-md-4">
+				
+ 				<div class="form-row">
+					
+ 					<div class="control-group">
+ 						<label for="recruiter_id">Recruiter</label>
+ 						<!-- <selec type="text" id="recruiter_id" name="recruiter_id" class="form-control">
+
+ 								<%= @school.recruiter_id %></option>
+
+ 						</selec> -->
+ 					</div>
+ 				</div>
+				
+				
+		
+				
+				 
+				
+ 				<div class="control-group">
+ 				    <div class="controls" style="text-align: center;">
+ 						 <input class="btn btn-success" type="submit" value="Save" />&nbsp;&nbsp;&nbsp;<a onclick="goBack()" class="btn">Cancel</a>&nbsp;&nbsp;&nbsp;<a href="/schools/<%= @school.id %>/delete" class="delete btn btn-warning"><i class="icon-trash"></i></a>
+ 					 </div>
+ 				 </div>
+			 	</form>
+			</div>
+			
+		</div>
+		
+	</div> <!-- /container -->
+

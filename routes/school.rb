@@ -1,4 +1,4 @@
-get '/arng/schools/schools/?' do
+get '/schools/schools/?' do
   auth_recruiter
 	@school = School.all(order: [:updated_at.desc], limit: 100)
   
@@ -8,23 +8,23 @@ get '/arng/schools/schools/?' do
 		@school = School.all(:school_name.not => nil, order: [:updated_at.desc], limit: 100)
 	end
   
-	erb :'/arng/schools/schools'
+	erb :'/schools/schools'
 end
 
 
 
 
 
-get '/arng/schools/create/?' do
+get '/schools/create/?' do
   auth_recruiter
   @state = State.all
   @admin = Admin.all
   @recruiter = Recruiter.all
   @school = School.new
-  erb :'/arng/schools/new_admin_school'
+  erb :'/schools/new_school'
 end
 
-post '/arng/schools/create/?' do
+post '/schools/create/?' do
   auth_recruiter
   state = State.all
   admin = Admin.all
@@ -54,14 +54,9 @@ post '/arng/schools/create/?' do
     :arng_email             => params[:arng_email],
     :number_seniors         => params[:number_seniors],
     :recruiter_id           => params[:recruiter_id]
-  )
-  params[:active] 					? school.update(:active => true)    : school.update(:active => false)
-  params[:cd] 					    ? school.update(:cd => true)        : school.update(:cd => false)
-  params[:ff] 					    ? school.update(:ff => true)        : school.update(:ff => false)
-  params[:cd_before] 				? school.update(:cd_before => true) : school.update(:cd_before => false)
-  
+  )  
    
-  redirect "/arng/schools/#{school.id}/school"
+  redirect "/schools/#{school.id}/school"
 end
 
 
@@ -69,15 +64,15 @@ end
 
 
 
-get '/arng/schools/new/?' do
+get '/schools/new/?' do
   auth_recruiter
   @state = State.all
   @recruiter = Recruiter.all
   @school = School.new
-  erb :'/arng/schools/edit_school'
+  erb :'/schools/edit_school'
 end
 
-post '/arng/schools/new/?' do
+post '/schools/new/?' do
   auth_recruiter
   state = State.all
   recruiter = Recruiter.all
@@ -107,24 +102,20 @@ post '/arng/schools/new/?' do
     :number_seniors         => params[:number_seniors],
     :recruiter_id           => params[:recruiter_id]
   )
-  params[:active] 					? school.update(:active => true)    : school.update(:active => false)
-  params[:cd] 					    ? school.update(:cd => true)        : school.update(:cd => false)
-  params[:ff] 					    ? school.update(:ff => true)        : school.update(:ff => false)
-  params[:cd_before] 				? school.update(:cd_before => true) : school.update(:cd_before => false)
   
    school.recruiter_id == session[:recruiter]
    school.save
   
-  redirect "/arng/schools/#{school.id}/school"
+  redirect "/schools/#{school.id}/school"
 end
 
 
-get '/arng/schools/:id/school/?' do
+get '/schools/:id/school/?' do
   auth_recruiter
   @state = State.all
   @recruiter = Recruiter.get(params[:recruiter_id])
   @school = School.get(params[:id])
-  erb :"/arng/schools/school"
+  erb :"/schools/school"
 end
 
 
@@ -132,7 +123,7 @@ end
 
 # ----------------  Recruiter Reportas (2)  --------------------
 
-get '/arng/schools/:id/school_report/?' do
+get '/schools/:id/school_report/?' do
   auth_recruiter
   @school = School.get(params[:id])
   @recruiter = Recruiter.get(params[:recruiter_id])
@@ -142,22 +133,22 @@ get '/arng/schools/:id/school_report/?' do
     @school.class_date = params[:presentation]
     @school.save
   
-  erb :"/arng/schools/school_report"
+  erb :"/schools/school_report"
   
 end
 
-get '/arng/schools/:id/summary_report/?' do
+get '/schools/:id/summary_report/?' do
   auth_recruiter
   @school = School.get(params[:id])
   @recruiter = Recruiter.get(params[:recruiter_id])
   @school.presentations = Presentation.all(:school_id => @school.id, :class_date => params[:presentation])
   @school.students = Student.all(:school_password => @school.school_password, :school_password.not => '')
   
-  erb :'arng/schools/summary_report', layout: false
+  erb :'/schools/summary_report', layout: false
   
 end
 
-post '/arng/schools/:id/summary_report/?' do
+post '/schools/:id/summary_report/?' do
   
   auth_recruiter
   @school = School.get(params[:id])
@@ -193,7 +184,7 @@ end
 
 
 
-get '/arng/schools/:id/school_report/csv/?' do
+get '/schools/:id/school_report/csv/?' do
   
   auth_recruiter
   @school = School.get(params[:id])
@@ -201,7 +192,7 @@ get '/arng/schools/:id/school_report/csv/?' do
   @school.presentations = Presentation.all(:school_id => @school.id, :class_date => params[:presentation])
   @school.students = Student.all(:school_password => @school.school_password, :school_password.not => '')
   
-  erb :'arng/schools/summary_report', layout: false
+  erb :'/schools/summary_report', layout: false
   
   # headers "Content-Disposition" => "attachment;filename=#summary_report.csv",
   #   "Content-Type" => "application/octet-stream"
@@ -217,7 +208,7 @@ end
 
 
 
-get '/arng/schools/:id/ind_report/?' do
+get '/schools/:id/ind_report/?' do
   
   auth_recruiter
   @school = School.get(params[:id])
@@ -229,7 +220,7 @@ get '/arng/schools/:id/ind_report/?' do
  
 end
 
-post '/arng/schools/:id/ind_report/?' do
+post '/schools/:id/ind_report/?' do
   auth_recruiter
   @school = School.get(params[:id])
   @recruiter = Recruiter.get(params[:recruiter_id])
@@ -273,15 +264,15 @@ end
 #   erb :"/arng/schools/edit_school"
 # end
 
-get '/arng/schools/:id/edit_admin/?' do
+get '/schools/:id/edit_admin/?' do
   auth_admin
   @recruiter = Recruiter.all
   @state = State.all
   @school = School.get(params[:id])
-  erb :"/arng/schools/edit_school_arng"
+  erb :"/schools/edit_school_arng"
 end
 
-post '/arng/schools/:id/edit_admin/?' do
+post '/schools/:id/edit_admin/?' do
   auth_admin
   recruiter = Recruiter.all
   state = State.all
@@ -307,22 +298,21 @@ post '/arng/schools/:id/edit_admin/?' do
     :number_seniors         => params[:number_seniors],
     :recruiter_id           => params[:recruiter_id]
   )
-  params[:active] 					? school.update(:active => true)    : school.update(:active => false)
 
-  redirect "/arng/schools/#{params[:id]}/school"
+  redirect "/schools/#{params[:id]}/school"
 
 end
 
-get '/arng/schools/:id/edit/?' do
+get '/schools/:id/edit/?' do
   auth_recruiter
    @recruiter = Recruiter.all
   @state = State.all
   @school = School.get(params[:id])
   
-  erb :"/arng/schools/edit_school_arng"
+  erb :"/schools/edit_school_arng"
 end
 
-post '/arng/schools/:id/edit/?' do
+post '/schools/:id/edit/?' do
   auth_recruiter
   recruiter = Recruiter.all
   state = State.all
@@ -348,13 +338,12 @@ post '/arng/schools/:id/edit/?' do
     :number_seniors         => params[:number_seniors],
     :recruiter_id           => params[:recruiter_id]
   )
-  params[:active] 					? school.update(:active => true)    : school.update(:active => false)
   
-  redirect "/arng/schools/#{params[:id]}/school"
+  redirect "/schools/#{params[:id]}/school"
   
 end
 
-get '/arng/register/?' do
+get '/register/?' do
   auth_recruiter
   @school = School.all
   unless params[:zip]
@@ -362,56 +351,14 @@ get '/arng/register/?' do
   else
     @results = School.all(school_zip: params[:zip].strip.downcase)
   end
-  erb :"/arng/register"
+  erb :"/register"
 end
 
-get '/arng/schools/:id/delete/?' do
+get '/schools/:id/delete/?' do
   auth_recruiter
   school = School.get(params[:id])
   school.destroy
-  redirect "/arng/schools/schools"
+  redirect "/schools/schools"
 end
 
-# -----------------  ARNG Pages  --------------------
-
-get '/arng/arng/?' do
-  
-	erb :'/arng/arng'
-end
-
-get '/arng/faq/?' do
-  auth_recruiter
-  erb :"/arng/faq"
-end
-
-get '/arng/leads/?' do
-  auth_recruiter
-  erb :"/arng/leads"
-end
-
-get '/arng/downloads/?' do
-  
-  erb :"/arng/downloads"
-end
-
-get '/arng/feedback/?' do
-  auth_recruiter
-  erb :"/arng/feedback"
-end
-
-get '/arng/practices/?' do
-  auth_recruiter
-  erb :"/arng/practices"
-end
-
-# get '/arng/show_password/?' do
-#   auth_recruiter
-#   @school = School.all
-#   erb :"/arng/show_password"
-# end
-#
-# get '/arng/show_schools/?' do
-#   auth_recruiter
-#   erb :"/arng/show_schools"
-# end
 

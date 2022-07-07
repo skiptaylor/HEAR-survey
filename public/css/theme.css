@@ -322,12 +322,21 @@ textarea:focus	{
            border-radius: 22px;
 }
 
-textarea{
+/*textarea{
 	border: 1px solid #6c99ea;
 	line-height: 1.7em;
 	padding: 0 10px;
 	color: #166e57;
 }
+*/
+input, textarea, select	{
+	border: 1px solid #92bd97 !important;
+	outline: 0px solid #92bd97 !important;
+   -webkit-border-radius: 6px;
+      -moz-border-radius: 6px;
+           outline-radius: 6px;
+}
+
 
 p.answ	{
 	font-family: 'Kalam', cursive;
