@@ -122,7 +122,7 @@ GEM
     uuidtools (2.2.0)
 
 PLATFORMS
-  arm64-darwin-21
+  ruby
   x86_64-linux
 
 DEPENDENCIES
@@ -141,7 +141,7 @@ DEPENDENCIES
   sinatra-contrib (>= 1.4.4)
 
 RUBY VERSION
-   ruby 2.7.5p203
+   ruby 2.7.6p219
 
 BUNDLED WITH
-   2.3.5
+   2.1.4

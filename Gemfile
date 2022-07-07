@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby "2.7.5"
+ruby "2.7.6"
 
 gem 'chronic', '~> 0.9.1'
 gem 'jsmin', '>= 1.0.1'
