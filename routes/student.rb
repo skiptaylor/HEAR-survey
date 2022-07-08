@@ -20,7 +20,6 @@ end
 get "/student/create/?" do 
   @subscription = Subscription.all
   @school = School.all
-  @state = State.all
   @presentation = Presentation.all
   erb :'student/create'
 end
@@ -28,7 +27,6 @@ end
 post '/student/create/?' do
   subscription = Subscription.all
   school = School.all
-  state = State.all
   presentation = Presentation.all
   
   params[:email].strip!
@@ -60,8 +58,6 @@ post '/student/create/?' do
               :school_id        => params[:school_id],
               :sub_code         => params[:sub_code],
               :grade            => params[:grade],
-              :gender           => params[:gender],
-              :ethnicity        => params[:ethnicity],
               :question_1       => params[:question_1], 
               :question_2       => params[:question_2], 
               :question_3       => params[:question_3], 
@@ -74,11 +70,10 @@ post '/student/create/?' do
               :question_10      => params[:question_10],
               :question_11      => params[:question_11],
               :question_12      => params[:question_12],
+              :contact_me       => params[:contact_me],
               :presentation_id  => params[:presentation_id]
               )
-              
-              params[:contact_me]   ? student.update(:contact_me => true)    : student.update(:contact_me => false)
-              
+                            
               session[:student] = @student.id
               
               @student.school_id = school.id
@@ -88,7 +83,7 @@ post '/student/create/?' do
                 
                   @presentation = Presentation.create(
                     :school_id  => @student.school_id,
-                    :class_date  => @student.created_on,
+                    :class_date  => @student.created_at,
                     :school_password  => @student.school_password,
                     :id => @student.presentation_id
                   )
@@ -97,12 +92,11 @@ post '/student/create/?' do
 
               @student.save
                         
-              flash[:alert] = 'Thank you for participating in the HEAR Survey.'
-              redirect '/student/thank-you'
-            end
+              
+              redirect '/student/survey'
           
           else
-            flash[:alert] = 'This email already exists.'
+            flash[:alert] = 'This email already exists. Maybe you need to sign in.'
             erb :"student/create"
           end
         
@@ -124,13 +118,55 @@ post '/student/create/?' do
     else
       flash[:alert] = 'That is not a valid School ID.'
       erb :"student/create"
-    end
-
-
+    end 
+    
+  else
     flash[:alert] = 'You must enter a valid School ID'
     erb :"student/create"
-   end
+  end
+    
+end
  
+get '/student/survey/?' do
+  @subscription = Subscription.all
+  @state = State.all
+  @school = School.all
+  @student = Student.get(session[:student])
+  
+  erb :'/student/survey'
+end
+
+
+post '/student/survey/?' do
+  subscription = Subscription.all
+  state = State.all
+  school = School.all
+  student = Student.update(
+      :question_1       => params[:question_1], 
+      :question_2       => params[:question_2], 
+      :question_3       => params[:question_3], 
+      :question_4       => params[:question_4], 
+      :question_5       => params[:question_5], 
+      :question_6       => params[:question_6], 
+      :question_7       => params[:question_7], 
+      :question_8       => params[:question_8], 
+      :question_9       => params[:question_9], 
+      :question_10      => params[:question_10],
+      :question_11      => params[:question_11],
+      :question_12      => params[:question_12],
+    )
+    redirect "/student/thanks"
+end
+
+get '/student/thanks/?' do
+  
+  erb :'/student/thanks'
+end
+
+
+
+
+
 
 
 get '/student/reports/report/report_profile/?' do

@@ -25,10 +25,12 @@ class Student
   property :question_10, String
   property :question_11, String
   property :question_12, String
+  property :school_password, String
+  property :presentation_id, String
   
   property :sub_code,    String
   
-  property :contact_me,  Boolean, :default => false
+  property :contact_me,  String
   
   belongs_to :school, required: false
     
