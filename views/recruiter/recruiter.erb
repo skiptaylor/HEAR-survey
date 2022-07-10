@@ -1,14 +1,13 @@
 	<div class="container">	
 		<div class="row">  
 			<div class="col-md-12">
-				<p class="pull-right" style="margin-top: 6px;"><a href="/recruiters/recruiters/" class="btn">Cancel</a>&nbsp;&nbsp;<a href="/recruiters/<%= @recruiter.id %>/edit/" class="btn">Edit</a></p>
+				<p class="float-end" style="margin-top: 6px;"><a href="/recruiters/recruiters/" class="btn">Cancel</a>&nbsp;&nbsp;<a href="/recruiters/<%= @recruiter.id %>/edit/" class="btn">Edit</a></p>
 				<h1 class="page-header">Recruiter</h1>
 			</div>
 		</div>	
 		<div class="row"> 
 			<div class="col-md-5">
-				<address><h3 style="margin-bottom: 0;"><%= @recruiter.rank %> <%= @recruiter.first_name %> <%= @recruiter.middle_name %> <%= @recruiter.last_name %></h3><br />
-					<% if @recruiter.recruiter_status == true %>RRC<% end %><br />
+				<address><h3 style="margin-bottom: 0;"><%= @recruiter.rank %> <%= @recruiter.first_name %>  <%= @recruiter.last_name %></h3><br />
 
 					<%= @recruiter.email %><br /><br />
 
@@ -24,23 +23,18 @@
 				<h3> School Accounts</h3>
 				<table class="table table-striped table-hover table-sm" style="margin-bottom: 28px;">
 					<tr>
-						<!-- <th style="text-align: center; color: #af4532;">ID</th> -->
 						<th>School</th>
 						<th>School ID</th>
-						<!-- <th style="text-align: right;"><a href="/arng/register" class="btn btn-small btn-success">Add School</a></th> -->
 					</tr>
 
 					<% @school.sort_by(&:updated_at).each do |school| %>
 					<% if @recruiter.id == school.recruiter_id %>
 					<tr>
-						<!-- <th style="text-align: center; color: #af4532;"><%= school.recruiter_id %></th> -->
 						<td><%= school.school_name %></td>
 						<td><%= school.school_password %></td>
-						<!-- <td style="text-align: right;"><a href="/arng/schools/<%= school.id %>/school/" class="btn btn-small">Get Reports</a></td> -->
 					</tr>
 					<% end %>
 					<% end %>
-
 				</table>
 
 

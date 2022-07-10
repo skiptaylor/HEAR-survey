@@ -11,10 +11,6 @@ get '/schools/schools/?' do
 	erb :'/schools/schools'
 end
 
-
-
-
-
 get '/schools/create/?' do
   auth_recruiter
   @state = State.all
@@ -33,35 +29,24 @@ post '/schools/create/?' do
     :school_id              => params[:school_id],
     :date_modified          => params[:date_modified],
     :first_name             => params[:first_name],
-    :middle_initial         => params[:middle_initial],
     :last_name              => params[:last_name],
-    :school_name            => params[:school_name],
-    :school_address1        => params[:school_address1],
-    :school_address2        => params[:school_address2],
-    :school_city            => params[:school_city],
-    :school_state           => params[:school_state],
-    :school_zip             => params[:school_zip],
-    :school_password        => params[:school_password],
-    :mail_address1          => params[:mail_address1],
-    :mail_address2          => params[:mail_address2],
-    :mail_city              => params[:mail_city],
-    :mail_state             => params[:mail_state],
-    :mail_zip               => params[:mail_zip],
-    :phone                  => params[:phone],
-    :fax                    => params[:fax],
-    :ng_rep                 => params[:ng_rep],
     :email                  => params[:email],
-    :arng_email             => params[:arng_email],
-    :number_seniors         => params[:number_seniors],
-    :recruiter_id           => params[:recruiter_id]
-  )  
-   
-  redirect "/schools/#{school.id}/school"
-end
-
-
-
-
+    :phone                  => params[:phone],
+    :school_name            => params[:school_name],
+    :address1               => params[:address1],
+    :address2               => params[:address2],
+    :city                   => params[:city],
+    :state                  => params[:state],
+    :zip                    => params[:zip],
+    :school_password        => params[:school_password],         
+    :phone                  => params[:phone],                   
+    :class_date             => params[:class_date],                                                           
+    :arng_email             => params[:arng_email],              
+    :recruiter_id           => params[:recruiter_id]                         
+  )                                                                          
+                                                                             
+  redirect "/schools/#{school.id}/school"                                    
+end                                                                          
 
 
 get '/schools/new/?' do
@@ -80,28 +65,21 @@ post '/schools/new/?' do
     :school_id              => params[:school_id],
     :date_modified          => params[:date_modified],
     :first_name             => params[:first_name],
-    :middle_initial         => params[:middle_initial],
     :last_name              => params[:last_name],
-    :school_name            => params[:school_name],
-    :school_address1        => params[:school_address1],
-    :school_address2        => params[:school_address2],
-    :school_city            => params[:school_city],
-    :school_state           => params[:school_state],
-    :school_zip             => params[:school_zip],
-    :school_password        => params[:school_password],
-    :mail_address1          => params[:mail_address1],
-    :mail_address2          => params[:mail_address2],
-    :mail_city              => params[:mail_city],
-    :mail_state             => params[:mail_state],
-    :mail_zip               => params[:mail_zip],
-    :phone                  => params[:phone],
-    :fax                    => params[:fax],
-    :ng_rep                 => params[:ng_rep],
     :email                  => params[:email],
-    :arng_email             => params[:arng_email],
-    :number_seniors         => params[:number_seniors],
-    :recruiter_id           => params[:recruiter_id]
-  )
+    :phone                  => params[:phone],
+    :school_name            => params[:school_name],
+    :address1               => params[:address1],
+    :address2               => params[:address2],
+    :city                   => params[:city],
+    :state                  => params[:state],
+    :zip                    => params[:zip],
+    :school_password        => params[:school_password],         
+    :phone                  => params[:phone],                   
+    :class_date             => params[:class_date],                                                           
+    :arng_email             => params[:arng_email],              
+    :recruiter_id           => params[:recruiter_id]                         
+)                                                                          
   
    school.recruiter_id == session[:recruiter]
    school.save
@@ -281,23 +259,21 @@ post '/schools/:id/edit_admin/?' do
     :school_id              => params[:school_id],
     :date_modified          => params[:date_modified],
     :first_name             => params[:first_name],
-    :middle_initial         => params[:middle_initial],
     :last_name              => params[:last_name],
-    :school_name            => params[:school_name],
-    :school_address1        => params[:school_address1],
-    :school_address2        => params[:school_address2],
-    :school_city            => params[:school_city],
-    :school_state           => params[:school_state],
-    :school_zip             => params[:school_zip],
-    :school_password        => params[:school_password],
-    :phone                  => params[:phone],
-    :fax                    => params[:fax],
-    :ng_rep                 => params[:ng_rep],
     :email                  => params[:email],
-    :arng_email             => params[:arng_email],
-    :number_seniors         => params[:number_seniors],
-    :recruiter_id           => params[:recruiter_id]
-  )
+    :phone                  => params[:phone],
+    :school_name            => params[:school_name],
+    :address1               => params[:address1],
+    :address2               => params[:address2],
+    :city                   => params[:city],
+    :state                  => params[:state],
+    :zip                    => params[:zip],
+    :school_password        => params[:school_password],         
+    :phone                  => params[:phone],                   
+    :class_date             => params[:class_date],                                                           
+    :arng_email             => params[:arng_email],              
+    :recruiter_id           => params[:recruiter_id]                         
+  )                                                                          
 
   redirect "/schools/#{params[:id]}/school"
 
@@ -321,23 +297,21 @@ post '/schools/:id/edit/?' do
     :school_id              => params[:school_id],
     :date_modified          => params[:date_modified],
     :first_name             => params[:first_name],
-    :middle_initial         => params[:middle_initial],
     :last_name              => params[:last_name],
-    :school_name            => params[:school_name],
-    :school_address1        => params[:school_address1],
-    :school_address2        => params[:school_address2],
-    :school_city            => params[:school_city],
-    :school_state           => params[:school_state],
-    :school_zip             => params[:school_zip],
-    :school_password        => params[:school_password],
-    :phone                  => params[:phone],
-    :fax                    => params[:fax],
-    :ng_rep                 => params[:ng_rep],
     :email                  => params[:email],
-    :arng_email             => params[:arng_email],
-    :number_seniors         => params[:number_seniors],
-    :recruiter_id           => params[:recruiter_id]
-  )
+    :phone                  => params[:phone],
+    :school_name            => params[:school_name],
+    :address1               => params[:address1],
+    :address2               => params[:address2],
+    :city                   => params[:city],
+    :state                  => params[:state],
+    :zip                    => params[:zip],
+    :school_password        => params[:school_password],         
+    :phone                  => params[:phone],                   
+    :class_date             => params[:class_date],                                                           
+    :arng_email             => params[:arng_email],              
+    :recruiter_id           => params[:recruiter_id]                         
+  )                                                                          
   
   redirect "/schools/#{params[:id]}/school"
   

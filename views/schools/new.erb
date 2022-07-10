@@ -31,29 +31,29 @@
 				</div>
 				<div class="form-row">
 					<div class="form-group col-md-10">
-						<label for="school_address1">School Address</label>
-						<input type="text" class="form-control" name="school_address1" id="school_address1" value="<%= @school.school_address1 %>" /> 
-						<input type="text" class="form-control" name="school_address2" id="school_address2" value="<%= @school.school_address2 %>" /> 
+						<label for="address1">School Address</label>
+						<input type="text" class="form-control" name="address1" id="address1" value="<%= @school.address1 %>" /> 
+						<input type="text" class="form-control" name="address2" id="saddress2" value="<%= @school.address2 %>" /> 
 					</div>
 				</div>
 				<div class="form-row">
 					<div class="form-group col-md-6">
-						<label for="school_city">City</label>
-						<input type="text" class="form-control" name="school_city" id="school_city" value="<%= @school.school_city %>" /> 
+						<label for="scity">City</label>
+						<input type="text" class="form-control" name="city" id="city" value="<%= @school.city %>" /> 
 					</div>
 					<div class="form-group col-md-2">
-						<label for="school_state">State</label>
-						<select type="text"  class="form-control" id="school_state" name="school_state" value="<%= @school.school_state %>">
+						<label for="state">State</label>
+						<select type="text"  class="form-control" id="state" name="state" value="<%= @school.state %>">
 								<option value="None"></option>
 							<% @state.sort{|a,b| a.id <=> b.id}.each do |state| %>
-								<option value="<%= state.abbr %>" <%= 'selected' if state.abbr == @school.school_state %>><%= state.abbr %></option>
+								<option value="<%= state.abbr %>" <%= 'selected' if state.abbr == @school.state %>><%= state.abbr %></option>
 							<% end %>
 						</select>
 					</div>
 				
 					<div class="form-group col-md-4">
-						<label for="school_zip">Zip</label>
-						<input type="text" class="form-control" name="school_zip" id="school_zip" value="<%= @school.school_zip %>" />
+						<label for="zip">Zip</label>
+						<input type="text" class="form-control" name="zip" id="zip" value="<%= @school.zip %>" />
 					</div>
 				
 					
@@ -61,11 +61,7 @@
 				<div class="form-row">
 					<div class="control-group col-md-9">
 						<label for="email">Counselor/teacher email</label>
-						<input type="email" class="form-control" name="email" id="email" value="<%= @school.email %>" /> 
-					</div>
-					<div class="control-group col-md-3">
-						<label for="number_seniors">Number students</label>
-						<input type="text" class="form-control" name="number_seniors" id="number_seniors" value="<%= @school.number_seniors %>" /> 
+						<input type="email" class="form-control" name="email" id="email" value="<%= @email %>" /> 
 					</div>
 				</div>
 				

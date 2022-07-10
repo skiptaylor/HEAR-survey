@@ -1,0 +1,58 @@
+	<div class="container">	
+		<div class="row">  
+			<div class="col-md-12">
+				<h1 class="page-header">Edit Admin</h1>
+			</div>
+		</div>
+		<form method="post">
+		<div class="row">  
+			<div class="col-md-6">
+				
+			<div class="form-row">
+	
+				
+				<div class="form-group col">
+					<label for="email">Email</label>
+					<input type="text" class="form-control" name="email" id="email" value="<%= @admin.email %>" />
+				</div>
+				<div class="form-group col">
+					<label for="password">Password</label>
+						<input type="text" class="form-control" name="password" id="password" value="<%= @admin.password %>" />
+				</div>
+			</div>
+			
+			<div class="form-row">
+				<div class="form-group col">
+					<label for="first_name">First Name</label>
+						<input type="text" class="form-control" name="first_name" id="first_name" value="<%= @admin.first_name %>" />
+				</div>
+				<div class="form-group col">
+					<label for="last_name">Last Name</label>
+						<input type="text" class="form-control" name="last_name" id="last_name" value="<%= @admin.last_name %>" />
+				</div>
+			</div>
+			
+			<div class="form-row">
+				<div class="form-group col">
+					<label for="phone">Phone</label>
+						<input type="text" class="form-control" name="phone" id="phone" value="<%= @admin.phone %>" />
+				</div>
+
+				<br />
+			</div>
+			
+			<div class="form-row">	
+				
+				
+				<div class="form-row">
+					<div class="form-group col-md-12">
+						<p style="margin-top:14px;"><input class="btn btn-primary" type="submit" value="Save" /> &nbsp; <a href="/admin/admin" class="btn btn-secondary" style="color: white;">Cancel</a> <!-- &nbsp; <a class="delete btn btn-warning" href="/admin/<%= @admin.id %>/delete">Delete</a> --></p>
+					</div>
+				</form>
+				
+				</div>
+			</div>
+		</div>
+			</form>	
+	</div>
+</div>

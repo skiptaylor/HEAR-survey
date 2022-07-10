@@ -83,18 +83,15 @@ post "/recruiters/new/?"  do
   recruiter = Recruiter.create(
     :email            => session[:recr],
     :password         => params[:password], 
-    :last_activity    => params[:last_activity],
     :rank             => params[:rank],
     :first_name       => params[:first_name],
-    :middle_name      => params[:middle_name],
     :last_name        => params[:last_name],
     :address1         => params[:address1],
     :address2         => params[:address2],
     :city             => params[:city],
     :state            => params[:state],
     :zip              => params[:zip],
-    :phone            => params[:phone],
-    :ssnl4            => params[:ssnl4]
+    :phone            => params[:phone]
   )
   
   # if (params[:email].strip.downcase.include?('.mil'))
@@ -123,23 +120,17 @@ post "/recruiters/:id/edit/?" do
   recruiter.update(
     :email            => params[:email],
     :password         => params[:password],
-    :last_activity    => params[:last_activity],
     :rank             => params[:rank],
     :first_name       => params[:first_name],
-    :middle_name      => params[:middle_name],
     :last_name        => params[:last_name],
     :address1         => params[:address1],
     :address2         => params[:address2],
     :city             => params[:city],
     :state            => params[:state],
     :zip              => params[:zip],
-    :phone            => params[:phone],
-    :ssnl4            => params[:ssnl4]
+    :phone            => params[:phone]
   )
-  
-  params[:recruiter_status] ? recruiter.update(:recruiter_status => true) : recruiter.update(:recruiter_status => false)
-  params[:active]           ? recruiter.update(:active => true)           : recruiter.update(:active => false)
-    
+      
   if session[:admin] 
     redirect "/recruiters/recruiters"
   else session[:recruiter]

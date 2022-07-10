@@ -165,6 +165,14 @@ end
 
 
 
+get '/student/students/?' do
+  @subscription = Subscription.all
+  @state = State.all
+  @school = School.all
+  @student = Student.all
+  
+  erb :'/student/students'
+end
 
 
 
@@ -229,22 +237,11 @@ get '/student/:id/edit/?' do
   @state = State.all
   @school = School.all
   @student = Student.get(params[:id])
-  erb :'/student/reports/edit_student'
+  erb :'/student/edit_student'
 end
 
 post '/student/:id/edit/?' do
-  
-  params[:password].strip!
-  params[:password].downcase!
-  params[:school_password].strip!
-  params[:school_password].downcase!
-  
-  if school = School.first(:school_password => params[:school_password])
-    
-  # student = Student.get(params[:id]).update(
-  #   :school_id => school.id
-  # )
-  
+      
   student = Student.get(params[:id]).update(
   :email            => params[:email],
   :first_name       => params[:first_name],
@@ -268,19 +265,11 @@ post '/student/:id/edit/?' do
   :question_10      => params[:question_10],
   :question_11      => params[:question_11],
   :question_12      => params[:question_12],
-  :presentation_id  => params[:presentation_id]
+  :presentation_id  => params[:presentation_id],
+  :contact_me       => params[:contact_me]
   )
   
-  params[:contact_me]   ? student.update(:contact_me => true)   : student.update(:contact_me => false)
-  
-  redirect("/student/")
-  
-  else
-    
-    flash[:alert] = 'You must enter a valid School ID.'
-    redirect request.referrer
-  
-  end
+  redirect("/student/students")
 end
 
 

@@ -23,19 +23,19 @@
 						<th>School</th>
 						<th>City State</th>
 						<th>School ID</th>
-						<th style="text-align: center;"><a href="/arng/schools/create" class="btn btn-success btn-mini">New</a></th>
+						<th style="text-align: center;"><a href="/schools/create" class="btn btn-success btn-mini">New</a></th>
 					</tr>
 					<% @school.sort_by(&:updated_at).reverse.each do |school| %>
 					
 					<tr>
 						<td><%= school.school_name %></td>
-						<td><%= school.school_city %>,  <%= school.school_state %></td>
+						<td><%= school.city %>,  <%= school.state %></td>
 						<td><%= school.school_password %></td>
-						<td style="text-align: center;"><a href="/arng/schools/<%= school.id %>/edit_admin" class="btn btn-mini"> Edit </a></td>
+						<td style="text-align: center;"><a href="/schools/<%= school.id %>/edit_admin" class="btn btn-mini"> Edit </a></td>
 					</tr>
 					<% end %>
 					<tr>
-						<th colspan="5"><small>Total number of schools:<% @school = School.all(:active => true) %> <strong><%= @school.count %></strong><br />
+						<th colspan="5"><small>Total number of schools:<% @school = School.all %> <strong><%= @school.count %></strong><br />
 						</th>
 
 					</tr>
