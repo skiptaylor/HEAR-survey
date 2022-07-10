@@ -139,6 +139,41 @@ post "/recruiters/:id/edit/?" do
 
 end
 
+get "/recruiters/admin_new/?"  do
+  auth_admin  
+  @state = State.all
+  @recruiter = Recruiter.new
+  erb :'/recruiter/recruiter_new_admin'
+end
+
+post "/recruiters/admin_new/?"  do 
+  state = State.all
+  recruiter = Recruiter.create(
+    :email            => params[:email],
+    :password         => params[:password], 
+    :rank             => params[:rank],
+    :first_name       => params[:first_name],
+    :last_name        => params[:last_name],
+    :address1         => params[:address1],
+    :address2         => params[:address2],
+    :city             => params[:city],
+    :state            => params[:state],
+    :zip              => params[:zip],
+    :phone            => params[:phone]
+  )
+  
+  # if (params[:email].strip.downcase.include?('.mil'))
+#     redirect "/recruiters/#{recruiter.id}/profile"
+#   else
+#     flash[:alert] = 'Oops! You must use a valid .mil email address.'
+#     redirect "/recruiters/#{recruiter.id}/edit"
+#   end
+  
+  redirect '/recruiters/recruiters'
+
+end
+
+
 get "/recruiters/signin/?" do
   @recruiter = Recruiter.all
     erb :"/recruiter/signin"
