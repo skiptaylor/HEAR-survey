@@ -49,7 +49,7 @@ post "/recruiters/noaccount/?"  do
 
   else
     flash[:alert] = 'This email already exists. Maybe you need to sign in.'
-    erb :"/arng/arng"
+    erb :"/recruiters/noaccount"
   end
 
 end
@@ -103,7 +103,7 @@ post "/recruiters/new/?"  do
 
   session[:recruiter] = recruiter.id
   
-  redirect '/arng/leads'
+  redirect '/recruiters/#{recruiter.id}/profile'
 
 end
 
