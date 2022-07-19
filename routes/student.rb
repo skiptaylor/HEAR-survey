@@ -76,7 +76,7 @@ post '/student/create/?' do
                             
               session[:student] = @student.id
               
-              @student.class_date = @student.created_on
+              @student.class_date = @student.created_at
               @student.school_id = school.id
               @student.save
             
