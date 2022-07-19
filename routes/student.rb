@@ -83,7 +83,7 @@ post '/student/create/?' do
                 
                   @presentation = Presentation.create(
                     :school_id  => @student.school_id,
-                    :class_date  => @student.created_at,
+                    :class_date  => @student.created_on,
                     :school_password  => @student.school_password,
                     :id => @student.presentation_id
                   )
