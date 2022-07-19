@@ -3,7 +3,7 @@
 			<div class="col-md-12">
 				<h1 class="page-header">School Registration</h1>
 			</div>
-			<div class="col-lg-7">
+			<div class="col-lg-7" style="margin-bottom: 7em;">
 
 				<p class="lead">
 					Before presenting <strong>HEAR</strong> to students, register the school to generate a School ID so students can access the online <strong>HEAR</strong> Survey.
@@ -55,14 +55,62 @@
 				<p>Click the green <strong>“Individual Reports”</strong> to see results for each student. This report can be viewed on screen or downloaded as a PDF, one per page.</p>
 					
 			</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<div class="col-md-5">	
+				<h5>Find School for your account.</h5>
+				<p>
+					<form method="get" class="form-search">
+						<button type="submit" class="btn btn-success float-end">Search</button>
+						<input type="text" name="zip" class="form-control search-query" style="width: 60%;" placeholder="School Zip" />
+					</form>
+		  		</p>
+				<p style="color: #08297b; font-size: 1.15em; font-weight: bold;">Edit school to assign to recruiter account.</p>
+				<% if @results %>
+				<p>
+					
+					<% @results.each do |c| %>
+						<hr />
+						<span style="font-size: 1.2rem;"><%= c.school_name %></span> &nbsp; <small style="color: #08297b;"></small><br />
+						<%= c.city %> <%= c.state %> &nbsp;<%= c.zip %> <a href="/schools/<%= c.id %>/edit" class="btn btn-small" style="float: right;">Edit</a><br />
+						School ID &nbsp;&nbsp;<span class="password-show"><%= c.school_password %></span> &nbsp; &nbsp; &nbsp;
+					<% end %>
+					
+				</p> 
+				<% end %>
+				<% if ( @results.count < 1 ) && ( params[:zip] == nil ) %>
+				
+				<% elsif ( @results.count == 0 ) && ( params[:zip] != '' ) %>
+					<hr />
+					<span class="password-show">No school found for <%= params[:zip] %></span>
+				<% else ( @results.count > 0 ) && ( params[:zip] != '' ) %>
+				
+				<% end %>
+					<hr />
+					<p style="line-height: 1.3em;" class="semi-bold"><a href="/schools/new" style="margin: 2px 0 12px 12px;" class="btn btn-success float-end">Register</a>After submitting your school's zip, if your school is not listed above, you can register a new school now.
+					<hr />
+					
+					
+				<!-- <p style="line-height: 1.3em;">If your school is listed as <strong>Not Activated</strong>, use the edit button next to school to finish registration. Call 888-326-9229 with problems.</p> -->
+				<p style="color: #08297b; font-size: 1.15em; font-weight: bold;">Schools that you are assigned to will be available in the School Accounts list below.</p>
+			</div>
+			
+			
 
-			<div class="col-lg-5">
+			<!-- <div class="col-lg-5">
 				<div class="sign-in">
 
 					<h3>Find Your School ID or Register a School</h3>
 					<p>
 						<form method="get" class="form-search form-inline">
-						  <input type="text" name="zip" class="form-control search-query" placeholder="School Zip"/>  &nbsp;  
+						  <input type="text" name="zip" class="form-control search-query" placeholder="School Zip"/>  &nbsp;
 						  <input type="submit" class="btn btn-success" />
 						</form>
 			  		</p>
@@ -71,29 +119,29 @@
 						<% @results.each do |c| %>
 							<hr />
 							<strong><%= c.school_name %></strong><br />
-							<small><%= c.school_city %> <%= c.school_state %> &nbsp;<%= c.school_zip %></small><br />
-							<small>School ID</small> &nbsp;&nbsp;<span class="password-show"><%= c.school_password %></span> &nbsp; &nbsp; &nbsp; <a href="/arng/schools/<%= c.id %>/edit" class="btn btn-small pull-right">Edit</a>
+							<small><%= c.city %> <%= c.state %> &nbsp;<%= c.zip %></small><br />
+							<small>School ID</small> &nbsp;&nbsp;<span class="password-show"><%= c.school_password %></span> &nbsp; &nbsp; &nbsp; <a href="/schools/<%= c.id %>/edit" class="btn btn-small pull-right">Edit</a>
 						<% end %>
   					</p>
 					<% end %>
-					
+
 					<% if ( @results.count < 1 ) && ( params[:zip] == nil ) %>
-					
+
 					<% elsif ( @results.count == 0 ) && ( params[:zip] != '' ) %>
 						<hr />
 						<span class="password-show">No school found for <%= params[:zip] %></span>
 					<% else ( @results.count > 0 ) && ( params[:zip] != '' ) %>
-					
+
 					<% end %>
-					
-					
-					<hr />	
+
+
+					<hr />
 					<p style="line-height: 1.3em;" class="semi-bold"><a href="/schools/new" style="margin: 2px 0 12px 12px;" class="btn btn-success pull-right">Register</a>After submitting your school's zip, if your school is not listed above, you can register it now.
 					<hr />
-					
+
 					<p style="line-height: 1.3em;">If your school is listed more than once, please call 888-326-9229 to delete duplications.</p>
-			
-				</div>
+
+				</div> -->
 		
 			</div>  
 		</div>
