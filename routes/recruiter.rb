@@ -103,7 +103,7 @@ post "/recruiters/new/?"  do
 
   session[:recruiter] = recruiter.id
   
-  redirect '/recruiters/#{recruiter.id}/profile'
+  redirect "/recruiters/#{recruiter.id}/profile"
 
 end
 
@@ -210,9 +210,9 @@ end
 
 get '/recruiters/:id/profile/?' do
   auth_recruiter
-  @school = School.all(:recruiter_id => params[:id])
+  @school = School.all
   @state = State.all
-  @recruiter = Recruiter.get(params[:id])
+  @recruiter = Recruiter.get(session[:recruiter])
   
   unless params[:zip]
     @results = []
