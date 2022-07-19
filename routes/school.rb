@@ -100,8 +100,8 @@ get '/schools/:id/school_report/?' do
   @school.presentations = Presentation.all(:school_id => @school.id)
   @school.students = Student.all(:school_password => @school.school_password, :school_password.not => '', :class_date => params[:presentation])
      
-    @school.class_date = params[:presentation]
-    @school.save
+    # @school.class_date = params[:presentation]
+#     @school.save
   
   erb :"/schools/school_report"
   

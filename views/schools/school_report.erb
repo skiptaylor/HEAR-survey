@@ -7,7 +7,7 @@
 				<% end %>
 				
 				
-				<h1 class="page-header">Class Reports</h1>
+				<h1 class="page-header">Class Report</h1>
 			</div>
 			
 			<div class=" col-md-5">
@@ -86,10 +86,10 @@
 					
 					<tr>
 						<td>
-							<%= student.first_name %> <%= student.last_name %> <!-- - <%= student.created_on %> -->
+							<%= student.first_name %> <%= student.last_name %>
 						</td>
 						<td>
-							<%= student.school_password %> <!-- - <%= student.school_id %> - <%= params[:presentation] %> -->
+							<%= student.school_password %>
 						</td>
 						<td> 
 							<%= format_american_day(student.created_at) %>
