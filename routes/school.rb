@@ -3,7 +3,7 @@ get '/schools/schools/?' do
 	@school = School.all(order: [:updated_at.desc], limit: 100)
   
 	if params[:search] && !params[:search].nil?
-		@school = School.all(:school_zip.like => "%#{params[:search]}%", limit: 30) 
+		@school = School.all(:zip.like => "%#{params[:search]}%", limit: 30) 
   else
 		@school = School.all(:school_name.not => nil, order: [:updated_at.desc], limit: 100)
 	end
@@ -14,19 +14,16 @@ end
 get '/schools/create/?' do
   auth_recruiter
   @state = State.all
-  @admin = Admin.all
   @recruiter = Recruiter.all
   @school = School.new
-  erb :'/schools/new_school'
+  erb :'/schools/new_admin_school'
 end
 
 post '/schools/create/?' do
   auth_recruiter
   state = State.all
-  admin = Admin.all
   recruiter = Recruiter.all
   school = School.create(
-    :school_id              => params[:school_id],
     :date_modified          => params[:date_modified],
     :first_name             => params[:first_name],
     :last_name              => params[:last_name],
@@ -39,20 +36,17 @@ post '/schools/create/?' do
     :state                  => params[:state],
     :zip                    => params[:zip],
     :school_password        => params[:school_password],         
-    :phone                  => params[:phone],                   
-    :class_date             => params[:class_date],                                                           
-    :arng_email             => params[:arng_email],              
-    :recruiter_id           => params[:recruiter_id]                         
+    :class_date             => params[:class_date]                         
   )                                                                          
                                                                              
-  redirect "/schools/#{school.id}/school"                                    
+  redirect "/schools/schools"                                    
 end                                                                          
 
 
 get '/schools/new/?' do
   auth_recruiter
   @state = State.all
-  @recruiter = Recruiter.all
+  @recruiter = Recruiter.get(session[:recruiter])
   @school = School.new
   erb :'/schools/edit_school'
 end
@@ -60,7 +54,7 @@ end
 post '/schools/new/?' do
   auth_recruiter
   state = State.all
-  recruiter = Recruiter.all
+  recruiter = Recruiter.get(session[:recruiter])
   school = School.create(
     :school_id              => params[:school_id],
     :date_modified          => params[:date_modified],
@@ -75,13 +69,11 @@ post '/schools/new/?' do
     :state                  => params[:state],
     :zip                    => params[:zip],
     :school_password        => params[:school_password],         
-    :phone                  => params[:phone],                   
     :class_date             => params[:class_date],                                                           
-    :arng_email             => params[:arng_email],              
     :recruiter_id           => params[:recruiter_id]                         
 )                                                                          
   
-   school.recruiter_id == session[:recruiter]
+   session[:recruiter] == school.recruiter_id
    school.save
   
   redirect "/schools/#{school.id}/school"
@@ -91,7 +83,7 @@ end
 get '/schools/:id/school/?' do
   auth_recruiter
   @state = State.all
-  @recruiter = Recruiter.get(params[:recruiter_id])
+  @recruiter = Recruiter.get(session[:recruiter])
   @school = School.get(params[:id])
   erb :"/schools/school"
 end
@@ -269,9 +261,7 @@ post '/schools/:id/edit_admin/?' do
     :state                  => params[:state],
     :zip                    => params[:zip],
     :school_password        => params[:school_password],         
-    :phone                  => params[:phone],                   
     :class_date             => params[:class_date],                                                           
-    :arng_email             => params[:arng_email],              
     :recruiter_id           => params[:recruiter_id]                         
   )                                                                          
 
@@ -281,7 +271,7 @@ end
 
 get '/schools/:id/edit/?' do
   auth_recruiter
-   @recruiter = Recruiter.all
+  @recruiter = Recruiter.all
   @state = State.all
   @school = School.get(params[:id])
   
@@ -307,9 +297,7 @@ post '/schools/:id/edit/?' do
     :state                  => params[:state],
     :zip                    => params[:zip],
     :school_password        => params[:school_password],         
-    :phone                  => params[:phone],                   
     :class_date             => params[:class_date],                                                           
-    :arng_email             => params[:arng_email],              
     :recruiter_id           => params[:recruiter_id]                         
   )                                                                          
   

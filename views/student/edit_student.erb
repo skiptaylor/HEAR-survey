@@ -4,8 +4,8 @@
 	      <h1 class="page-header">Edit Student</h1>
 		</div>
 	</div>
-	<form class="form-horizontal" method="post">
-	<div class="row">
+	<div class="row" style="margin-bottom: 5em;">
+		<!-- <form class="form-horizontal" method="post"> -->
 		<div class="col-md-6">
 			<div class="form-group col"> 
 				<label for="school_password">School ID</label>
@@ -14,7 +14,6 @@
 			<div class="form-group col">
 				<label for="email">Personal Email Address</label>
 				<input type="text" class="form-control" placeholder="" name="email" id="email" aria-describedby="emailHelp" value="<%= @student.email %>" />
-				
 			</div>
 			<div class="form-group col">
 				<label for="first_name">First Name</label>
@@ -44,32 +43,14 @@
 					<option <%= 'selected' if @student.grade == 'Other' %> value="Other">Other</option>
 				</select>
 			</div>
-			<div class="form-group col-md-12" style="text-align: right;">
+			<div class="form-group col-md-9" style="margin-bottom: 1.5em;">
 				<label for="account"></label>
-				<button class="btn btn-primary" id="account" type="submit">Save</button> &nbsp;&nbsp;&nbsp;&nbsp;<a onclick="goBack()" class="btn">Cancel</a>
+				<button class="btn btn-success" id="account" type="submit">Save</button> &nbsp;&nbsp;&nbsp;&nbsp;<a onclick="goBack()" class="btn">Cancel</a>
 			</div>
 		</div>
-		<div class="col-md-6">
-		    <p><strong>Question 1</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%= @student.question_1 %></p>
-		    <p><strong>Question 2</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%= @student.question_2 %></p>
-		    <p><strong>Question 3</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%= @student.question_3 %></p>
-		    <p><strong>Question 4</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%= @student.question_4 %></p>
-		    <p><strong>Question 5</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%= @student.question_5 %></p>
-		    <p><strong>Question 6</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%= @student.question_6 %></p>
-		    <p><strong>Question 7</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%= @student.question_7 %></p>
-		    <p><strong>Question 8</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%= @student.question_8 %></p>
-		    <p><strong>Question 9</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%= @student.question_9 %></p>
-		    <p><strong>Question 10</strong>&nbsp;&nbsp;&nbsp; <%= @student.question_10 %></p>
-		    <p><strong>Question 11</strong>&nbsp;&nbsp;&nbsp; <%= @student.question_11 %></p>
-		    <p><strong>Question 12</strong>&nbsp;&nbsp;&nbsp; <%= @student.question_12 %></p>
-			<% unless @student.contact_me == nil %>
-		    <p><strong>Please contact me</strong>      <%= @student.contact_me %></p>
-			<% else %>
-			<p><strong>Please do not contact me</strong>      <%= @student.contact_me %></p>
-			<% end %>
-		</div>
+		<!-- </form> -->
+		
 	</div>
-	</form>
 </div>
 
 

@@ -5,13 +5,15 @@ class Student
 	property   :delete_at, DateTime
 	timestamps :at
   
-	property :email,      Text
-	property :first_name, String
-  property :last_name,  String
-  property :grade,      String
-  property :phone, 		  String
-  property :gender,     String
-  property :ethnicity,  String
+	property :email,        Text
+	property :first_name,   String
+  property :last_name,    String
+  property :grade,        String
+  property :phone, 		    String
+  property :create_date,  Date
+  
+	property :pass_reset_key,	  String
+	property :pass_reset_date,  Date
   
   property :question_1,  String
   property :question_2,  String
@@ -25,13 +27,15 @@ class Student
   property :question_10, String
   property :question_11, String
   property :question_12, String
-  property :school_password, String
-  property :presentation_id, String
+  
+  property :school_password,  String
+  property  :presentation_id, Integer, default: 0
   
   property :sub_code,    String
-  
+  property :class_date,  Date
   property :contact_me,  String
   
   belongs_to :school, required: false
+  belongs_to :presentation, required: false
     
 end 

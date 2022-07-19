@@ -141,20 +141,24 @@ post '/student/survey/?' do
   subscription = Subscription.all
   state = State.all
   school = School.all
-  student = Student.update(
-      :question_1       => params[:question_1], 
-      :question_2       => params[:question_2], 
-      :question_3       => params[:question_3], 
-      :question_4       => params[:question_4], 
-      :question_5       => params[:question_5], 
-      :question_6       => params[:question_6], 
-      :question_7       => params[:question_7], 
-      :question_8       => params[:question_8], 
-      :question_9       => params[:question_9], 
-      :question_10      => params[:question_10],
-      :question_11      => params[:question_11],
-      :question_12      => params[:question_12],
-    )
+  student = Student.get(session[:student])
+  student.update(
+
+  :question_1       => params[:question_1], 
+  :question_2       => params[:question_2], 
+  :question_3       => params[:question_3], 
+  :question_4       => params[:question_4], 
+  :question_5       => params[:question_5], 
+  :question_6       => params[:question_6], 
+  :question_7       => params[:question_7], 
+  :question_8       => params[:question_8], 
+  :question_9       => params[:question_9], 
+  :question_10      => params[:question_10],
+  :question_11      => params[:question_11],
+  :question_12      => params[:question_12],
+  :contact_me       => params[:contact_me]
+  
+  )
     redirect "/student/thanks"
 end
 
@@ -232,6 +236,14 @@ post '/student/signin/?' do
   end
     
 end
+
+get '/student/:id/student/?' do
+  @state = State.all
+  @school = School.all
+  @student = Student.get(params[:id])
+  erb :'/student/student'
+end
+
 
 get '/student/:id/edit/?' do
   @state = State.all

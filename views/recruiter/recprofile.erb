@@ -20,7 +20,7 @@
 				</p>	
 				
 				<p><a href="/recruiters/<%= @recruiter.id %>/edit/" class="btn" >Edit recruiter</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/recruiters/signout" class="btn btn-secondary btn-sm" style="background-color: #000000;"><i class="icon-signout"> </i> &nbsp;Sign out</a></p>
-				<span style="color: #919191;"><strong>PROTECT YOUR PRIVACY.</strong>
+				<span style="color: #919191; font-size: 0.85;"><strong>PROTECT YOUR PRIVACY.</strong>
 				If you are using a public or shared device <strong>sign out</strong> when finished.</span> <br /><br />
 			</div>
 			
@@ -30,20 +30,28 @@
 			<div class="col-md-6">	
 				<h5>Find School for your account.</h5>
 				<p>
-					<form method="get" class="form-search form-inline">
-					  <input type="text" name="zip" class="form-control search-query" placeholder="School Zip"/>  &nbsp;  
-					  <button type="submit" class="btn btn-success">Search</button>
+					<form method="get" class="form-search">
+						<button type="submit" class="btn btn-success float-end">Search</button>
+						<input type="text" name="zip" class="form-control search-query" style="width: 60%;" placeholder="School Zip" />
 					</form>
 		  		</p>
 				<p style="color: #08297b; font-size: 1.15em; font-weight: bold;">Edit school to assign to recruiter account.</p>
 				<% if @results %>
 				<p>
+					
+					
+					
+					
 					<% @results.each do |c| %>
 						<hr />
-						<span style="font-size: 1.2rem;"><%= c.school_name %></span> &nbsp; <small style="color: #08297b;"><strong><%= "(Not Activated)" unless c.active %></strong></small><br />
-						<%= c.school_city %> <%= c.school_state %> &nbsp;<%= c.school_zip %> <a href="/arng/schools/<%= c.id %>/edit" class="btn btn-small" style="float: right;">Edit</a> <% unless c.active %><% else %><br />
-						School ID &nbsp;&nbsp;<span class="password-show"><%= c.school_password %></span> &nbsp; &nbsp; &nbsp; <% end %>
+						<span style="font-size: 1.2rem;"><%= c.school_name %></span> &nbsp; <small style="color: #08297b;"></small><br />
+						<%= c.city %> <%= c.state %> &nbsp;<%= c.zip %> <a href="/schools/<%= c.id %>/edit" class="btn btn-small" style="float: right;">Edit</a><br />
+						School ID &nbsp;&nbsp;<span class="password-show"><%= c.school_password %></span> &nbsp; &nbsp; &nbsp;
 					<% end %>
+					
+					
+					
+					
 				</p> 
 				<% end %>
 				<% if ( @results.count < 1 ) && ( params[:zip] == nil ) %>
@@ -55,7 +63,7 @@
 				
 				<% end %>
 					<hr />
-					<p style="line-height: 1.3em;" class="semi-bold"><a href="/arng/schools/new" style="margin: 2px 0 12px 12px;" class="btn btn-success pull-right">Register</a>After submitting your school's zip, if your school is not listed above, you can register a new school now.
+					<p style="line-height: 1.3em;" class="semi-bold"><a href="/schools/new" style="margin: 2px 0 12px 12px;" class="btn btn-success float-end">Register</a>After submitting your school's zip, if your school is not listed above, you can register a new school now.
 					<hr />
 					
 					
@@ -82,12 +90,12 @@
 						
 						<th>School ID</th>
 						<!-- <th style="text-align: right;"></th> -->
-						<th style="text-align: right;"></th>
+						<th style="text-align: right;"><%= session[:recruiter] %></th>
 					</tr>
 
 					<% @school.sort_by(&:updated_at).each do |school| %>
 					<% unless school.school_password == '' || school.school_password == nil %>
-					<% if session[:recruiter] == school.recruiter_id %>
+					<% if session[:recruiter] = school.recruiter_id %>
 					
 					<tr>
 						
@@ -95,7 +103,7 @@
 						
 						<td><%= school.school_password %></td>
 						<!-- <td style="text-align: right;"><a href="/recruiter/school/<%= school.id %>/presentation/new" class="btn btn-small">Register Class</a></td> -->
-						<td style="text-align: right;"><a href="/arng/schools/<%= school.id %>/edit" class="btn btn-mini">Edit</a> &nbsp; &nbsp; &nbsp; <a href="/arng/schools/<%= school.id %>/school_report" class="btn btn-mini btn-info">Get Reports</a></td>
+						<td style="text-align: right;"><a href="/schools/<%= school.id %>/edit" class="btn btn-mini">Edit</a> &nbsp; &nbsp; &nbsp; <a href="/schools/<%= school.id %>/school_report" class="btn btn-mini btn-info">Get Reports</a></td>
 					</tr>
 					<% end %>
 					<% end %>

@@ -12,6 +12,8 @@ gem 'sinatra-contrib', '>= 1.4.4', require: 'sinatra/contrib'
 
 gem 'rake', '~> 13.0', '>= 13.0.6'
 
+gem 'pony', '~> 1.13', '>= 1.13.1'
+
 gem 'chassis-datamapper', '~> 1.0.1'
 gem 'chassis-pony', '~> 1.0.0'
 

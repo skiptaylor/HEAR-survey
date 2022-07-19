@@ -22,8 +22,8 @@
 				<div class="form-row">
 					<div class="form-group col-md-10">
 						<label for="address1">School Address</label>
-						<input type="text" class="form-control" name="school_address1" id="saddress1" value="<%= @school.address1 %>" /> 
-						<input type="text" class="form-control" name="school_address2" id="address2" style="margin-top: -1px;" value="<%= @school.address2 %>" /> 
+						<input type="text" class="form-control" name="address1" id="address1" value="<%= @school.address1 %>" /> 
+						<input type="text" class="form-control" name="address2" id="address2" style="margin-top: -1px;" value="<%= @school.address2 %>" /> 
 					</div>
 				</div>
 				<div class="form-row">
@@ -43,7 +43,7 @@
 				
 					<div class="form-group col-md-4">
 						<label for="zip">Zip</label>
-						<input type="text" class="form-control" name="szip" id="zip" value="<%= @school.zip %>" />
+						<input type="text" class="form-control" name="zip" id="zip" value="<%= @school.zip %>" />
 					</div>
 				
 				</div>
@@ -87,7 +87,7 @@
 								
 				
 				 <div class="well" style="text-align: center; border-top: 3px solid #1abd9c; border-bottom: 3px solid #1abd9c; display: none;">
-				<% if @school.active == true %> 
+				<% if @school.school_password %> 
 					School ID
 					<h6 style="color: #b5011c;"><%= @school.school_password %></h6>
 				<% else %>
@@ -99,12 +99,14 @@
 				 <!-- <p style="font-size: 1.1em; margin: 1em 0 1em 0;"><strong>ARNG Rep</strong></p> -->
  				<div class="form-row" style="display: none;">
 					
+					<input type="text" class="form-control hidden" name="recruiter_id" id="recruiter_id" value="<%= @school.recruiter_id %>" /> 
+					
  					<div class="control-group">
- 						<label for="recruiter_id">Recruiter</label>
- 						<select type="text" id="recruiter_id" name="recruiter_id" class="form-control">
+						
+ 						<label for="@recruiter.id">Recruiter</label>
+ 						<select type="text" id="@recruiter.id" name="@recruiter.id" class="form-control">
  							
 							<option><%= session[:recruiter] %></option>
-
 
  						</select>
  					</div>

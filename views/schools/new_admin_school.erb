@@ -2,7 +2,7 @@
 		<div class="row">  
 			<div class="col-md-12">
 				<h1 class="page-header">Admin School Registration</h1>
-				<h5>Register school to get a school ID.</h5>
+				
 			</div>
 		</div>
 		<div class="row">
@@ -11,7 +11,7 @@
 				<form method="post" id="register-school" class="school form-horizontal">
 				
 				
-				<p style="font-size: 1.1em; margin: 1em 0 1.5em 0;"><strong>School Information</strong></p>
+				<p style="font-size: 1.1em;"><strong>School Information</strong></p>
 
 				<div class="form-row">
 					<div class="form-group col-md-10">
@@ -42,11 +42,11 @@
 					</div>
 					<div class="form-group col-md-4">
 						<label for="zip">Zip</label>
-						<input type="text" class="form-control" name="zip" id="szip" value="<%= @school.zip %>" />
+						<input type="text" class="form-control" name="zip" id="zip" value="<%= @school.zip %>" />
 					</div>
 				</div>
 				
-				<p style="font-size: 1.1em; margin: 1em 0 1.5em 0;"><strong>Educator’s Contact Information</strong></p>
+				<p style="font-size: 1.1em; margin: 1.5em 0 1em 0;"><strong>Educator’s Contact Information</strong></p>
 				
 				<div class="form-row">
 					<div class="form-group col-md-6">
@@ -82,14 +82,7 @@
 			
 			<div class="col-md-4">
 				
-				 <div class="well" style="text-align: center; border-top: 3px solid #1abd9c; border-bottom: 3px solid #1abd9c; display: none;">
-				<% if @school.active == true %> 
-					School ID
-					<h6 style="color: #b5011c;"><%= @school.school_password %></h6>
-				<% else %>
-					<h5 class="muted">SCHOOL NOT</h5>
-				<% end %>
-				 </div> 				
+							
 				
  				
 			 	</form>

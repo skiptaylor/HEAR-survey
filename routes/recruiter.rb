@@ -38,8 +38,8 @@ post "/recruiters/noaccount/?"  do
         headers: { 'Content-Type' => 'text/html' },
         to: "#{params[:email]}",
         from: "noreply@eCareerDirection.com",
-        subject: "Here is your eCD verification code.",
-        body: "Here is your verification code for <b><i>e</i>CareerDirection</b> registration: <b>#{params[:new_code]}</b>"
+        subject: "Here is your HEAR Survey verification code.",
+        body: "Here is your verification code for <b>HEAR Survey</b> registration: <b>#{params[:new_code]}</b>"
       )
       redirect '/recruiters/reg'
     else
@@ -192,7 +192,7 @@ post "/recruiters/signin/?" do
         session[:recruiter] = recruiter.id
         
         flash[:alert] = 'Welcome back! You are now signed in.'
-        redirect "/index"
+        redirect "/recruiters/#{recruiter.id}/profile"
       else
         flash[:alert] = 'Your password is incorrect.'
         erb :"/recruiter/signin"
@@ -217,12 +217,31 @@ get '/recruiters/:id/profile/?' do
   unless params[:zip]
     @results = []
   else
-    @results = School.all(school_zip: params[:zip].strip.downcase)
+    @results = School.all(zip: params[:zip].strip.downcase)
   end
   
    
   erb :"/recruiter/recprofile"
 end
+
+get '/recruiters/register/?' do
+  auth_recruiter
+  @school = School.all
+  unless params[:zip]
+    @results = []
+  else
+    @results = School.all(zip: params[:zip].strip.downcase)
+  end
+  erb :"/recruiter/register"
+end
+
+
+get "/recruiters/downloads/?" do
+  @recruiter = Recruiter.get(params[:id])
+  erb :"/recruiter/downloads"
+end
+
+
 
 get "/recruiters/:id/view/?" do
   auth_admin

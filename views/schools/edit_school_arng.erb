@@ -2,16 +2,12 @@
 		<div class="row">  
 			<div class="col-md-12">
 				<h1 class="page-header">Edit School</h1>
-				
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-8">
+			<div class="col-md-8" style="margin-top: -1em;">
 									
-				<form method="post" id="register-school" class="school form-horizontal">
-								
-				<p style="font-size: 1.1em; margin: 1em 0 1.5em 0;"><strong>School Information</strong></p>
-				
+				<form method="post" id="register-school" class="school form-horizontal">				
 
 				<div class="form-row">
 					<div class="form-group col-md-10">
@@ -47,7 +43,7 @@
 					
 				
 				</div>
-				<p style="font-size: 1.1em; margin: 1em 0 1.5em 0;"><strong>Educator’s Contact Information</strong></p>
+				<p style="font-size: 1.1em; margin: 1em 0 0.5em 0;"><strong>Educator’s Contact Information</strong></p>
 				
 				<div class="form-row">
 					<div class="form-group col-md-6">
@@ -73,54 +69,45 @@
 			
 			<div class="col-md-4">
 				
-				
-				
 				 <div class="well" style="text-align: center; border-top: 3px solid #1abd9c; border-bottom: 3px solid #1abd9c;">
 				
 					School ID
 					<h6 style="color: #b5011c;"><%= @school.school_password %></h6>
 	
 				 </div>
-				 
- 				
-				
 				
  				<div class="form-row">
  					<div class="control-group">
  						<label for="recruiter_id">School Recruiter</label>
  						<select type="text" id="recruiter_id" name="recruiter_id" class="form-control" value="<%= @school.recruiter_id %>">
- 								
-								
-								
- 							<% @recruiter.sort_by(&:state).each do |recruiter| %>
 							
-							<% if recruiter.id == @school.recruiter_id %>
- 								<option value="<%= recruiter.id %>" <%= 'selected' if recruiter.id == @school.recruiter.id %>><%= recruiter.rank %> <%= recruiter.first_name %> <%= recruiter.last_name %></option>
-							<% end %>
-							<% unless @school.recruiter_id == session[:recruiter] %>
-							<% if recruiter.id == session[:recruiter] %>
- 								<option value="<%= recruiter.id %>" <%= 'selected' if recruiter.id == @school.recruiter.id %>><%= recruiter.rank %> <%= recruiter.first_name %> <%= recruiter.last_name %></option>
-							<% end %>
-							<% end %>	
-							<% end %>
-							
+					<% @recruiter.each do |recruiter| %>
+					
+					
+					
+						<option value="<%= recruiter.id %>" <%= 'selected' if recruiter.id == @school.recruiter_id %>><%= recruiter.id %> - <%= recruiter.rank %> <%= recruiter.first_name %> <%= recruiter.last_name %></option>
+
+					
+					
+
+					
+					<% end %>
  						</select>
  					</div>
  				</div>
  				<br />
 				<br />
 				
-				
  				<div class="control-group">
  				    <div class="controls" style="text-align: left;">
- 						 <input class="btn btn-success" type="submit" value="Save" />&nbsp;&nbsp;&nbsp;<a onclick="goBack()" class="btn">Cancel</a><% if session[:admin] %>&nbsp;&nbsp;&nbsp;<a href="/arng/schools/<%= @school.id %>/delete" class="delete btn btn-warning"><i class="icon-trash"></i></a><% end %>
+ 						 <input class="btn btn-success" type="submit" value="Save" />&nbsp;&nbsp;&nbsp;<a onclick="goBack()" class="btn">Cancel</a><% if session[:admin] %>&nbsp;&nbsp;&nbsp;<a href="/schools/<%= @school.id %>/delete" class="delete btn btn-warning">Delete</a><% end %>
  					 </div>
  				 </div>
 			 	</form>
 			</div>
 			
 		</div>
-		<!-- <%= session[:admin] %> / <%= session[:recruiter] %> // <%= @school.recruiter_id %> -->
+		<%= session[:admin] %> / <%= session[:recruiter] %> / <%= @school.recruiter_id %>
 	</div> <!-- /container -->
 
 <script  type="text/javascript">

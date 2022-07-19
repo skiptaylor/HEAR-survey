@@ -1,0 +1,102 @@
+	<div class="container">	
+		<div class="row">  
+			<div class="col-md-12">
+				<h1 class="page-header">School Registration</h1>
+			</div>
+			<div class="col-lg-7">
+
+				<p class="lead">
+					Before presenting <strong>HEAR</strong> to students, register the school to generate a School ID so students can access the online <strong>HEAR</strong> Survey.
+				</p>
+				
+				<p>
+					You will need to give the School ID to the students during your <strong>HEAR</strong> presentation so they can access the survey.
+				</p>
+				
+				<h5 style="margin-bottom: 0.4em;">TO REGISTER A SCHOOL:</h5>
+				<p>Enter the school’s zip code on this page in the field labeled “Find Your School ID or Register a School.”</p>
+
+				<p style="margin-left: 2em;">If the school is ALREADY registered, it will be listed underneath the Submit button, along with its School ID. A school only needs to be registered once. School IDs do NOT expire. Note that a zip code can have multiple schools within it.</p>
+
+				<p style="margin-left: 2em;">If the school is NOT already registered, “No School Found” will be displayed. Click the green “Register” button to register the school and create a School ID.</p>
+
+
+				<p>Enter the requested information at the <strong>School Registration</strong> page, which includes the school’s address and the school POC’s name and contact information.</p>
+ 
+				<p>Once you submit the school info to register a school, the <strong>School ID</strong> will be displayed. <strong>WRITE DOWN this School ID</strong> because you will need to provide it to the students so they can create their student accounts. The slide presentation will prompt you when to provide it.</p>
+ 
+				<p>There is a formula to help you remember the School ID. Example: “hs3496701”</p>
+				
+				<ul>
+					<li><strong>hp</strong> is for HEAR Project</li>
+					<li>Then the school’s <strong>zip code</strong></li>
+					<li>Ends in a <strong>two-digit number</strong> representing the order of the school’s registration for that zip code. Example: If a school is the second one in a zip code to be registered, it will end in <strong>02</strong>.</li>
+				</ul>
+ 
+				<p><strong style="font-size:1.15em;">Once you have registered a school, it will be assigned to you.</strong> Go to your Recruiter Profile, and you will see your registered school(s) listed under School Accounts.
+ 					
+				<p>To change the assigned Recruiter for a school to yourself, find that school by submitting the School Zip to find all registered schools for that zip code. If your school shows in the list, <strong>edit</strong> that school. Then, on the edit page under <strong>School Recruiter</strong>, if your name does not show, select it from the dropdown to become the assigned recruiter. Please note that if another recruiter's name is checked in the list they are currently the active recruiter for that school.</p>
+				
+				<p><strong>IMPORTANT - Difference between School ID and Student Access Code:</strong></p>
+				<p>The School ID does not change. Every student during a presentation will enter the same School ID corresponding to their school when they create a new student account.</p>
+				<p>The students then will also enter a <strong>Student Access Code</strong>. This code is unique to each student. Do not confuse it with the School ID. The Student Access Code is printed in the student tri-fold brochure and can only be used to create one student account.</p>
+ 
+				<p><strong>SLIDE SHOW:</strong></p>
+				<p>Important! Be sure to download and use the PowerPoint slides that corresponds to the version of <strong><span class="logo-e">e</span>CareerDirection</strong> you are presenting. The edition of eCD is listed both on the box label, as well as the copyright page of each student workbook. You need to download the <strong><span class="logo-e">e</span>CareerDirection</strong> PowerPoint presentation file here:</p>  
+				<p><a href="/recruiters/downloads" class="btn btn-small btn-info">Downloads</a></p>
+ 
+				<p><strong>REPORTS:</strong></p>
+				<p>After students take the <strong><span class="logo-e">e</span>CareerDirection</strong> exercise, you will be able to download their individual results as well as a summary report. Access the report by going to your “Recruiter Profile” page, and click the blue “Get Reports” button for the corresponding school listed under “School Accounts.”</p>
+ 
+				<p>At the “Class Reports” page, select the date for the report you need. The students will populate at the bottom of the screen.</p>
+ 
+				<p>Click the green <strong>“Summary Report”</strong> to see a summary of student results. This report can be viewed on screen or downloaded as a PDF. Once you have downloaded a PDF, you can email the report to the educator(s) at the school.</p>
+ 
+				<p>Click the green <strong>“Individual Reports”</strong> to see results for each student. This report can be viewed on screen or downloaded as a PDF, one per page.</p>
+					
+			</div>
+
+			<div class="col-lg-5">
+				<div class="sign-in">
+
+					<h3>Find Your School ID or Register a School</h3>
+					<p>
+						<form method="get" class="form-search form-inline">
+						  <input type="text" name="zip" class="form-control search-query" placeholder="School Zip"/>  &nbsp;  
+						  <input type="submit" class="btn btn-success" />
+						</form>
+			  		</p>
+					<% if @results %>
+  					<p>
+						<% @results.each do |c| %>
+							<hr />
+							<strong><%= c.school_name %></strong><br />
+							<small><%= c.school_city %> <%= c.school_state %> &nbsp;<%= c.school_zip %></small><br />
+							<small>School ID</small> &nbsp;&nbsp;<span class="password-show"><%= c.school_password %></span> &nbsp; &nbsp; &nbsp; <a href="/arng/schools/<%= c.id %>/edit" class="btn btn-small pull-right">Edit</a>
+						<% end %>
+  					</p>
+					<% end %>
+					
+					<% if ( @results.count < 1 ) && ( params[:zip] == nil ) %>
+					
+					<% elsif ( @results.count == 0 ) && ( params[:zip] != '' ) %>
+						<hr />
+						<span class="password-show">No school found for <%= params[:zip] %></span>
+					<% else ( @results.count > 0 ) && ( params[:zip] != '' ) %>
+					
+					<% end %>
+					
+					
+					<hr />	
+					<p style="line-height: 1.3em;" class="semi-bold"><a href="/schools/new" style="margin: 2px 0 12px 12px;" class="btn btn-success pull-right">Register</a>After submitting your school's zip, if your school is not listed above, you can register it now.
+					<hr />
+					
+					<p style="line-height: 1.3em;">If your school is listed more than once, please call 888-326-9229 to delete duplications.</p>
+			
+				</div>
+		
+			</div>  
+		</div>
+		
+		
+	</div> <!-- /container -->

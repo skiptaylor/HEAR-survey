@@ -16,8 +16,8 @@ class Recruiter
   property :state, String
   property :zip, String
   property :phone, String
-  property :ssnl4, Integer
-  property :reg_code, String, default: "y5qz4"
+  property :reg_code, String
+  property :last_activity, Date
   
 	property :pass_reset_key,	String
 	property :pass_reset_date, Date
@@ -29,4 +29,8 @@ end
 
 def reg_code(number)
   rand 1000..8000
+end
+
+def recruiter_name
+  "#{self.rank} #{self.first_name} #{self.last_name}"
 end

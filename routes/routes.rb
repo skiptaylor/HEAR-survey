@@ -35,6 +35,11 @@ get '/about/?' do
 	erb :'/about'
 end
 
+get '/report-cover/?' do
+	erb :'/report-cover'
+end
+
+
 
 
 get "/admin/signin/?" do

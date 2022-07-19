@@ -28,21 +28,21 @@
 						<hr />
 					</div>
 					
-					<p style="clear: left;"><strong>Recruiter:</strong> &nbsp; &nbsp; <%= @school.recruiter.rank %> <%= @school.recruiter.first_name %> <%= @school.recruiter.middle_name %> <%= @school.recruiter.last_name %></p>
-					<p><small>Recruiter ID for testing&nbsp; &nbsp;<strong><%= @school.recruiter_id %></strong></small></p>
+					<p style="clear: left;"><strong>Recruiter:</strong> &nbsp; &nbsp; <%= @recruiter.rank %> <%= @recruiter.first_name %> <%= @recruiter.last_name %></p>
+					<p><small>Recruiter ID for testing&nbsp; &nbsp;<strong><%= @recruiter.id %></strong></small></p>
 				</div>
 				<div class="span7">
 					<hr />
 
 					<% if session[:recruiter] %>
 					<p style="margin: 1rem 0 0 1rem;">
-						<a href="/arng/schools/<%= @school.id %>/edit" class="btn btn-small">Edit School</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/recruiters/<%= session[:recruiter] %>/profile" class="btn btn-small">Recruiter Profile</a>
+						<a href="/schools/<%= @school.id %>/edit" class="btn btn-small">Edit School</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/recruiters/<%= session[:recruiter] %>/profile" class="btn btn-small">Recruiter Profile</a>
 					</p>
 					<% end %>
 					
 					<% if session[:admin] %>
 					<p style="margin: 1rem 0 0 1rem;">
-						<a href="/arng/schools/<%= @school.id %>/edit" class="btn btn-small">Edit School</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/recruiters/recruiters" class="btn btn-small">Recruiters</a>
+						<a href="/schools/<%= @school.id %>/edit" class="btn btn-small">Edit School</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/recruiters/recruiters" class="btn btn-small">Recruiters</a>
 					</p>
 					<% end %>
 				</div>
