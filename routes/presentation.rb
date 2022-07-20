@@ -11,7 +11,7 @@ post '/recruiter/school/:id/presentation/new/?' do
   recruiter = Recruiter.get(session[:recruiter])
   school = School.get(params[:id])
   presentation = Presentation.create(
-    :recruiter_id         => session[:recruiter_id],
+    :recruiter_id         => session[:recruiter],
     :school_password      => params[:school_password],
     :class_date           => params[:class_date]
   )
@@ -39,7 +39,7 @@ post '/recruiters/school/presentations/:id/edit/?' do
   recruiter = Recruiter.get(session[:recruiter])
   school = School.get(params[:school_id])
   presentation.update(
-  :recruiter_id         => session[:recruiter_id],
+  :recruiter_id         => session[:recruiter],
   :school_password      => params[:school_password],
   :class_date           => params[:class_date]
   )

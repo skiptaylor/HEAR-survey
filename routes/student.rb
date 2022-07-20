@@ -84,16 +84,16 @@ post '/student/create/?' do
                 
                   @presentation = Presentation.create(
                     :school_id  => @student.school_id,
-                    :class_date  => @student.created_on,
+                    :class_date  => @student.created_at,
                     :school_password  => @student.school_password,
                     :id => @student.presentation_id
                   )
                   
               end
-
+              
+              @student.presentation_id = @presentation.id
               @student.save
                         
-              
               redirect '/student/survey'
           
           else

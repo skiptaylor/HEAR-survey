@@ -100,8 +100,8 @@ get '/schools/:id/school_report/?' do
   @school.presentations = Presentation.all(:school_id => @school.id)
   @school.students = Student.all(:school_password => @school.school_password, :school_password.not => '', :class_date => params[:presentation])
      
-    # @school.class_date = params[:presentation]
-#     @school.save
+  @school.class_date = params[:presentation]
+  @school.save
   
   erb :"/schools/school_report"
   
@@ -113,6 +113,7 @@ get '/schools/:id/summary_report/?' do
   @recruiter = Recruiter.get(params[:recruiter_id])
   @school.presentations = Presentation.all(:school_id => @school.id, :class_date => params[:presentation])
   @school.students = Student.all(:school_password => @school.school_password, :school_password.not => '')
+  
   
   erb :'/schools/summary_report', layout: false
   
