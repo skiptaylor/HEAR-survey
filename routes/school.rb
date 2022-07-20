@@ -119,36 +119,36 @@ get '/schools/:id/summary_report/?' do
   
 end
 
-post '/schools/:id/summary_report/?' do
-  
-  auth_recruiter
-  @school = School.get(params[:id])
-  @recruiter = Recruiter.get(params[:recruiter_id])
-  @school.presentations = Presentation.all(:school_id => @school.id)
-  @school.students = Student.all(:school_password => @school.school_password, :school_password.not => '')
-  
-  PDFKit.configure do |config|
-    config.default_options = {
-      :print_media_type => true,
-      :page_size        => 'Letter',
-      :margin_top       => '0.25in',
-      :margin_right     => '0.25in',
-      :margin_bottom    => '0.25in',
-      :margin_left      => '0.25in'
-    }
-  end
-  
-  content_type 'application/pdf'
-  
-  if settings.development?
-    kit = PDFKit.new("http://localhost:4567/arng/schools/#{@school.id}/summary_report")
-  elsif settings.production?
-    kit = PDFKit.new("https://www.ecareerdirection.com/arng/schools/#{@school.id}/summary_report")
-  end
-    
-  pdf = kit.to_pdf
-  
-end
+# post '/schools/:id/summary_report/?' do
+#
+#   auth_recruiter
+#   @school = School.get(params[:id])
+#   @recruiter = Recruiter.get(params[:recruiter_id])
+#   @school.presentations = Presentation.all(:school_id => @school.id)
+#   @school.students = Student.all(:school_password => @school.school_password, :school_password.not => '')
+#
+#   PDFKit.configure do |config|
+#     config.default_options = {
+#       :print_media_type => true,
+#       :page_size        => 'Letter',
+#       :margin_top       => '0.25in',
+#       :margin_right     => '0.25in',
+#       :margin_bottom    => '0.25in',
+#       :margin_left      => '0.25in'
+#     }
+#   end
+#
+#   content_type 'application/pdf'
+#
+#   if settings.development?
+#     kit = PDFKit.new("http://localhost:4567/arng/schools/#{@school.id}/summary_report")
+#   elsif settings.production?
+#     kit = PDFKit.new("https://www.ecareerdirection.com/arng/schools/#{@school.id}/summary_report")
+#   end
+#
+#   pdf = kit.to_pdf
+#
+# end
 
 
 

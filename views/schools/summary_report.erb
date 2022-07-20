@@ -49,19 +49,19 @@
 		font-family: helvetica;
 		line-height: 24px;
 		font-weight: 400;
-		border: none;
+		
 	}
 	tr.main td ul li	{
 		line-height: 18px;
 		font-weight: 300;
-		border: none;
+		
 	}
 	td {
 		font-size: 14px;
-		border: 0;
+		borde: 0;
 		font-family: helvetica;
 		margin-top: 0px;
-		border: 0px;
+		
 	}
 	
 	.lead	{
@@ -70,19 +70,19 @@
 		text-align: center;
 	}
 	
-	table tr td	{
-		border-color: #fff;
+	table tr td, tr th	{
+		border-color: gray;
 		font-family: helvetica;
 		font-size: 14px;
 		line-height: 18px;
 		margin-top: 3px;
 		padding-top: 0;
 		font-weight: 400;
-		border: 0px;
+		
 	}
 	
 	table.side tr td	{
-		border: 0;
+		borde: 0;
 		font-family: helvetica;
 		font-size: 14px;
 		font-weight: 400;
@@ -123,26 +123,180 @@
 </head>
 
 <body>
+<div class="container">	
+	<div class="row" style="margin-top: 2em;">  
+		<div class="col">
+			<img src="/img/HEAR-logo-black.svg" width="150px;">
+		</div>
+		<div class="col" style="text-align: center;">
+			<h1 style="font-size: 2.3em;">Student Survey Report</h1>
+		</div>
+		<div class="col">
+			<img src="/img/arng-no-ground.svg" class="float-end" width="68px;">
+		</div>
+	</div>
+	<form method="post">
+	<div class="row">  
+		<div class="col-md-12">
+
+			<h6>About H.E.A.R.</h6>
+
+			<p>H.E.A.R. is an anti-bullying presentation targeted to high school students. It is published by Career Training Concepts, Inc. and sponsored by the Army National Guard. The 50-minute presentation was developed in partnership with subject matter experts at the Harvard Graduate School of Education and the University of Nebraska-Lincoln. Part A of this report summarizes the post-presentation student survey results. Part B is an attendance record by name of the student participants.</p>
+
+			<p>This report provides data intended to guide positive change in your school climate. The following resources will support your efforts to create a bully-free, respectful learning environment.</p>
+
+			<h6 style="margin-top: 1em;">Making Caring Common Project</h6>
+
+			<a href="http://sites.gse.harvard.edu/making-caring-common" target="blank">sites.gse.harvard.edu/making-caring-common ????</a>
+
+			<p>Making Caring Common, a project of Harvard Graduate School of Education, strives to help educators, families and community members raise children who demonstrate respectful behavior and social responsibility. The website provides research-based tools and strategies for building caring and respectful school communities.</p>
+
+			<h6 style="margin-top: 1em;">Empowerment Initiative</h6>
+
+			<a href="http://empowerment.unl.edu" target="blank">empowerment.unl.edu</a>. https://cehs.unl.edu/bullyingprevention
+
+			<p>The Empowerment Initiative seeks to apply knowledge gained through research to improve communities in ways that build healthy relationships and free them from bullying. The website provides information about relevant research projects, and it provides links with information about resiliency, mental health resources, youth violence prevention and building safe schools.</p>
+
+			<h6 style="margin-top: 1em;">H.E.A.R.</h6>
+
+			<a href="https://project-hear.us/resources" target="blank">project-hear.us/resources</a>
+
+			<p>A collection of resources on the HEAR website includes books, films and Internet sites. These resources provide evidence-based information, assessment tools, lessons, best practices and practical tips for preventing and responding to bullying and cyberbullying, as well as information on social and emotional learning to promote a positive school climate.</p>
+ 		   <br />
+
+
+			<p><small>* Students had the option to enter their email address (not recorded) and phone number if they felt the National Guard Values discussed in H.E.A.R. were of interest and they wanted more information about the National Guard.</small></p>
+			<hr />
+		</div>
+	</div>
 	
 	<div class="container">	
 		<div class="row">  
 			<div class="col-md-12">
 				
-				<div class="hidden-print" style="margin: 2em 0 2em 0;">
+				<div class="hidden-print" style="margin: 1em 0 1em 0;">
 					<!-- <form id="summary_report" method="post">
 				<button type="submit" class="hidden-print btn" style="float: right; margin-top: 6px; margin-left: 12px;">Create PDF</button></form>
-			<a href="/arng/schools/<%= @school.id %>/summary_report_csv" class="btn" style="float: right; margin-top: 6px; margin-left: 12px;">Export csv</a> --><button onclick="history.back()" class="hidden-print btn btn-secondary" style="color: white; float: right; margin-top: 6px;">Back</button><br />
+			<a href="/arng/schools/<%= @school.id %>/summary_report_csv" class="btn" style="float: right; margin-top: 6px; margin-left: 12px;">Export csv</a> --><!-- <button onclick="history.back()" class="hidden-print btn btn-secondary" style="color: white; float: right; margin-top: 6px;">Back</button><br /> -->
 				</div>
 				
 				<p class="header1">Summary Report</p>
-				<!-- <p style="text-align: center; font-size: 16px;"><strong><%= @school.school_name %></strong> &nbsp; <%= @school.city %> <%= @school.state %> &nbsp;&bull;&nbsp; <%= @school.recruiter.rank %> <%= @school.recruiter.first_name %> <%= @school.recruiter.last_name %> &nbsp;&bull;&nbsp; <b>Class Date:</b> <%= format_day(@school.class_date) %></p> -->
+				<p style="text-align: center; font-size: 16px;"><strong><%= @school.school_name %></strong> &nbsp; <%= @school.city %> <%= @school.state %> &nbsp;&bull;&nbsp; <%= @school.recruiter.rank %> <%= @school.recruiter.first_name %> <%= @school.recruiter.last_name %> &nbsp;&bull;&nbsp; <b>Class Date:</b> <%= format_day(@school.class_date) %></p>
+				 
+				<table id="summ" class="table table-bordered table-striped table-striped-columns">
+					<thead>
+						<tr>
+							<th>Question</th>
+							<th style="font-size: 0.85em; line-height: 1.2em; text-align: center;">Strongly<br />Agree</th>
+							<th style="font-size: 0.85em; line-height: 1.2em; text-align: center;">Agree</th>
+							<th style="font-size: 0.85em; line-height: 1.2em; text-align: center;">Disagree</th>
+							<th style="font-size: 0.85em; line-height: 1.2em; text-align: center;">Strongly<br />Disagree</th>
+							<th style="font-size: 0.85em; line-height: 1.2em; text-align: center;">Did Not<br />Answer</th>
+						</tr>
+					</thead>
+					<tbody>
+					  
+					
+				    <tr>
+						<td>1. Bullying is a problem in my school.</td>
+						<td><%=  %></td>
+						<td><%=  %></td>
+						<td><%=  %></td>
+						<td><%=  %></td>
+						<td><%=  %></td>
+				    </tr>
+				    <tr>
+						<td>2. I have witnessed bullying within the past school year.</td>
+						<td><%=  %></td>
+						<td><%=  %></td>
+						<td><%=  %></td>
+						<td><%=  %></td>
+						<td><%=  %></td>
+				    </tr><tr>
+						<td>3. I feel safe at my school.</td>
+						<td><%=  %></td>
+						<td><%=  %></td>
+						<td><%=  %></td>
+						<td><%=  %></td>
+						<td><%=  %></td>
+				    </tr><tr>
+						<td>4. Students at my school reach out to help one another.</td>
+						<td><%=  %></td>
+						<td><%=  %></td>
+						<td><%=  %></td>
+						<td><%=  %></td>
+						<td><%=  %></td>
+				    </tr><tr>
+						<td>5. My school faculty and staff actively work to create a positive, caring environment.</td>
+						<td><%=  %></td>
+						<td><%=  %></td>
+						<td><%=  %></td>
+						<td><%=  %></td>
+						<td><%=  %></td>
+				    </tr><tr>
+						<td>6. Appreciating diversity is an important part of my school’s culture.</td>
+						<td><%=  %></td>
+						<td><%=  %></td>
+						<td><%=  %></td>
+						<td><%=  %></td>
+						<td><%=  %></td>
+				    </tr><tr>
+						<td>7. The presentation helped me understand what bullying is and why people bully others.</td>
+						<td><%=  %></td>
+						<td><%=  %></td>
+						<td><%=  %></td>
+						<td><%=  %></td>
+						<td><%=  %></td>
+				    </tr><tr>
+						<td>8. This presentation influenced my commitment to respecting and including others.</td>
+						<td><%=  %></td>
+						<td><%=  %></td>
+						<td><%=  %></td>
+						<td><%=  %></td>
+						<td><%=  %></td>
+				    </tr><tr>
+						<td>9. This presentation gave me useful ideas for what to do if I witness bullying or cruelty.</td>
+						<td><%=  %></td>
+						<td><%=  %></td>
+						<td><%=  %></td>
+						<td><%=  %></td>
+						<td><%=  %></td>
+				    </tr><tr>
+						<td>10. The character values discussed in H.E.A.R. are important to me.</td>
+						<td><%=  %></td>
+						<td><%=  %></td>
+						<td><%=  %></td>
+						<td><%=  %></td>
+						<td><%=  %></td>
+				    </tr><tr>
+						<td>11. The presenter communicated clearly and effectively.</td>
+						<td><%=  %></td>
+						<td><%=  %></td>
+						<td><%=  %></td>
+						<td><%=  %></td>
+						<td><%=  %></td>
+				    </tr><tr>
+						<td>12. The presenter was knowledgeable on the topic.</td>
+						<td><%=  %></td>
+						<td><%=  %></td>
+						<td><%=  %></td>
+						<td><%=  %></td>
+						<td><%=  %></td>
+				    </tr>
+					
+					
+
+						
+				</table>
+
 				 
 				 
-				
+				 <br />
+				<hr />
 				<h5>Attendance Record</h5>
 				<p style="margin-bottom: 12px;">Total Number of Attendees: <strong><%= @school.students.count %></strong></p>
 				<p><small>Student data is not edited and may contain errors or typos.</small></p>
-				<table  class="table table-striped">
+				<table class="table table-striped">
 				  <thead>
 				    <tr>
 				      <th scope="col">Last name</th>
@@ -164,7 +318,7 @@
 						
 				</table>
 				<!-- * Students had the option to enter their email address (not recorded) and phone number if they felt the National Guard Values discussed in H.E.A.R. were of interest and they wanted more information about the National Guard. -->
-				<hr style="margin: 6px 0 6px 0;" />
+				<br /><br />
 				
 			</div>
 		</div>
