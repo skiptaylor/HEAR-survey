@@ -180,8 +180,18 @@
 			<a href="/arng/schools/<%= @school.id %>/summary_report_csv" class="btn" style="float: right; margin-top: 6px; margin-left: 12px;">Export csv</a> --><!-- <button onclick="history.back()" class="hidden-print btn btn-secondary" style="color: white; float: right; margin-top: 6px;">Back</button><br /> -->
 				</div>
 				
-				<p class="header1">Summary Report</p>
-				<p style="text-align: center; font-size: 16px;"><strong><%= @school.school_name %></strong> &nbsp; <%= @school.city %> <%= @school.state %> &nbsp;&bull;&nbsp; <%= @school.recruiter.rank %> <%= @school.recruiter.first_name %> <%= @school.recruiter.last_name %> &nbsp;&bull;&nbsp; <b>Class Date:</b> <%= format_day(@school.class_date) %></p>
+				
+				
+				<p>School:&nbsp;&nbsp;<strong><%= @school.school_name %></strong></p>
+				<p>State:&nbsp;&nbsp;<strong><%= @school.state %></strong></p>
+				<p>Presentation Date: &nbsp;&nbsp;<strong><%= format_day(@school.class_date) %></strong></p>
+				
+				<%= @school.recruiter.rank %> <%= @school.recruiter.first_name %> <%= @school.recruiter.last_name %> &nbsp;&bull;&nbsp; <b>Class Date:</b> <%= format_day(@school.class_date) %></p>
+				
+				
+				<p style="text-align: center; font-size: 20px;">A. Student Participant Feedback Summary (Total Participants = <strong><%= @school.students.count %></strong>)</p>
+				 
+				 <br />
 				 
 				<table id="summ" class="table table-bordered table-striped table-striped-columns">
 					<thead>
@@ -293,8 +303,8 @@
 				 
 				 <br />
 				<hr />
-				<h5>Attendance Record</h5>
-				<p style="margin-bottom: 12px;">Total Number of Attendees: <strong><%= @school.students.count %></strong></p>
+				<p style="text-align: center; font-size: 20px;">Attendance Record (Total Participants = <strong><%= @school.students.count %></strong>)</p>
+				
 				<p><small>Student data is not edited and may contain errors or typos.</small></p>
 				<table class="table table-striped">
 				  <thead>
