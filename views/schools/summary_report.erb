@@ -16,10 +16,10 @@
 	
 <style>
 	p	{
-		font-size: 12px;
-		line-height: 1.05em;
+		font-size: 14px;
+		line-height: 1.2em;
 		margin-bottom: 1px;
-		font-weight: 300;
+		font-weight: 400;
 		font-family: helvetica;
 	}
 	
@@ -38,17 +38,17 @@
 		margin-bottom: 1px;
 	}
 	ul li	{
-		font-size: 12px;
+		font-size: 14px;
 		font-family: helvetica;
 		padding: 0;
 		margin-top: 1px;
-		font-weight: 300;
+		font-weight: 400;
 	}
 	
 	tr.main td	{
 		font-family: helvetica;
 		line-height: 24px;
-		font-weight: 300;
+		font-weight: 400;
 		border: none;
 	}
 	tr.main td ul li	{
@@ -57,7 +57,7 @@
 		border: none;
 	}
 	td {
-		font-size: 12px;
+		font-size: 14px;
 		border: 0;
 		font-family: helvetica;
 		margin-top: 0px;
@@ -73,24 +73,24 @@
 	table tr td	{
 		border-color: #fff;
 		font-family: helvetica;
-		font-size: 12px;
-		line-height: 16px;
+		font-size: 14px;
+		line-height: 18px;
 		margin-top: 3px;
 		padding-top: 0;
-		font-weight: 300;
+		font-weight: 400;
 		border: 0px;
 	}
 	
 	table.side tr td	{
 		border: 0;
 		font-family: helvetica;
-		font-size: 12px;
-		font-weight: 300;
+		font-size: 14px;
+		font-weight: 400;
 	}
 	
 	table.side tr th	{
 		font-family: helvetica;
-		font-size: 12px;
+		font-size: 14px;
 		font-weight: 600;
 	}
 	
@@ -135,22 +135,37 @@
 				</div>
 				
 				<p class="header1">Summary Report</p>
-				<p style="text-align: center; font-size: 16px;"><strong><%= @school.school_name %></strong> &nbsp; <%= @school.city %> <%= @school.state %> &nbsp;&bull;&nbsp; <%= @school.recruiter.rank %> <%= @school.recruiter.first_name %> <%= @school.recruiter.last_name %> &nbsp;&bull;&nbsp; <b>Class Date:</b> <%= format_day(@school.class_date) %></p>
+				<!-- <p style="text-align: center; font-size: 16px;"><strong><%= @school.school_name %></strong> &nbsp; <%= @school.city %> <%= @school.state %> &nbsp;&bull;&nbsp; <%= @school.recruiter.rank %> <%= @school.recruiter.first_name %> <%= @school.recruiter.last_name %> &nbsp;&bull;&nbsp; <b>Class Date:</b> <%= format_day(@school.class_date) %></p> -->
 				 
-				<% @school.students.each do |student| %>
+				 
 				
-				
-				
+				<h5>Attendance Record</h5>
+				<p style="margin-bottom: 12px;">Total Number of Attendees: <strong><%= @school.students.count %></strong></p>
+				<p><small>Student data is not edited and may contain errors or typos.</small></p>
+				<table  class="table table-striped">
+				  <thead>
+				    <tr>
+				      <th scope="col">Last name</th>
+				      <th scope="col">First name</th>
+				      <th scope="col">Grade</th>
+				      <th scope="col">Phone</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+					  
+					<% @school.students.each do |student| %>
+				    <tr>
+				      <td><%= student.last_name %></td>
+				      <td><%= student.first_name %></td>
+					  <td><%= student.grade %></td>
+				      <td><%= student.phone %></td>
+				    </tr>
+					<% end %>
+						
+				</table>
+				<!-- * Students had the option to enter their email address (not recorded) and phone number if they felt the National Guard Values discussed in H.E.A.R. were of interest and they wanted more information about the National Guard. -->
 				<hr style="margin: 6px 0 6px 0;" />
 				
-				<p><strong>Student:</strong>&nbsp;<%= student.first_name %> <%= student.last_name %>&nbsp;&bull;&nbsp; <strong>Grade:</strong>&nbsp;<%= student.grade %>&nbsp;&bull;&nbsp;<strong>Email:</strong>&nbsp;<%= student.email %> <% if student.phone %>&nbsp;&bull;&nbsp;<strong>Phone:</strong>&nbsp; <%= student.phone %><% end %> <strong>Class Date:</strong></b>  <%= format_day(student.created_at) %></p>
-					
-					<p style="margin-top: 6px;">
-					
-				
-				
-				<% end %>
-			
 			</div>
 		</div>
 	</div>
