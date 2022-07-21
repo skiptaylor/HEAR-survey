@@ -12,6 +12,5 @@ class Presentation
   
   belongs_to :school, required: false
   has n, :students
-  has n, :summaries
   
 end
