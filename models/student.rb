@@ -28,8 +28,14 @@ class Student
   property :question_11, String
   property :question_12, String
   
+  property :sa,  Integer, default: 0
+  property :ag,  Integer, default: 0
+  property :dg,  Integer, default: 0
+  property :da,  Integer, default: 0
+  property :na,  Integer, default: 0
+  
   property :school_password,  String
-  property  :presentation_id, Integer, default: 0
+  property :presentation_id,  Integer, default: 0
   
   property :sub_code,    String
   property :class_date,  Date

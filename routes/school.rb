@@ -114,41 +114,186 @@ get '/schools/:id/summary_report/?' do
   @school.presentations = Presentation.all(:school_id => @school.id, :class_date => params[:presentation])
   @school.students = Student.all(:school_password => @school.school_password, :school_password.not => '')
   
+	@school.students.each do |student|
+    
+    student.sa = 0
+    student.ag = 0
+    student.dg = 0
+    student.da = 0
+    student.na = 0
+    
+    if (student.question_1 == 'Strongly Agree')
+      student.sa = (student.ag + 1)
+    elsif (student.question_1 == 'Agree')
+      student.ag = (student.ag + 1)
+    elsif (student.question_1 == 'Disagree')
+      student.dg = (student.dg + 1)
+    elsif (student.question_1 == 'Strongly Disagree')
+      student.da = (student.da + 1)
+    else (student.question_1 == 'Select one')
+      student.na = (student.na. + 1)
+    end
+    
+    if (student.question_2 == 'Strongly Agree')
+      student.sa = (student.sa + 1)
+    elsif (student.question_2 == 'Agree')
+      student.ag = (student.ag + 1)
+    elsif (student.question_2 == 'Disagree')
+      student.dg = (student.dg + 1)
+    elsif (student.question_2 == 'Strongly Disagree')
+      student.da = (student.da + 1)
+    else (student.question_2 == 'Select one')
+      student.na = (student.na + 1)
+    end
+    
+    if (student.question_3 == 'Strongly Agree')
+      student.sa = (student.sa + 1)
+    elsif (student.question_3 == 'Agree')
+      student.ag = (student.ag + 1)
+    elsif (student.question_3 == 'Disagree')
+      student.dg = (student.dg + 1)
+    elsif (student.question_3 == 'Strongly Disagree')
+      student.da = (student.da + 1)
+    else (student.question_3 == 'Select one')
+      student.na = (student.na + 1)
+    end
+    
+    if (student.question_4 == 'Strongly Agree')
+      student.sa = (student.sa + 1)
+    elsif (student.question_4 == 'Agree')
+      student.ag = (student.ag + 1)
+    elsif (student.question_4 == 'Disagree')
+      student.dg = (student.dg + 1)
+    elsif (student.question_4== 'Strongly Disagree')
+      student.da = (student.da + 1)
+    else (student.question_4 == 'Select one')
+      student.na = (student.na + 1)
+    end
+    
+    if (student.question_5 == 'Strongly Agree')
+      student.sa = (student.sa + 1)
+    elsif (student.question_5 == 'Agree')
+      student.ag = (student.ag + 1)
+    elsif (student.question_5 == 'Disagree')
+      student.dg = (student.dg + 1)
+    elsif (student.question_5 == 'Strongly Disagree')
+      student.da = (student.da + 1)
+    else (student.question_5 == 'Select one')
+      student.na = (student.na + 1)
+    end
+    
+    if (student.question_6 == 'Strongly Agree')
+      student.sa = (student.sa + 1)
+    elsif (student.question_6 == 'Agree')
+      student.ag = (student.ag + 1)
+    elsif (student.question_6 == 'Disagree')
+      student.dg = (student.dg + 1)
+    elsif (student.question_6 == 'Strongly Disagree')
+      student.da = (student.da + 1)
+    else (student.question_6 == 'Select one')
+      student.na = (student.na + 1)
+    end
+    
+    if (student.question_7 == 'Strongly Agree')
+      student.sa = (student.sa + 1)
+    elsif (student.question_7 == 'Agree')
+      student.ag = (student.ag + 1)
+    elsif (student.question_7 == 'Disagree')
+      student.dg = (student.dg + 1)
+    elsif (student.question_7 == 'Strongly Disagree')
+      student.da = (student.da + 1)
+    else (student.question_7 == 'Select one')
+      student.na = (student.na + 1)
+    end
+    
+    if (student.question_8 == 'Strongly Agree')
+      student.sa = (student.sa + 1)
+    elsif (student.question_8 == 'Agree')
+      student.ag = (student.ag + 1)
+    elsif (student.question_8 == 'Disagree')
+      student.dg = (student.dg + 1)
+    elsif (student.question_8== 'Strongly Disagree')
+      student.da = (student.da + 1)
+    else (student.question_8 == 'Select one')
+      student.na = (student.na + 1)
+    end
+    
+    if (student.question_9 == 'Strongly Agree')
+      student.sa = (student.sa + 1)
+    elsif (student.question_9 == 'Agree')
+      student.ag = (student.ag + 1)
+    elsif (student.question_9 == 'Disagree')
+      student.dg = (student.dg + 1)
+    elsif (student.question_9 == 'Strongly Disagree')
+      student.da = (student.da + 1)
+    else (student.question_9 == 'Select one')
+      student.na = (student.na + 1)
+    end
+    
+    if (student.question_10 == 'Strongly Agree')
+      student.sa = (student.sa + 1)
+    elsif (student.question_10 == 'Agree')
+      student.ag = (student.ag + 1)
+    elsif (student.question_10 == 'Disagree')
+      student.dg = (student.dg + 1)
+    elsif (student.question_10 == 'Strongly Disagree')
+      student.da = (student.da + 1)
+    else (student.question_10 == 'Select one')
+      student.na = (student.na + 1)
+    end
+    
+    if (student.question_11 == 'Strongly Agree')
+      student.sa = (student.sa + 1)
+    elsif (student.question_11 == 'Agree')
+      student.ag = (student.ag + 1)
+    elsif (student.question_11 == 'Disagree')
+      student.dg = (student.dg + 1)
+    elsif (student.question_11 == 'Strongly Disagree')
+      student.da = (student.da + 1)
+    else (student.question_11 == 'Select one')
+      student.na = (student.na + 1)
+    end
+    
+    if (student.question_12 == 'Strongly Agree')
+      student.sa = (student.sa + 1)
+    elsif (student.question_12 == 'Agree')
+      student.ag = (student.ag + 1)
+    elsif (student.question_12 == 'Disagree')
+      student.dg = (student.dg + 1)
+    elsif (student.question_12 == 'Strongly Disagree')
+      student.da = (student.da + 1)
+    else (student.question_12 == 'Select one')
+      student.na = (student.na + 1)
+    end
+       
+    student.save 
+    
   
+         
+  end
+
   erb :'/schools/summary_report', layout: false
   
 end
 
-# post '/schools/:id/summary_report/?' do
-#
-#   auth_recruiter
-#   @school = School.get(params[:id])
-#   @recruiter = Recruiter.get(params[:recruiter_id])
-#   @school.presentations = Presentation.all(:school_id => @school.id)
-#   @school.students = Student.all(:school_password => @school.school_password, :school_password.not => '')
-#
-#   PDFKit.configure do |config|
-#     config.default_options = {
-#       :print_media_type => true,
-#       :page_size        => 'Letter',
-#       :margin_top       => '0.25in',
-#       :margin_right     => '0.25in',
-#       :margin_bottom    => '0.25in',
-#       :margin_left      => '0.25in'
-#     }
-#   end
-#
-#   content_type 'application/pdf'
-#
-#   if settings.development?
-#     kit = PDFKit.new("http://localhost:4567/arng/schools/#{@school.id}/summary_report")
-#   elsif settings.production?
-#     kit = PDFKit.new("https://www.ecareerdirection.com/arng/schools/#{@school.id}/summary_report")
-#   end
-#
-#   pdf = kit.to_pdf
-#
-# end
+
+
+
+
+
+post '/schools/:id/summary_report/?' do
+
+  auth_recruiter
+  school = School.get(params[:id])
+  recruiter = Recruiter.get(params[:recruiter_id])
+  school.presentations = Presentation.all(:school_id => @school.id)
+  school.students = Student.all(:school_password => @school.school_password, :school_password.not => '')
+
+	
+   
+
+
+end
 
 
 

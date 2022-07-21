@@ -144,22 +144,20 @@ post '/student/survey/?' do
   school = School.all
   student = Student.get(session[:student])
   student.update(
-
-  :question_1       => params[:question_1], 
-  :question_2       => params[:question_2], 
-  :question_3       => params[:question_3], 
-  :question_4       => params[:question_4], 
-  :question_5       => params[:question_5], 
-  :question_6       => params[:question_6], 
-  :question_7       => params[:question_7], 
-  :question_8       => params[:question_8], 
-  :question_9       => params[:question_9], 
-  :question_10      => params[:question_10],
-  :question_11      => params[:question_11],
-  :question_12      => params[:question_12],
-  :contact_me       => params[:contact_me]
-  
-  )
+    :question_1       => params[:question_1], 
+    :question_2       => params[:question_2], 
+    :question_3       => params[:question_3], 
+    :question_4       => params[:question_4], 
+    :question_5       => params[:question_5], 
+    :question_6       => params[:question_6], 
+    :question_7       => params[:question_7], 
+    :question_8       => params[:question_8], 
+    :question_9       => params[:question_9], 
+    :question_10      => params[:question_10],
+    :question_11      => params[:question_11],
+    :question_12      => params[:question_12]
+  )    
+    
     redirect "/student/thanks"
 end
 
@@ -279,7 +277,12 @@ post '/student/:id/edit/?' do
   :question_11      => params[:question_11],
   :question_12      => params[:question_12],
   :presentation_id  => params[:presentation_id],
-  :contact_me       => params[:contact_me]
+  :contact_me       => params[:contact_me],
+  :sa               => params[:sa],
+  :ag               => params[:ag],
+  :dg               => params[:dg],
+  :da               => params[:da],
+  :na               => params[:na]
   )
   
   redirect("/student/students")

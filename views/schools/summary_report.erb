@@ -135,7 +135,7 @@
 			<img src="/img/arng-no-ground.svg" class="float-end" width="68px;">
 		</div>
 	</div>
-	<form method="post">
+	
 	<div class="row">  
 		<div class="col-md-12">
 
@@ -170,30 +170,63 @@
 		</div>
 	</div>
 	
-	<div class="container">	
-		<div class="row">  
-			<div class="col-md-12">
+	<div class="row" style="margin-top: 2em;">  
+		<div class="col">
+			<img src="/img/HEAR-logo-black.svg" width="150px;">
+		</div>
+		<div class="col" style="text-align: center;">
+			<h1 style="font-size: 2.3em;">Student Survey Report</h1>
+		</div>
+		<div class="col">
+			<img src="/img/arng-no-ground.svg" class="float-end" width="68px;">
+		</div>
+	</div>
+	
+	<div class="row">  
+		<div class="col-md-12">
 				
-				<div class="hidden-print" style="margin: 1em 0 1em 0;">
+			<div class="hidden-print" style="margin: 1em 0 1em 0;">
 					<!-- <form id="summary_report" method="post">
 				<button type="submit" class="hidden-print btn" style="float: right; margin-top: 6px; margin-left: 12px;">Create PDF</button></form>
 			<a href="/arng/schools/<%= @school.id %>/summary_report_csv" class="btn" style="float: right; margin-top: 6px; margin-left: 12px;">Export csv</a> --><!-- <button onclick="history.back()" class="hidden-print btn btn-secondary" style="color: white; float: right; margin-top: 6px;">Back</button><br /> -->
-				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">  
+		<div class="col-md-6">
 				
 				
-				
-				<p>School:&nbsp;&nbsp;<strong><%= @school.school_name %></strong></p>
-				<p>State:&nbsp;&nbsp;<strong><%= @school.state %></strong></p>
+				<p>School: &nbsp;&nbsp;<strong><%= @school.school_name %></strong></p>
+				<p>State: &nbsp;&nbsp;<strong><%= @school.state %></strong></p>
 				<p>Presentation Date: &nbsp;&nbsp;<strong><%= format_day(@school.class_date) %></strong></p>
+				<p>School Contact: &nbsp;&nbsp;<strong><%= @school.first_name %> <%= @school.last_name %></strong></p>
+				<p>School Contact Email: &nbsp;&nbsp;<strong><%= @school.email %> </strong></p>
+				<p>School Contact Phone: &nbsp;&nbsp;<strong><%= @school.phone %> </strong></p>
 				
-				<%= @school.recruiter.rank %> <%= @school.recruiter.first_name %> <%= @school.recruiter.last_name %> &nbsp;&bull;&nbsp; <b>Class Date:</b> <%= format_day(@school.class_date) %></p>
+		</div>
+		<div class="col-md-6">
+			<p>National Guard Rep: &nbsp;&nbsp;<strong><%= @school.recruiter.rank %> <%= @school.recruiter.first_name %> <%= @school.recruiter.last_name %></strong></p>
+			<p>National Guard Rep:t Email: &nbsp;&nbsp;<strong><%= @school.recruiter.email %> </strong></p>
+			<p>National Guard Rep:t Phone: &nbsp;&nbsp;<strong><%= @school.recruiter.phone %> </strong></p>
+			
+		</div>
+	</div>
+	<div class="row">  
+		<div class="col-md-12">
+			<hr style="margin: 1.2em 0;" />
+					
+				<p style="text-align: center; font-size: 20px; margin-bottom: 0.6em;">A. Student Participant Feedback Summary (Total Participants = <strong><%= @school.students.count %></strong>)</p>
+	 			<p><strong>Grade</strong>&nbsp;&nbsp;&nbsp;&nbsp;
+					College: 0%&nbsp;&nbsp;&nbsp;&nbsp;
+	 				Grade 12: 42%&nbsp;&nbsp;&nbsp;&nbsp;
+	 				Grade 11: 42%&nbsp;&nbsp;&nbsp;&nbsp;
+	 				Grade 10: 10%&nbsp;&nbsp;&nbsp;&nbsp;
+	 				Other: 0%&nbsp;&nbsp;&nbsp;&nbsp;
+	 				Unknown: 0%
+	 			</p>
 				
-				
-				<p style="text-align: center; font-size: 20px;">A. Student Participant Feedback Summary (Total Participants = <strong><%= @school.students.count %></strong>)</p>
 				 
-				 <br />
-				 
-				<table id="summ" class="table table-bordered table-striped table-striped-columns">
+				<table id="summ" class="table table-bordered table-striped table-striped-columns" style="margin-top: 1em;">
 					<thead>
 						<tr>
 							<th>Question</th>
@@ -205,11 +238,11 @@
 						</tr>
 					</thead>
 					<tbody>
-					  
+						
 					
 				    <tr>
 						<td>1. Bullying is a problem in my school.</td>
-						<td><%=  %></td>
+						<td><%=   %></td>
 						<td><%=  %></td>
 						<td><%=  %></td>
 						<td><%=  %></td>
@@ -298,12 +331,32 @@
 
 						
 				</table>
+				
+			<p style="margin-bottom: 0.5em;"><strong>* Filtered Reports Option:</strong> To protect student anonymity, the publisher cannot provide demographically filtered report(s) for presentation groups of less than 50 students. Multiple presentation populations when compiled to equal at least 50 students can be combined and filtered to create reports by: Gender, Grade, and /or Ethnicity. Contact CTC for more information on how to request a free filtered report: info@careertrain.com</p>
+			<p style="margin-bottom: 0.5em;">If you would like a free supplemental report of nationally collected data emailed to you for comparison purposes, please contact us toll free at 888-326-9229 or email at info@careertrain.com.</p>
+			<p style="margin-bottom: 0.5em;"><strong>Additional Assessment: Making Caring Common (MCC) Survey</strong></p> 
+			<p style="margin-bottom: 0.5em;">MCC, a project of Harvard Graduate School of Education, offers a free survey tool that assesses whether students feel safe, respected, and included in school. The MCC Survey tool is available to all schools who participate in H.E.A.R., and its goal is to help schools by providing data and solutions to address problems and improve school culture and climate. <strong>If you are interested in learning more about the MCC Survey, contact: mcc@gse.harvard.edu</strong></p>
+			<p style="margin-bottom: 0.5em;"><small>* Students had the option to enter their email address (not recorded) and phone number if they felt the National Guard Values discussed in H.E.A.R. were of interest and they wanted more information about the National Guard.</small></p>
 
-				 
-				 
+		</div>
+	</div>
+	
+	<div class="row" style="margin-top: 2em;">  
+		<div class="col">
+			<img src="/img/HEAR-logo-black.svg" width="150px;">
+		</div>
+		<div class="col" style="text-align: center;">
+			<h1 style="font-size: 2.3em;">Student Survey Report</h1>
+		</div>
+		<div class="col">
+			<img src="/img/arng-no-ground.svg" class="float-end" width="68px;">
+		</div>
+	</div>
+	
+	<div class="row">  
+		<div class="col-md-12">			 
 				 <br />
-				<hr />
-				<p style="text-align: center; font-size: 20px;">Attendance Record (Total Participants = <strong><%= @school.students.count %></strong>)</p>
+				<p style="text-align: center; font-size: 20px;">B. Attendance Record (Total Participants = <strong><%= @school.students.count %></strong>)</p>
 				
 				<p><small>Student data is not edited and may contain errors or typos.</small></p>
 				<table class="table table-striped">
@@ -330,8 +383,9 @@
 				<!-- * Students had the option to enter their email address (not recorded) and phone number if they felt the National Guard Values discussed in H.E.A.R. were of interest and they wanted more information about the National Guard. -->
 				<br /><br />
 				
-			</div>
 		</div>
 	</div>
+</div>
+
 </body>
 </html>

@@ -24,6 +24,7 @@ class School
     
   has n, :students
   has n, :presentations
+  has n, :summaries
   belongs_to :recruiter, required: false
  
   before :create do |s|
