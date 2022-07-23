@@ -11,6 +11,7 @@ class Student
   property :grade,        String
   property :phone, 		    String
   property :create_date,  Date
+  property :grade_id,     Integer
   
 	property :pass_reset_key,	  String
 	property :pass_reset_date,  Date
@@ -28,11 +29,13 @@ class Student
   property :question_11, String
   property :question_12, String
   
-  property :sa,  Integer, default: 0
-  property :ag,  Integer, default: 0
-  property :dg,  Integer, default: 0
-  property :da,  Integer, default: 0
-  property :na,  Integer, default: 0
+  property :college,  Integer, default: 0
+  property :gr12,  Integer, default: 0
+  property :gr11,  Integer, default: 0
+  property :gr10,  Integer, default: 0
+  property :gr9,  Integer, default: 0
+  property :other,  Integer, default: 0
+  property :unknown,  Integer, default: 0
   
   property :school_password,  String
   property :presentation_id,  Integer, default: 0

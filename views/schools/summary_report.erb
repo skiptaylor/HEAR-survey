@@ -16,7 +16,7 @@
 	
 <style>
 	p	{
-		font-size: 14px;
+		font-size: 13px;
 		line-height: 1.2em;
 		margin-bottom: 1px;
 		font-weight: 400;
@@ -54,16 +54,17 @@
 	tr.main td ul li	{
 		line-height: 18px;
 		font-weight: 300;
-		
 	}
 	td {
 		font-size: 14px;
-		borde: 0;
+		border-left: 0;
 		font-family: helvetica;
 		margin-top: 0px;
-		
 	}
-	
+	th {
+		font-size: 13px;
+		border-left: 0;
+	}
 	.lead	{
 		font-family: helvetica;
 		font-weight: 900;
@@ -73,8 +74,8 @@
 	table tr td, tr th	{
 		border-color: gray;
 		font-family: helvetica;
-		font-size: 14px;
-		line-height: 18px;
+		font-size: 13px;
+		line-height: 16px;
 		margin-top: 3px;
 		padding-top: 0;
 		font-weight: 400;
@@ -124,18 +125,26 @@
 
 <body>
 <div class="container">	
-	<div class="row" style="margin-top: 2em;">  
-		<div class="col">
-			<img src="/img/HEAR-logo-black.svg" width="150px;">
-		</div>
-		<div class="col" style="text-align: center;">
-			<h1 style="font-size: 2.3em;">Student Survey Report</h1>
-		</div>
-		<div class="col">
-			<img src="/img/arng-no-ground.svg" class="float-end" width="68px;">
+	<div class="row">  
+		<div class="col-md-12">
+			<div class="hidden-print" style="margin: 0.6em 0;">
+				<form id="summary_report" method="post">
+				<button type="submit" class="hidden-print btn btn-mini" style="float: right; margin-top: 6px; margin-left: 12px;" disabled>Create PDF</button></form>
+				<!-- <a href="/arng/schools/<%= @school.id %>/summary_report_csv" class="btn" style="float: right; margin-top: 6px; margin-left: 12px;">Export csv</a> --><button onclick="history.back()" class="hidden-print btn btn-secondary btn-mini" style="color: white; float: right; margin-top: 6px;">Back</button><br />
+			</div>
 		</div>
 	</div>
-	
+	<div class="row" style="margin-top: 1em;">  
+		<div class="col">
+			<img src="/img/HEAR-logo-black.svg" width="135px;">
+		</div>
+		<div class="col" style="text-align: center;">
+			<h1 style="font-size: 2em;">Student Survey Report</h1>
+		</div>
+		<div class="col">
+			<img src="/img/arng-no-ground.svg" class="float-end" width="54px;">
+		</div>
+	</div>
 	<div class="row">  
 		<div class="col-md-12">
 
@@ -164,37 +173,25 @@
 			<p>A collection of resources on the HEAR website includes books, films and Internet sites. These resources provide evidence-based information, assessment tools, lessons, best practices and practical tips for preventing and responding to bullying and cyberbullying, as well as information on social and emotional learning to promote a positive school climate.</p>
  		   <br />
 
-
 			<p><small>* Students had the option to enter their email address (not recorded) and phone number if they felt the National Guard Values discussed in H.E.A.R. were of interest and they wanted more information about the National Guard.</small></p>
-			<hr />
 		</div>
 	</div>
 	
 	<div class="row" style="margin-top: 2em;">  
 		<div class="col">
-			<img src="/img/HEAR-logo-black.svg" width="150px;">
+			<img src="/img/HEAR-logo-black.svg" width="135px;">
 		</div>
 		<div class="col" style="text-align: center;">
-			<h1 style="font-size: 2.3em;">Student Survey Report</h1>
+			<h1 style="font-size: 2em;">Student Survey Report</h1>
 		</div>
 		<div class="col">
-			<img src="/img/arng-no-ground.svg" class="float-end" width="68px;">
+			<img src="/img/arng-no-ground.svg" class="float-end" width="54px;">
 		</div>
 	</div>
 	
-	<div class="row">  
-		<div class="col-md-12">
-				
-			<div class="hidden-print" style="margin: 1em 0 1em 0;">
-					<!-- <form id="summary_report" method="post">
-				<button type="submit" class="hidden-print btn" style="float: right; margin-top: 6px; margin-left: 12px;">Create PDF</button></form>
-			<a href="/arng/schools/<%= @school.id %>/summary_report_csv" class="btn" style="float: right; margin-top: 6px; margin-left: 12px;">Export csv</a> --><!-- <button onclick="history.back()" class="hidden-print btn btn-secondary" style="color: white; float: right; margin-top: 6px;">Back</button><br /> -->
-			</div>
-		</div>
-	</div>
+	
 	<div class="row">  
 		<div class="col-md-6">
-				
 				
 				<p>School: &nbsp;&nbsp;<strong><%= @school.school_name %></strong></p>
 				<p>State: &nbsp;&nbsp;<strong><%= @school.state %></strong></p>
@@ -213,32 +210,35 @@
 	</div>
 	<div class="row">  
 		<div class="col-md-12">
-			<hr style="margin: 1.2em 0;" />
+			<hr style="margin: 0.85em 0;" />
 					
-				<p style="text-align: center; font-size: 20px; margin-bottom: 0.6em;">A. Student Participant Feedback Summary (Total Participants = <strong><%= @school.students.count %></strong>)</p>
+				<p style="text-align: center; font-size: 20px; margin-bottom: 0.3em;">A. Student Participant Feedback Summary (Total Participants = <strong><%= @school.students.count %></strong>)</p>
 	 			<p><strong>Grade</strong>&nbsp;&nbsp;&nbsp;&nbsp;
-					College: 0%&nbsp;&nbsp;&nbsp;&nbsp;
-	 				Grade 12: 42%&nbsp;&nbsp;&nbsp;&nbsp;
-	 				Grade 11: 42%&nbsp;&nbsp;&nbsp;&nbsp;
-	 				Grade 10: 10%&nbsp;&nbsp;&nbsp;&nbsp;
-	 				Other: 0%&nbsp;&nbsp;&nbsp;&nbsp;
-	 				Unknown: 0%
-	 			</p>
+				<% @grade.each do |grade| %>
+					
+					College: <%= grade.college %>&nbsp;&nbsp;&nbsp;&nbsp;
+	 				Grade 12: <%= grade.gr12 %>&nbsp;&nbsp;&nbsp;&nbsp;
+	 				Grade 11: <%= grade.gr11 %>&nbsp;&nbsp;&nbsp;&nbsp;
+	 				Grade 10: <%= grade.gr10 %>&nbsp;&nbsp;&nbsp;&nbsp;
+					Grade 9: <%= grade.gr9 %>&nbsp;&nbsp;&nbsp;&nbsp;
+	 				Other: <%= grade.other %>&nbsp;&nbsp;&nbsp;&nbsp;
+	 				Unknown: <%= grade.unknown %>
+	 			
+				<% end %>
+				</p>
 				
-				 
-				<table id="summ" class="table table-bordered table-striped table-striped-columns" style="margin-top: 1em;">
+				<table id="summ" class="table table-bordered table-striped table-sm" style="margin-top: 1em;">
 					<thead>
 						<tr>
-							<th>Question</th>
-							<th style="font-size: 0.85em; line-height: 1.2em; text-align: center;">Strongly<br />Agree</th>
-							<th style="font-size: 0.85em; line-height: 1.2em; text-align: center;">Agree</th>
-							<th style="font-size: 0.85em; line-height: 1.2em; text-align: center;">Disagree</th>
-							<th style="font-size: 0.85em; line-height: 1.2em; text-align: center;">Strongly<br />Disagree</th>
-							<th style="font-size: 0.85em; line-height: 1.2em; text-align: center;">Did Not<br />Answer</th>
+							<th><strong>Question</strong></th>
+							<th style="font-size: 0.85em; font-size: 0.8em; line-height: 1.2em; text-align: center;">Strongly<br />Agree</th>
+							<th style="font-size: 0.85em; font-size: 0.8em; line-height: 1.2em; text-align: center;">Agree</th>
+							<th style="font-size: 0.85em; font-size: 0.8em; line-height: 1.2em; text-align: center;">Disagree</th>
+							<th style="font-size: 0.85em; font-size: 0.8em; line-height: 1.2em; text-align: center;">Strongly<br />Disagree</th>
+							<th style="font-size: 0.85em; font-size: 0.8em; line-height: 1.2em; text-align: center;">Did Not<br />Answer</th>
 						</tr>
 					</thead>
 					<tbody>
-						
 					
 				    <tr>
 						<td>1. Bullying is a problem in my school.</td>
@@ -327,9 +327,6 @@
 						<td><%=  %></td>
 				    </tr>
 					
-					
-
-						
 				</table>
 				
 			<p style="margin-bottom: 0.5em;"><strong>* Filtered Reports Option:</strong> To protect student anonymity, the publisher cannot provide demographically filtered report(s) for presentation groups of less than 50 students. Multiple presentation populations when compiled to equal at least 50 students can be combined and filtered to create reports by: Gender, Grade, and /or Ethnicity. Contact CTC for more information on how to request a free filtered report: info@careertrain.com</p>
@@ -343,13 +340,13 @@
 	
 	<div class="row" style="margin-top: 2em;">  
 		<div class="col">
-			<img src="/img/HEAR-logo-black.svg" width="150px;">
+			<img src="/img/HEAR-logo-black.svg" width="135px;">
 		</div>
 		<div class="col" style="text-align: center;">
-			<h1 style="font-size: 2.3em;">Student Survey Report</h1>
+			<h1 style="font-size: 2em;">Student Survey Report</h1>
 		</div>
 		<div class="col">
-			<img src="/img/arng-no-ground.svg" class="float-end" width="68px;">
+			<img src="/img/arng-no-ground.svg" class="float-end" width="54px;">
 		</div>
 	</div>
 	
@@ -359,7 +356,7 @@
 				<p style="text-align: center; font-size: 20px;">B. Attendance Record (Total Participants = <strong><%= @school.students.count %></strong>)</p>
 				
 				<p><small>Student data is not edited and may contain errors or typos.</small></p>
-				<table class="table table-striped">
+				<table class="table table-striped table-sm">
 				  <thead>
 				    <tr>
 				      <th scope="col">Last name</th>

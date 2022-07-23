@@ -88,11 +88,25 @@ post '/student/create/?' do
                     :school_password  => @student.school_password,
                     :id => @student.presentation_id
                   )
-                  
+                                    
               end
               
               @student.presentation_id = @presentation.id
               @student.save
+              
+              unless (@grade = Grade.first(:school_password => params[:school_password])) && (@grade = Grade.first(:presentation_id => params[:school_password]))
+                                  
+                  @grade = Grade.create(
+                    :school_id  => @student.school_id,
+                    :class_date  => @student.created_at,
+                    :school_password  => @student.school_password,
+                    :presentation_id => @student.presentation_id,
+                    :id => @student.grade_id
+                  )
+                  
+              end
+              
+              @grade.save
                         
               redirect '/student/survey'
           

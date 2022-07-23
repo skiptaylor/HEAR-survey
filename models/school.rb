@@ -19,7 +19,7 @@ class School
   property :city,               String, default: ""
   property :state,              String, default: ""
   property :zip,                String, default: ""
-  
+  property :grade_id,           Integer
   property :class_date,         Date
     
   has n, :students
