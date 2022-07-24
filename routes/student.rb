@@ -71,43 +71,49 @@ post '/student/create/?' do
               :question_11      => params[:question_11],
               :question_12      => params[:question_12],
               :contact_me       => params[:contact_me],
-              :presentation_id  => params[:presentation_id]
+              :presentation_id  => params[:presentation_id],
+              :grade_id         => params[:grade_id]
               )
                             
               session[:student] = @student.id
               
               @student.class_date = @student.created_at
-              @student.school_id = school.id
+              
               @student.save
             
               unless (@presentation = Presentation.first(:school_password => params[:school_password])) && (@presentation = Presentation.first(:class_date => Date.today.strftime("%Y-%m-%d")))
                 
                   @presentation = Presentation.create(
-                    :school_id  => @student.school_id,
                     :class_date  => @student.created_at,
                     :school_password  => @student.school_password,
                     :id => @student.presentation_id
                   )
+                  
+                  @presentation.save
                                     
               end
               
               @student.presentation_id = @presentation.id
               @student.save
               
-              unless (@grade = Grade.first(:school_password => params[:school_password])) && (@grade = Grade.first(:presentation_id => params[:school_password]))
+              unless (@grade = Grade.first(:school_password => params[:school_password])) && (@grade = Grade.first(:class_date => Date.today.strftime("%Y-%m-%d")))
                                   
                   @grade = Grade.create(
-                    :school_id  => @student.school_id,
                     :class_date  => @student.created_at,
                     :school_password  => @student.school_password,
                     :presentation_id => @student.presentation_id,
                     :id => @student.grade_id
                   )
                   
-              end
-              
-              @grade.save
-                        
+                  @grade.save
+                  
+                end
+                
+                @grade.id = @student.grade_id
+                @student.save
+                  
+             
+                                      
               redirect '/student/survey'
           
           else
@@ -194,113 +200,113 @@ end
 
 
 
-get '/student/reports/report/report_profile/?' do
-  @subscription = Subscription.all
-  @state = State.all
-  @school = School.all
-  @student = Student.get(session[:student])
-  erb :'/student/reports/report_profile'
-end
+# get '/student/reports/report/report_profile/?' do
+#   @subscription = Subscription.all
+#   @state = State.all
+#   @school = School.all
+#   @student = Student.get(session[:student])
+#   erb :'/student/reports/report_profile'
+# end
+#
+# get "/student/signin/?" do
+#
+#   unless session[:student]
+#
+#   session[:student] = nil
+#   session.clear
+#   @school = School.all
+#   @student = Student.all
+#   erb :"student/signin"
+#
+#   else
+#
+#   redirect("/index")
+#
+#   end
+# end
 
-get "/student/signin/?" do
-  
-  unless session[:student]
-    
-	session[:student] = nil
-	session.clear
-  @school = School.all 
-  @student = Student.all
-  erb :"student/signin"
-  
-  else
-    
-  redirect("/index")
-  
-  end
-end
+# post '/student/signin/?' do
+#
+#   params[:email].strip!
+#   params[:password].strip!
+#   params[:password].downcase!
+#
+#   unless params[:email] == ''
+#
+#     if student = Student.first(:email => params[:email])
+#       if (student.password == params[:password]) || (params[:password] == "PurpleHippopotamus!") || (params[:password] == "studentpass")
+#         session[:student] = student.id
+#
+#         flash[:alert] = 'Welcome back! You are now signed in.'
+#         redirect("/student")
+#
+#       else
+#         flash[:alert] = 'Your password is incorrect.'
+#         erb :"student/signin"
+#       end
+#     else
+#       flash[:alert] = 'We can\'t find an account with that email address. Maybe you need to create one.'
+#       erb :"student/signin"
+#     end
+#
+#   else
+#     flash[:alert] = 'You must enter a valid email.'
+#     erb :"student/signin"
+#   end
+#
+# end
 
-post '/student/signin/?' do
-  
-  params[:email].strip!
-  params[:password].strip!
-  params[:password].downcase!
-  
-  unless params[:email] == ''
-
-    if student = Student.first(:email => params[:email])
-      if (student.password == params[:password]) || (params[:password] == "PurpleHippopotamus!") || (params[:password] == "studentpass")
-        session[:student] = student.id
-        
-        flash[:alert] = 'Welcome back! You are now signed in.'
-        redirect("/student")
-        
-      else
-        flash[:alert] = 'Your password is incorrect.'
-        erb :"student/signin"
-      end
-    else
-      flash[:alert] = 'We can\'t find an account with that email address. Maybe you need to create one.'
-      erb :"student/signin"
-    end
-    
-  else
-    flash[:alert] = 'You must enter a valid email.'
-    erb :"student/signin"
-  end
-    
-end
-
-get '/student/:id/student/?' do
-  @state = State.all
-  @school = School.all
-  @student = Student.get(params[:id])
-  erb :'/student/student'
-end
-
-
-get '/student/:id/edit/?' do
-  @state = State.all
-  @school = School.all
-  @student = Student.get(params[:id])
-  erb :'/student/edit_student'
-end
-
-post '/student/:id/edit/?' do
-      
-  student = Student.get(params[:id]).update(
-  :email            => params[:email],
-  :first_name       => params[:first_name],
-  :last_name        => params[:last_name],
-  :phone            => params[:phone],
-  :school_password  => params[:school_password],
-  :school_id        => params[:school_id],
-  :sub_code         => params[:sub_code],
-  :grade            => params[:grade],
-  :gender           => params[:gender],
-  :ethnicity        => params[:ethnicity],
-  :question_1       => params[:question_1], 
-  :question_2       => params[:question_2], 
-  :question_3       => params[:question_3], 
-  :question_4       => params[:question_4], 
-  :question_5       => params[:question_5], 
-  :question_6       => params[:question_6], 
-  :question_7       => params[:question_7], 
-  :question_8       => params[:question_8], 
-  :question_9       => params[:question_9], 
-  :question_10      => params[:question_10],
-  :question_11      => params[:question_11],
-  :question_12      => params[:question_12],
-  :presentation_id  => params[:presentation_id],
-  :contact_me       => params[:contact_me],
-  :sa               => params[:sa],
-  :ag               => params[:ag],
-  :dg               => params[:dg],
-  :da               => params[:da],
-  :na               => params[:na]
-  )
-  
-  redirect("/student/students")
-end
+# get '/student/:id/student/?' do
+#   @state = State.all
+#   @school = School.all
+#   @student = Student.get(params[:id])
+#   erb :'/student/student'
+# end
+#
+#
+# get '/student/:id/edit/?' do
+#   @state = State.all
+#   @school = School.all
+#   @student = Student.get(params[:id])
+#   erb :'/student/edit_student'
+# end
+#
+# post '/student/:id/edit/?' do
+#
+#   student = Student.get(params[:id]).update(
+#   :email            => params[:email],
+#   :first_name       => params[:first_name],
+#   :last_name        => params[:last_name],
+#   :phone            => params[:phone],
+#   :school_password  => params[:school_password],
+#   :school_id        => params[:school_id],
+#   :sub_code         => params[:sub_code],
+#   :grade            => params[:grade],
+#   :gender           => params[:gender],
+#   :ethnicity        => params[:ethnicity],
+#   :question_1       => params[:question_1],
+#   :question_2       => params[:question_2],
+#   :question_3       => params[:question_3],
+#   :question_4       => params[:question_4],
+#   :question_5       => params[:question_5],
+#   :question_6       => params[:question_6],
+#   :question_7       => params[:question_7],
+#   :question_8       => params[:question_8],
+#   :question_9       => params[:question_9],
+#   :question_10      => params[:question_10],
+#   :question_11      => params[:question_11],
+#   :question_12      => params[:question_12],
+#   :presentation_id  => params[:presentation_id],
+#   :contact_me       => params[:contact_me],
+#   :sa               => params[:sa],
+#   :ag               => params[:ag],
+#   :dg               => params[:dg],
+#   :da               => params[:da],
+#   :na               => params[:na]
+#   )
+#
+#   redirect("/student/students")
+# end
 
 
 
@@ -348,251 +354,251 @@ end
 
 
 
-get "/student/reports/:id/report/?" do
-  @school = School.all
-  @presentation = Presentation.all
-  @student = Student.get(params[:id])
-  
- if @student.class_date == nil
-   @student.class_date = @student.created_on
-   @student.save
-
- end
-  
-  erb :"/student/reports/report"
-end
-
-post "/student/reports/:id/report/?" do
-  school = School.all
-  presentation = Presentation.all
-  student = Student.get(params[:id])
-  
-  unless params[:ex_score1] == params[:ex_score2]
-    student.update(
-      :ex_score1      => params[:ex_score1],
-      :ex_score2      => params[:ex_score2]
-      )
-  else
-    flash[:alert] = '1st Highest and 2nd Highest Scores cannot be the same.'
-    redirect "/student/reports/#{params[:id]}/report"
-  end
-  
-   redirect "/student/reports/#{params[:id]}/ex_scores"
-
-end
-
-
-
-get "/student/reports/:id/mail_wel2/?" do
-  @school = School.all
-  @presentation = Presentation.all
-  @student = Student.get(params[:id])
-  
-  erb :"/student/reports/mail_wel2"
-end
-
-
-
-get "/student/reports/:id/scores/?" do
-  @school = School.all
-  @exercise = Exercise.get(params[:exercise_id])
-  @student = Student.get(params[:id])
-    
-  if @student.score1 && @student.score1 != ''
-    
-  else
-    @student.score1 = false
-  end
-
-  if @student.score2 && @student.score2 != ''
-    
-  else
-    @student.score2 = false
-  end
-
-  if @student.score3 && @student.score3 != ''
-    
-  else
-    @student.score3 = false
-  end
-  
-  if @student.score1 && File.exists?("./views/reports/#{@student.score1}.inc")
-    @cat1 = File.read("./views/reports/#{@student.score1}.inc")
-  end
-
-  if @student.score2 && File.exists?("./views/reports/#{@student.score2}.inc")
-    @cat2 = File.read("./views/reports/#{@student.score2}.inc")
-  end
-
-  if @student.score3 && File.exists?("./views/reports/#{@student.score3}.inc")
-    @cat3 = File.read("./views/reports/#{@student.score3}.inc")
-  end
-  
-  if @student.score1 && @student.score2 && File.exists?("./views/reports/#{@student.score1}#{@student.score2}.inc")
-    @report1 = File.read("./views/reports/#{@student.score1}#{@student.score2}.inc")
-  elsif @student.score1 && @student.score2 && File.exists?("./views/reports/#{@student.score2}#{@student.score1}.inc")
-    @report1 = File.read("./views/reports/#{@student.score2}#{@student.score1}.inc")
-  end
-
-  if @student.score1 && @student.score3 && File.exists?("./views/reports/#{@student.score1}#{@student.score3}.inc")
-    @report2 = File.read("./views/reports/#{@student.score1}#{@student.score3}.inc")
-  elsif @student.score1 && @student.score3 && File.exists?("./views/reports/#{@student.score3}#{@student.score1}.inc")
-    @report2 = File.read("./views/reports/#{@student.score3}#{@student.score1}.inc")
-  end
-
-  if @student.score2 && @student.score3 && File.exists?("./views/reports/#{@student.score2}#{@student.score3}.inc")
-    @report3 = File.read("./views/reports/#{@student.score2}#{@student.score3}.inc")
-  elsif @student.score2 && @student.score3 && File.exists?("./views/reports/#{@student.score3}#{@student.score2}.inc")
-    @report3 = File.read("./views/reports/#{@student.score3}#{@student.score2}.inc")
-  end
- 
- # -------------------- show report ---------------------
- if @student.score1 && @student.score2
-   erb :'student/reports/scores'
- else
-   erb :'student/reports/report'
- end
-  
-end
-
-get "/student/reports/:id/ex_scores/?" do
-  @school = School.get(params[:school_id])
-  @exercise = Exercise.get(params[:exercise_id])
-  @student = Student.get(params[:id])
-    
-  if @student.ex_score1 && @student.ex_score1 != ''
-    
-  else
-    @student.ex_score1 = false
-  end
-
-  if @student.ex_score2 && @student.ex_score2 != ''
-    
-  else
-    @student.ex_score2 = false
-  end
-  
-  if @student.ex_score1 && @student.ex_score2 && File.exists?("./views/reports/#{@student.ex_score1}#{@student.ex_score2}.inc")
-    @report1 = File.read("./views/reports/#{@student.ex_score1}#{@student.ex_score2}.inc")
-  elsif @student.ex_score1 && @student.ex_score2 && File.exists?("./views/reports/#{@student.ex_score2}#{@student.ex_score1}.inc")
-    @report1 = File.read("./views/reports/#{@student.ex_score2}#{@student.ex_score1}.inc")
-  end
-
- # -------------------- show report ---------------------
- if @student.ex_score1 && @student.ex_score2
-   erb :'student/reports/ex_scores'
- else
-   erb :'student/reports/report'
- end
-  
-end
-
-get "/student/reports/:id/scores_full/?" do
-  @school = School.get(params[:school_id])
-  @student = Student.get(params[:id])
-    
-  if @student.score1 && @student.score1 != ''
-    
-  else
-    @student.score1 = false
-  end
-
-  if @student.score2 && @student.score2 != ''
-    
-  else
-    @student.score2 = false
-  end
-  
-  if @student.score1 && File.exists?("./views/reports-long/#{@student.score1}.inc")
-    @cat1 = File.read("./views/reports-long/#{@student.score1}.inc")
-  end
-
-  if @student.score2 && File.exists?("./views/reports-long/#{@student.score2}.inc")
-    @cat2 = File.read("./views/reports-long/#{@student.score2}.inc")
-  end
-
-  if @student.score1 && @student.score2 && File.exists?("./views/reports-long/#{@student.score1}#{@student.score2}.inc")
-    @report1 = File.read("./views/reports-long/#{@student.score1}#{@student.score2}.inc")
-  elsif @student.score1 && @student.score2 && File.exists?("./views/reports-long/#{@student.score2}#{@student.score1}.inc")
-    @report1 = File.read("./views/reports-long/#{@student.score2}#{@student.score1}.inc")
-  end
- 
- # -------------------- show report ---------------------
- if @student.score1 && @student.score2
-   erb :'student/reports/scores_full', layout: false
- else
-   erb :'student/reports/report'
- end
-  
-end
-
-post "/student/reports/:id/scores_full/?" do
-  school = School.get(params[:school_id])
-  student = Student.get(params[:id])
-  
-  PDFKit.configure do |config|
-    config.default_options = {
-      :print_media_type => true,
-      :page_size        => 'Letter',
-      :margin_top       => '0.25in',
-      :margin_right     => '0.25in',
-      :margin_bottom    => '0.25in',
-      :margin_left      => '0.25in'
-    }
-  end
-  
-  content_type 'application/pdf'
-  
-  if settings.development?
-    kit = PDFKit.new("http://localhost:4567/student/reports/#{student.id}/scores_full")
-  elsif settings.production?
-    kit = PDFKit.new("https://www.ecareerdirection.com/student/reports/#{student.id}/scores_full")
-  end
-    
-  pdf = kit.to_pdf
- 
-end
+# get "/student/reports/:id/report/?" do
+#   @school = School.all
+#   @presentation = Presentation.all
+#   @student = Student.get(params[:id])
+#
+#  if @student.class_date == nil
+#    @student.class_date = @student.created_on
+#    @student.save
+#
+#  end
+#
+#   erb :"/student/reports/report"
+# end
+#
+# post "/student/reports/:id/report/?" do
+#   school = School.all
+#   presentation = Presentation.all
+#   student = Student.get(params[:id])
+#
+#   unless params[:ex_score1] == params[:ex_score2]
+#     student.update(
+#       :ex_score1      => params[:ex_score1],
+#       :ex_score2      => params[:ex_score2]
+#       )
+#   else
+#     flash[:alert] = '1st Highest and 2nd Highest Scores cannot be the same.'
+#     redirect "/student/reports/#{params[:id]}/report"
+#   end
+#
+#    redirect "/student/reports/#{params[:id]}/ex_scores"
+#
+# end
+#
+#
+#
+# get "/student/reports/:id/mail_wel2/?" do
+#   @school = School.all
+#   @presentation = Presentation.all
+#   @student = Student.get(params[:id])
+#
+#   erb :"/student/reports/mail_wel2"
+# end
 
 
 
+# get "/student/reports/:id/scores/?" do
+#   @school = School.all
+#   @exercise = Exercise.get(params[:exercise_id])
+#   @student = Student.get(params[:id])
+#
+#   if @student.score1 && @student.score1 != ''
+#
+#   else
+#     @student.score1 = false
+#   end
+#
+#   if @student.score2 && @student.score2 != ''
+#
+#   else
+#     @student.score2 = false
+#   end
+#
+#   if @student.score3 && @student.score3 != ''
+#
+#   else
+#     @student.score3 = false
+#   end
+#
+#   if @student.score1 && File.exists?("./views/reports/#{@student.score1}.inc")
+#     @cat1 = File.read("./views/reports/#{@student.score1}.inc")
+#   end
+#
+#   if @student.score2 && File.exists?("./views/reports/#{@student.score2}.inc")
+#     @cat2 = File.read("./views/reports/#{@student.score2}.inc")
+#   end
+#
+#   if @student.score3 && File.exists?("./views/reports/#{@student.score3}.inc")
+#     @cat3 = File.read("./views/reports/#{@student.score3}.inc")
+#   end
+#
+#   if @student.score1 && @student.score2 && File.exists?("./views/reports/#{@student.score1}#{@student.score2}.inc")
+#     @report1 = File.read("./views/reports/#{@student.score1}#{@student.score2}.inc")
+#   elsif @student.score1 && @student.score2 && File.exists?("./views/reports/#{@student.score2}#{@student.score1}.inc")
+#     @report1 = File.read("./views/reports/#{@student.score2}#{@student.score1}.inc")
+#   end
+#
+#   if @student.score1 && @student.score3 && File.exists?("./views/reports/#{@student.score1}#{@student.score3}.inc")
+#     @report2 = File.read("./views/reports/#{@student.score1}#{@student.score3}.inc")
+#   elsif @student.score1 && @student.score3 && File.exists?("./views/reports/#{@student.score3}#{@student.score1}.inc")
+#     @report2 = File.read("./views/reports/#{@student.score3}#{@student.score1}.inc")
+#   end
+#
+#   if @student.score2 && @student.score3 && File.exists?("./views/reports/#{@student.score2}#{@student.score3}.inc")
+#     @report3 = File.read("./views/reports/#{@student.score2}#{@student.score3}.inc")
+#   elsif @student.score2 && @student.score3 && File.exists?("./views/reports/#{@student.score3}#{@student.score2}.inc")
+#     @report3 = File.read("./views/reports/#{@student.score3}#{@student.score2}.inc")
+#   end
+#
+#  # -------------------- show report ---------------------
+#  if @student.score1 && @student.score2
+#    erb :'student/reports/scores'
+#  else
+#    erb :'student/reports/report'
+#  end
+#
+# end
+#
+# get "/student/reports/:id/ex_scores/?" do
+#   @school = School.get(params[:school_id])
+#   @exercise = Exercise.get(params[:exercise_id])
+#   @student = Student.get(params[:id])
+#
+#   if @student.ex_score1 && @student.ex_score1 != ''
+#
+#   else
+#     @student.ex_score1 = false
+#   end
+#
+#   if @student.ex_score2 && @student.ex_score2 != ''
+#
+#   else
+#     @student.ex_score2 = false
+#   end
+#
+#   if @student.ex_score1 && @student.ex_score2 && File.exists?("./views/reports/#{@student.ex_score1}#{@student.ex_score2}.inc")
+#     @report1 = File.read("./views/reports/#{@student.ex_score1}#{@student.ex_score2}.inc")
+#   elsif @student.ex_score1 && @student.ex_score2 && File.exists?("./views/reports/#{@student.ex_score2}#{@student.ex_score1}.inc")
+#     @report1 = File.read("./views/reports/#{@student.ex_score2}#{@student.ex_score1}.inc")
+#   end
+#
+#  # -------------------- show report ---------------------
+#  if @student.ex_score1 && @student.ex_score2
+#    erb :'student/reports/ex_scores'
+#  else
+#    erb :'student/reports/report'
+#  end
+#
+# end
+#
+# get "/student/reports/:id/scores_full/?" do
+#   @school = School.get(params[:school_id])
+#   @student = Student.get(params[:id])
+#
+#   if @student.score1 && @student.score1 != ''
+#
+#   else
+#     @student.score1 = false
+#   end
+#
+#   if @student.score2 && @student.score2 != ''
+#
+#   else
+#     @student.score2 = false
+#   end
+#
+#   if @student.score1 && File.exists?("./views/reports-long/#{@student.score1}.inc")
+#     @cat1 = File.read("./views/reports-long/#{@student.score1}.inc")
+#   end
+#
+#   if @student.score2 && File.exists?("./views/reports-long/#{@student.score2}.inc")
+#     @cat2 = File.read("./views/reports-long/#{@student.score2}.inc")
+#   end
+#
+#   if @student.score1 && @student.score2 && File.exists?("./views/reports-long/#{@student.score1}#{@student.score2}.inc")
+#     @report1 = File.read("./views/reports-long/#{@student.score1}#{@student.score2}.inc")
+#   elsif @student.score1 && @student.score2 && File.exists?("./views/reports-long/#{@student.score2}#{@student.score1}.inc")
+#     @report1 = File.read("./views/reports-long/#{@student.score2}#{@student.score1}.inc")
+#   end
+#
+#  # -------------------- show report ---------------------
+#  if @student.score1 && @student.score2
+#    erb :'student/reports/scores_full', layout: false
+#  else
+#    erb :'student/reports/report'
+#  end
+#
+# end
+#
+# post "/student/reports/:id/scores_full/?" do
+#   school = School.get(params[:school_id])
+#   student = Student.get(params[:id])
+#
+#   PDFKit.configure do |config|
+#     config.default_options = {
+#       :print_media_type => true,
+#       :page_size        => 'Letter',
+#       :margin_top       => '0.25in',
+#       :margin_right     => '0.25in',
+#       :margin_bottom    => '0.25in',
+#       :margin_left      => '0.25in'
+#     }
+#   end
+#
+#   content_type 'application/pdf'
+#
+#   if settings.development?
+#     kit = PDFKit.new("http://localhost:4567/student/reports/#{student.id}/scores_full")
+#   elsif settings.production?
+#     kit = PDFKit.new("https://www.ecareerdirection.com/student/reports/#{student.id}/scores_full")
+#   end
+#
+#   pdf = kit.to_pdf
+#
+# end
 
 
-get "/student/reports/:id/ex_scores_full/?" do
-  @school = School.all
-  @exercise = Exercise.get(params[:exercise_id])
-  @student = Student.get(params[:id])
 
-  if @student.ex_score1 && @student.ex_score1 != ''
 
-  else
-    @student.ex_score1 = false
-  end
 
-  if @student.ex_score2 && @student.ex_score2 != ''
-
-  else
-    @student.ex_score2 = false
-  end
-
-  if @student.ex_score1 && File.exists?("./views/reports-long/#{@student.ex_score1}.inc")
-    @cat1 = File.read("./views/reports-long/#{@student.ex_score1}.inc")
-  end
-
-  if @student.ex_score2 && File.exists?("./views/reports-long/#{@student.ex_score2}.inc")
-    @cat2 = File.read("./views/reports-long/#{@student.ex_score2}.inc")
-  end
-
-  if @student.ex_score1 && @student.ex_score2 && File.exists?("./views/reports-long/#{@student.ex_score1}#{@student.ex_score2}.inc")
-    @report1 = File.read("./views/reports-long/#{@student.ex_score1}#{@student.ex_score2}.inc")
-  elsif @student.ex_score1 && @student.ex_score2 && File.exists?("./views/reports-long/#{@student.ex_score2}#{@student.ex_score1}.inc")
-    @report1 = File.read("./views/reports-long/#{@student.ex_score2}#{@student.ex_score1}.inc")
-  end
-
- # -------------------- show report ---------------------
- if @student.ex_score1 && @student.ex_score2
-   erb :'student/reports/ex_scores_full', layout: false
- else
-   erb :'student/reports/report'
- end
-
-end
+# get "/student/reports/:id/ex_scores_full/?" do
+#   @school = School.all
+#   @exercise = Exercise.get(params[:exercise_id])
+#   @student = Student.get(params[:id])
+#
+#   if @student.ex_score1 && @student.ex_score1 != ''
+#
+#   else
+#     @student.ex_score1 = false
+#   end
+#
+#   if @student.ex_score2 && @student.ex_score2 != ''
+#
+#   else
+#     @student.ex_score2 = false
+#   end
+#
+#   if @student.ex_score1 && File.exists?("./views/reports-long/#{@student.ex_score1}.inc")
+#     @cat1 = File.read("./views/reports-long/#{@student.ex_score1}.inc")
+#   end
+#
+#   if @student.ex_score2 && File.exists?("./views/reports-long/#{@student.ex_score2}.inc")
+#     @cat2 = File.read("./views/reports-long/#{@student.ex_score2}.inc")
+#   end
+#
+#   if @student.ex_score1 && @student.ex_score2 && File.exists?("./views/reports-long/#{@student.ex_score1}#{@student.ex_score2}.inc")
+#     @report1 = File.read("./views/reports-long/#{@student.ex_score1}#{@student.ex_score2}.inc")
+#   elsif @student.ex_score1 && @student.ex_score2 && File.exists?("./views/reports-long/#{@student.ex_score2}#{@student.ex_score1}.inc")
+#     @report1 = File.read("./views/reports-long/#{@student.ex_score2}#{@student.ex_score1}.inc")
+#   end
+#
+#  # -------------------- show report ---------------------
+#  if @student.ex_score1 && @student.ex_score2
+#    erb :'student/reports/ex_scores_full', layout: false
+#  else
+#    erb :'student/reports/report'
+#  end
+#
+# end

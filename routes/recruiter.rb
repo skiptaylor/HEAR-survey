@@ -110,12 +110,15 @@ end
 get "/recruiters/:id/edit/?" do
   auth_recruiter
   @state = State.all
+  @school = School.all
   @recruiter = Recruiter.get(params[:id])
   
   erb :"/recruiter/recruiter_edit"
 end
 
 post "/recruiters/:id/edit/?" do
+  state = State.all
+  school = School.all
   recruiter = Recruiter.get(params[:id])
   recruiter.update(
     :email            => params[:email],
@@ -128,7 +131,8 @@ post "/recruiters/:id/edit/?" do
     :city             => params[:city],
     :state            => params[:state],
     :zip              => params[:zip],
-    :phone            => params[:phone]
+    :phone            => params[:phone],
+    :school_id        => params[:school_id]
   )
       
   if session[:admin] 
@@ -212,7 +216,9 @@ get '/recruiters/:id/profile/?' do
   auth_recruiter
   @school = School.all
   @state = State.all
-  @recruiter = Recruiter.get(session[:recruiter])
+  @recruiter = Recruiter.get(params[:id])
+  
+  session[:recruiter] = @recruiter.id
   
   unless params[:zip]
     @results = []

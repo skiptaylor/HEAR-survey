@@ -85,7 +85,7 @@
 			</div>
 			<div class="control-group col-md-3">
 				<label for="zip">ZIP</label>
-				<input type="text" name="zip" id="zip" class="form-control" placeholder="" pattern="^\s*\d{5}(-?\s*\d{4})?\s*$" maxlength="10" minlength="5" value="<%= @recruiter.zip %>" required />
+				<input type="text" name="zip" id="zip" class="form-control" placeholder="" maxlength="5" minlength="5" value="<%= @recruiter.zip %>" required />
 				<div class="invalid-feedback">
 				   ZIP
 				</div>
@@ -98,10 +98,11 @@
 				<div class="invalid-feedback">
 				   Please enter your phone number.
 				</div>
+				<br />
 			</div>
 		</div>
 				
-		<input type="text" name="reg_code" id="reg_code" class="form-control" placeholder="" value="<%= params[:reg_code] %>" invissible />
+		
 				
 		<div class="form-row" style="margin-bottom: 10em;">
 			<div class="form-group col-md-12">

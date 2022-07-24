@@ -18,6 +18,7 @@ class Recruiter
   property :phone, String
   property :reg_code, String
   property :last_activity, Date
+  property :presentation_id, Integer
   
 	property :pass_reset_key,	String
 	property :pass_reset_date, Date

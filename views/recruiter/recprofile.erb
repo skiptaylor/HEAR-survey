@@ -77,7 +77,7 @@
 		
 		
 		</div>
-		<div class="row">	
+		<div class="row" style="margin-bottom: 5em;">	
 		
 			<div class="col-md-12">
 				<h1 class="page-header">School Accounts</h1>
@@ -89,25 +89,24 @@
 						<th>School</th>
 						
 						<th>School ID</th>
-						<!-- <th style="text-align: right;"></th> -->
+						<th style="text-align: right;"></th>
 						<th style="text-align: right;"><%= session[:recruiter] %></th>
 					</tr>
 
-					<% @school.sort_by(&:updated_at).each do |school| %>
-					<% unless school.school_password == '' || school.school_password == nil %>
-					<% if session[:recruiter] = school.recruiter_id %>
+					<% @school.sort_by(&:created_at).each do |school| %>
+					<% if session[:recruiter] == school.recruiter_id %>
 					
 					<tr>
 						
 						<td><%= school.school_name %></td>
 						
 						<td><%= school.school_password %></td>
-						<!-- <td style="text-align: right;"><a href="/recruiter/school/<%= school.id %>/presentation/new" class="btn btn-small">Register Class</a></td> -->
+						<td style="text-align: right;"><%= school.recruiter_id %></td>
 						<td style="text-align: right;"><a href="/schools/<%= school.id %>/edit" class="btn btn-mini">Edit</a> &nbsp; &nbsp; &nbsp; <a href="/schools/<%= school.id %>/school_report" class="btn btn-mini btn-info">Get Reports</a></td>
 					</tr>
 					<% end %>
 					<% end %>
-					<% end %>
+					
 				</table>
 				<br /><br />
 			</div> <!-- /span -->

@@ -36,7 +36,7 @@
 
 					<% if session[:recruiter] %>
 					<p style="margin: 1rem 0 0 1rem;">
-						<a href="/schools/<%= @school.id %>/edit" class="btn btn-small">Edit School</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/recruiters/<%= session[:recruiter] %>/profile" class="btn btn-small">Recruiter Profile</a>
+						<a href="/schools/<%= @school.id %>/edit" class="btn btn-small">Edit School</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/recruiters/<%= @recruiter.id %>/profile" class="btn btn-small">Recruiter Profile</a>
 					</p>
 					<% end %>
 					

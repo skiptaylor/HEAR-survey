@@ -1,4 +1,4 @@
-	<div class="container">	
+	<div class="container" style="margin-bottom: 5em;">	
 		<div class="row">  
 			<div class="col-md-12">
 				<h1 class="page-header">Edit School</h1>
@@ -82,7 +82,7 @@
  						<select type="text" id="recruiter_id" name="recruiter_id" class="form-control" value="<%= @school.recruiter_id %>">
 							
 					<% @recruiter.each do |recruiter| %>
-					
+
 					<% if recruiter.id == @school.recruiter_id %>
 						<option value="<%= recruiter.id %>" <%= 'selected' if recruiter.id == @school.recruiter_id %>><%= recruiter.rank %> <%= recruiter.first_name %> <%= recruiter.last_name %></option>
 					<% end %>
@@ -90,8 +90,21 @@
 					<% if recruiter.id == session[:recruiter] %>
 						<option value="<%= recruiter.id %>" <%= 'selected' if recruiter.id == @school.recruiter_id %>><%= recruiter.rank %> <%= recruiter.first_name %> <%= recruiter.last_name %></option>
 					<% end %>
-					<% end %>	
 					<% end %>
+					<% end %>
+					
+					
+					<!-- <% @recruiter.sort_by(&:state).each do |recruiter| %>
+
+					<% if recruiter.id == @school.recruiter_id %>
+						<option value="<%= recruiter.id %>" <%= 'selected' if recruiter.id == @school.recruiter_id %>><%= recruiter.rank %> <%= recruiter.first_name %> <%= recruiter.last_name %></option>
+					<% end %>
+					<% unless @school.recruiter_id == session[:recruiter] %>
+					<% if recruiter.id == session[:recruiter] %>
+						<option value="<%= recruiter.id %>" <%= 'selected' if recruiter.id == @school.recruiter_id %>><%= recruiter.rank %> <%= recruiter.first_name %> <%= recruiter.last_name %></option>
+					<% end %>
+					<% end %>
+					<% end %> -->
  						</select>
  					</div>
  				</div>

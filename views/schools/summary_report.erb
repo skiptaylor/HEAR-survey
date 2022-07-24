@@ -195,7 +195,7 @@
 				
 				<p>School: &nbsp;&nbsp;<strong><%= @school.school_name %></strong></p>
 				<p>State: &nbsp;&nbsp;<strong><%= @school.state %></strong></p>
-				<p>Presentation Date: &nbsp;&nbsp;<strong><%= format_day(@school.class_date) %></strong></p>
+				<p>Presentation Date: &nbsp;&nbsp;<strong><%= @school.class_date %></strong></p>
 				<p>School Contact: &nbsp;&nbsp;<strong><%= @school.first_name %> <%= @school.last_name %></strong></p>
 				<p>School Contact Email: &nbsp;&nbsp;<strong><%= @school.email %> </strong></p>
 				<p>School Contact Phone: &nbsp;&nbsp;<strong><%= @school.phone %> </strong></p>
@@ -214,17 +214,17 @@
 					
 				<p style="text-align: center; font-size: 20px; margin-bottom: 0.3em;">A. Student Participant Feedback Summary (Total Participants = <strong><%= @school.students.count %></strong>)</p>
 	 			<p><strong>Grade</strong>&nbsp;&nbsp;&nbsp;&nbsp;
-				<% @grade.each do |grade| %>
+				<!-- <% @school.presentations.each do |grade| %> -->
 					
-					College: <%= grade.college %>&nbsp;&nbsp;&nbsp;&nbsp;
-	 				Grade 12: <%= grade.gr12 %>&nbsp;&nbsp;&nbsp;&nbsp;
-	 				Grade 11: <%= grade.gr11 %>&nbsp;&nbsp;&nbsp;&nbsp;
-	 				Grade 10: <%= grade.gr10 %>&nbsp;&nbsp;&nbsp;&nbsp;
-					Grade 9: <%= grade.gr9 %>&nbsp;&nbsp;&nbsp;&nbsp;
-	 				Other: <%= grade.other %>&nbsp;&nbsp;&nbsp;&nbsp;
-	 				Unknown: <%= grade.unknown %>
+					College: <%= @stud_gradec %>&nbsp;&nbsp;&nbsp;&nbsp;
+	 				Grade 12: <%= @stud_grade12 %>&nbsp;&nbsp;&nbsp;&nbsp;
+	 				Grade 11: <%= @stud_grade11 %>&nbsp;&nbsp;&nbsp;&nbsp;
+	 				Grade 10: <%= @stud_grade10 %>&nbsp;&nbsp;&nbsp;&nbsp;
+					Grade 9: <%= @stud_grade9 %>&nbsp;&nbsp;&nbsp;&nbsp;
+	 				Other: <%= @stud_gradeother %>&nbsp;&nbsp;&nbsp;&nbsp;
+	 				Unknown: <%= @stud_gradeunknown %>
 	 			
-				<% end %>
+				<!-- <% end %> -->
 				</p>
 				
 				<table id="summ" class="table table-bordered table-striped table-sm" style="margin-top: 1em;">
@@ -242,7 +242,7 @@
 					
 				    <tr>
 						<td>1. Bullying is a problem in my school.</td>
-						<td><%=   %></td>
+						<td><%=  %></td>
 						<td><%=  %></td>
 						<td><%=  %></td>
 						<td><%=  %></td>

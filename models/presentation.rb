@@ -11,6 +11,7 @@ class Presentation
   property :school_password, String
   
   belongs_to :school, required: false
+  belongs_to :recruiter, required: false
   has n, :students
   
 end

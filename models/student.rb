@@ -39,6 +39,7 @@ class Student
   
   property :school_password,  String
   property :presentation_id,  Integer, default: 0
+  property :grade_id,  Integer, default: 0
   
   property :sub_code,    String
   property :class_date,  Date
