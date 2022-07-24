@@ -316,9 +316,6 @@ get '/schools/:id/summary_report/?' do
   
 end
 
-    
-
-
 # post '/schools/:id/summary_report/?' do
 #
 #   auth_recruiter
@@ -328,14 +325,8 @@ end
 #   school.students = Student.all(:school_password => @school.school_password, :school_password.not => '')
 #
 #
-#
-#
-#
 # end
 #
-
-
-
 
 
 get '/schools/:id/school_report/csv/?' do
