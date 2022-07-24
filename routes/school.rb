@@ -165,6 +165,72 @@ get '/schools/:id/summary_report/?' do
     @answer1_da = 0
     @answer1_na = 0
     
+    @answer2_sa = 0
+    @answer2_ag = 0
+    @answer2_dg = 0
+    @answer2_da = 0
+    @answer2_na = 0
+    
+    @answer3_sa = 0
+    @answer3_ag = 0
+    @answer3_dg = 0
+    @answer3_da = 0
+    @answer3_na = 0
+    
+    @answer4_sa = 0
+    @answer4_ag = 0
+    @answer4_dg = 0
+    @answer4_da = 0
+    @answer4_na = 0
+    
+    @answer5_sa = 0
+    @answer5_ag = 0
+    @answer5_dg = 0
+    @answer5_da = 0
+    @answer5_na = 0
+    
+    @answer6_sa = 0
+    @answer6_ag = 0
+    @answer6_dg = 0
+    @answer6_da = 0
+    @answer6_na = 0
+    
+    @answer7_sa = 0
+    @answer7_ag = 0
+    @answer7_dg = 0
+    @answer7_da = 0
+    @answer7_na = 0
+    
+    @answer8_sa = 0
+    @answer8_ag = 0
+    @answer8_dg = 0
+    @answer8_da = 0
+    @answer8_na = 0
+    
+    @answer9_sa = 0
+    @answer9_ag = 0
+    @answer9_dg = 0
+    @answer9_da = 0
+    @answer9_na = 0
+    
+    @answer10_sa = 0
+    @answer10_ag = 0
+    @answer10_dg = 0
+    @answer10_da = 0
+    @answer10_na = 0
+    
+    @answer11_sa = 0
+    @answer11_ag = 0
+    @answer11_dg = 0
+    @answer11_da = 0
+    @answer11_na = 0
+    
+    @answer12_sa = 0
+    @answer12_ag = 0
+    @answer12_dg = 0
+    @answer12_da = 0
+    @answer12_na = 0
+    
   @school.students.each do |student|
 
     if (student.question_1 == 'Strongly Agree')
