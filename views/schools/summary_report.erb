@@ -374,7 +374,7 @@
 				    <tr>
 				      <td><%= student.last_name %></td>
 				      <td><%= student.first_name %></td>
-					  <td><%= student.grade %></td>
+					  <td><% if student.grade == 'Select one' %>Unknown<% else %><%= student.grade %><% end %></td>
 				      <td><%= student.phone %></td>
 				    </tr>
 					<% end %>
