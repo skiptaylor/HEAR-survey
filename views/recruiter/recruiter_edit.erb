@@ -52,7 +52,7 @@
 				</div>
 				<div class="form-group col-3">
 					<label for="zip">ZIP</label>
-					<input type="text" name="zip" id="zip" class="form-control" pattern="^\s*\d{5}(-?\s*\d{4})?\s*$" maxlength="10" minlength="5" value="<%= @recruiter.zip %>" />
+					<input type="text" name="zip" id="zip" class="form-control" maxlength="10" minlength="5" value="<%= @recruiter.zip %>" />
 				</div>
 				<div class="form-group">
 					<label for="phone">Phone</label>
@@ -68,7 +68,7 @@
 </div> <!-- /container -->
 
 
-<script>
+<!-- <script>
   function formatPhoneNumber(value) {
     if (!value) return value;
     const phoneNumber = value.replace(/[^\d]/g, '');
@@ -88,20 +88,20 @@
     const formattedInputValue = formatPhoneNumber(inputField.value);
     inputField.value = formattedInputValue;
   }
-</script>
+</script> -->
 	
-<script>
-	function isUSAZipCode(str) 
+<!-- <script>
+	function isUSAZipCode(str)
 	{
 	  return /^\d{5}(-\d{4})?$/.test(str);
 	}
 
-	function validateInput() 
+	function validateInput()
 	{
 	  console.log("validateInput");
 	  let zipCode = document.getElementById("school_zip").value;
 	  let message = "";
-	  if (isUSAZipCode(zipCode)) 
+	  if (isUSAZipCode(zipCode))
 	  {
 	    message = "Valid Zip Code";
 	  } else {
@@ -109,7 +109,7 @@
 	  }
 	  document.getElementById("msg").innerHTML = message;
 	}
-</script>
+</script> -->
 	
 <script>
 	function ValidateEmail(@recruiter.email) 

@@ -150,7 +150,7 @@ get '/schools/:id/summary_report/?' do
       elsif (student.grade == '10')
         @stud_grade10 = (@stud_grade10 + 1)
       elsif (student.grade == '9')
-        @stud_graderade9 = (@stud_grade9 + 1)
+        @stud_grade9 = (@stud_grade9 + 1)
       elsif (student.grade == 'Other')
         @stud_gradeother = (@stud_gradeother + 1)
       else (student.grade == 'Select one')

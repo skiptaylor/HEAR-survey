@@ -131,8 +131,7 @@ post "/recruiters/:id/edit/?" do
     :city             => params[:city],
     :state            => params[:state],
     :zip              => params[:zip],
-    :phone            => params[:phone],
-    :school_id        => params[:school_id]
+    :phone            => params[:phone]
   )
       
   if session[:admin] 

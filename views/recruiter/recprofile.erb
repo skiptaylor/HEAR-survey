@@ -90,7 +90,7 @@
 						
 						<th>School ID</th>
 						<th style="text-align: right;"></th>
-						<th style="text-align: right;"><%= session[:recruiter] %></th>
+						<th style="text-align: right;"></th>
 					</tr>
 
 					<% @school.sort_by(&:created_at).each do |school| %>
@@ -101,7 +101,7 @@
 						<td><%= school.school_name %></td>
 						
 						<td><%= school.school_password %></td>
-						<td style="text-align: right;"><%= school.recruiter_id %></td>
+						<td style="text-align: right;"></td>
 						<td style="text-align: right;"><a href="/schools/<%= school.id %>/edit" class="btn btn-mini">Edit</a> &nbsp; &nbsp; &nbsp; <a href="/schools/<%= school.id %>/school_report" class="btn btn-mini btn-info">Get Reports</a></td>
 					</tr>
 					<% end %>
