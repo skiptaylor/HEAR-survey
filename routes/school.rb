@@ -141,19 +141,19 @@ get '/schools/:id/summary_report/?' do
   
   @school.students.each do |student|
     
-      if (student.college == 'College')
+      if (student.grade == 'College')
         @stud_gradec = (@stud_gradec + 1)
-      elsif (student.gr12 == 'gr12')
+      elsif (student.grade == 'gr12')
         @stud_grade12 = (@stud_grade12 + 1)
-      elsif (student.gr11 == 'gr11')
+      elsif (student.grade == 'gr11')
         @stud_grade11 = (@stud_grade11 + 1)
-      elsif (student.gr10 == 'gr10')
+      elsif (student.grade == 'gr10')
         @stud_grade10 = (@stud_grade10 + 1)
-      elsif (student.gr9 == 'gr9')
+      elsif (student.grade == 'gr9')
         @stud_graderade9 = (@stud_grade9 + 1)
-      elsif (student.other == 'Other')
+      elsif (student.grade == 'Other')
         @stud_gradeother = (@stud_gradeother + 1)
-      else (student.unknown == 'Select one')
+      else (student.grade == 'Select one')
         @stud_gradeunknown = (@stud_gradeunknown + 1)
       end
 
