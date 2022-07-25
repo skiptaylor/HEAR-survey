@@ -94,7 +94,7 @@ end
 # ----------------  Recruiter Reportas (1)  --------------------
 
 get '/schools/:id/school_report/?' do
-  auth_recruiter
+  
   @school = School.get(params[:id])
   @recruiter = Recruiter.get(params[:recruiter_id])
   @school.presentations = Presentation.all(:school_password => @school.school_password)
@@ -124,7 +124,7 @@ end
 
 
 get '/schools/:id/summary_report/?' do
-  auth_recruiter
+  
   @school = School.get(params[:id])
   @recruiter = Recruiter.get(params[:recruiter_id])
   @school.presentations = Presentation.all(:school_password => @school.school_password, :class_date => params[:presentation])

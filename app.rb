@@ -6,6 +6,7 @@ require 'sinatra/chassis/helpers'
 require 'dm-timestamps'
 require 'dm-validations'
 require 'dm-migrations'
+require 'pdfkit'
 
 disable :protection
 enable :sessions

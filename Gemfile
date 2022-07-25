@@ -21,6 +21,6 @@ gem 'data_mapper', '~> 1.2.0'
 gem 'dm-sqlite-adapter', '~> 1.2.0', group: :development
 gem 'dm-postgres-adapter', '~> 1.2.0', group: :production
 
-gem 'pdfkit', '~> 0.8.4.3.1'
+gem 'pdfkit', '~> 0.8.6'
 gem 'wkhtmltopdf-binary', '~> 0.12.6.2'
 gem 'wkhtmltopdf-heroku', '~> 2.12', '>= 2.12.6.0'
