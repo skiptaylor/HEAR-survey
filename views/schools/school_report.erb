@@ -2,7 +2,7 @@
 	<div class="row">  
 		<div class="col-md-12">
 			<% if session[:recruiter] %>
-			<a href="/recruiters/<%= session[:recruiter] %>/profile" style="margin-top: 12px;" class="btn pull-right">Recruiter Account</a>
+			<a href="/recruiters/<%= session[:recruiter] %>/profile" style="margin-top: 12px;" class="btn float-end">Recruiter Account</a>
 			<% end %>
 			<h1 class="page-header">Class Report</h1>
 		</div>
@@ -27,12 +27,12 @@
 					<option value="<%= pres.class_date %>" <%= 'selected' if pres.class_date == @school.class_date %>><%= format_day(pres.class_date) %></option>
 					<% end %>
 				</select>
-				<button type="submit" class="btn btn-primary pull-left" style="margin-left: 6px; margin-top: 14px;">Show Class</button>
+				<button type="submit" class="btn btn-primary" style="margin-top: 14px;">Show Class</button>
 			</p>
 			</form>				
-			<p class="clear-both">&nbsp;&nbsp;&nbsp; </p>
+			
 			<hr />
-			<div class="row" style="margin-top: 0.2em;">
+			<div class="row" style="margin-top: 0em;">
 				<div class="col">
 					<form method="post">
 					<div class="col">
@@ -47,8 +47,7 @@
 		</div>
 	</div>
 	<div class="row"> 
-		<div class="col-md-12">	
-			<br />
+		<div class="col-md-12" style="margin-top: 1em;">	
 			<table class="table table-sm table-striped table-condensed table-hover">
 				<tr class="table-success">
 					<th>Student</th>
