@@ -640,10 +640,10 @@ post '/schools/:id/summary_report/?' do
       config.default_options = {
         :print_media_type => true,
         :page_size        => 'Letter',
-        :margin_top       => '0.25in',
-        :margin_right     => '0.25in',
-        :margin_bottom    => '0.25in',
-        :margin_left      => '0.25in',
+        :margin_top       => '0.5in',
+        :margin_right     => '0.5in',
+        :margin_bottom    => '0.5in',
+        :margin_left      => '0.5in',
         :javascript_delay => 001
       }
     end

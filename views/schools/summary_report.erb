@@ -11,7 +11,7 @@
 	
 <style>
 	p	{
-		font-size: 13px;
+		font-size: 16px;
 		line-height: 1.2em;
 		margin-bottom: 1px;
 		font-weight: 400;
@@ -23,7 +23,7 @@
 		margin-bottom: 3px;
 	}
 	h5	{
-		font-size: 18px;
+		font-size: 22px;
 		font-weight: 900;
 	}
 	strong	{
@@ -33,7 +33,7 @@
 		margin-bottom: 1px;
 	}
 	ul li	{
-		font-size: 14px;
+		font-size: 16px;
 		font-family: helvetica;
 		padding: 0;
 		margin-top: 1px;
@@ -51,13 +51,13 @@
 		font-weight: 300;
 	}
 	td {
-		font-size: 14px;
+		font-size: 16px;
 		border-left: 0;
 		font-family: helvetica;
 		margin-top: 0px;
 	}
 	th {
-		font-size: 13px;
+		font-size: 16px;
 		border-left: 0;
 	}
 	.lead	{
@@ -69,7 +69,7 @@
 	table tr td, tr th	{
 		border-color: gray;
 		font-family: helvetica;
-		font-size: 13px;
+		font-size: 16px;
 		line-height: 16px;
 		margin-top: 3px;
 		padding-top: 0;
@@ -85,13 +85,13 @@
 	table.side tr td	{
 		borde: 0;
 		font-family: helvetica;
-		font-size: 14px;
+		font-size: 16px;
 		font-weight: 400;
 	}
 	
 	table.side tr th	{
 		font-family: helvetica;
-		font-size: 14px;
+		font-size: 16px;
 		font-weight: 600;
 	}
 	
@@ -101,7 +101,7 @@
 	
 	.header1	{
 		font-family: helvetica;
-		font-size: 22px;
+		font-size: 26px;
 		font-weight: 900;
 		text-align: center;
 		margin-bottom: 9px;
@@ -109,7 +109,7 @@
 	
 	.header2	{
 		font-family: helvetica;
-		font-size: 16px;
+		font-size: 20px;
 		font-weight: 900;
 	}
 	
@@ -134,15 +134,11 @@
 			</div>
 		</div>
 	</div>
-	<div class="row" style="margin-top: 1em;">  
-		<div class="col">
-			<img src="/img/HEAR-logo-black.svg" width="135px;">
-		</div>
-		<div class="col" style="text-align: center;">
-			<h1 style="font-size: 2em;">Student Survey Report</h1>
-		</div>
-		<div class="col">
-			<img src="/img/arng-no-ground.svg" class="float-end" width="54px;">
+	<div class="row" style="margin-top: 1em; margin-bottom: 3em;">  
+		<div class="col-md-12">
+			<img src="/img/arng-no-ground.svg" class="float-end" width="54px;" style="float: right;">
+			<img src="/img/HEAR-logo-black.svg" width="135px;" style="float: left;">
+			<h1 style="font-size: 2em; text-align: center;">Student Survey Report</h1>
 		</div>
 	</div>
 	<div class="row">  
@@ -179,15 +175,11 @@
 	
 	<div style="page-break-after: always;"> </div> 
 	
-	<div class="row" style="margin-top: 2em;">  
-		<div class="col">
-			<img src="/img/HEAR-logo-black.svg" width="135px;">
-		</div>
-		<div class="col" style="text-align: center;">
-			<h1 style="font-size: 2em;">Student Survey Report</h1>
-		</div>
-		<div class="col">
-			<img src="/img/arng-no-ground.svg" class="float-end" width="54px;">
+	<div class="row" style="margin-top: 1em; margin-bottom: 3em;">  
+		<div class="col-md-12">
+			<img src="/img/arng-no-ground.svg" class="float-end" width="54px;" style="float: right;">
+			<img src="/img/HEAR-logo-black.svg" width="135px;" style="float: left;">
+			<h1 style="font-size: 2em; text-align: center;">Student Survey Report</h1>
 		</div>
 	</div>
 	
@@ -223,7 +215,7 @@
 	 				Grade 10: <strong><%= (@stud_grade10 * 100) / @school.students.count %>%</strong>&nbsp;&nbsp;&nbsp;&nbsp;
 					Grade 9: <strong><%= (@stud_grade9 * 100) / @school.students.count %>%</strong>&nbsp;&nbsp;&nbsp;&nbsp;
 	 				Other: <strong><%= (@stud_gradeother * 100) / @school.students.count %>%</strong>&nbsp;&nbsp;&nbsp;&nbsp;
-	 				Unknown: <strong>><%= (@stud_gradeunknown * 100) / @school.students.count %>%</strong>
+	 				Unknown: <strong><%= (@stud_gradeunknown * 100) / @school.students.count %>%</strong>
 	 			
 				</p>
 				
@@ -241,7 +233,7 @@
 					<tbody>
 					
 				    <tr>
-						<td style="text-align:left">1. Bullying is a problem in my school.</td>
+						<td style="text-align:left;">1. Bullying is a problem in my school.</td>
 						<td><%= (@answer1_sa * 100) / @school.students.count %>%</td>
 						<td><%= (@answer1_ag * 100) / @school.students.count %>%</td>
 						<td><%= (@answer1_dg * 100) / @school.students.count %>%</td>
@@ -249,35 +241,35 @@
 						<td><%= (@answer1_na * 100) / @school.students.count %>%</td>
 				    </tr>
 				    <tr>
-						<td style="text-align:left">2. I have witnessed bullying within the past school year.</td>
+						<td style="text-align:left;">2. I have witnessed bullying within the past school year.</td>
 						<td><%= (@answer2_sa * 100) / @school.students.count %>%</td>
 						<td><%= (@answer2_ag * 100) / @school.students.count %>%</td>
 						<td><%= (@answer2_dg * 100) / @school.students.count %>%</td>
 						<td><%= (@answer2_da * 100) / @school.students.count %>%</td>
 						<td><%= (@answer2_na * 100) / @school.students.count %>%</td>
 				    </tr><tr>
-						<td style="text-align:left">3. I feel safe at my school.</td>
+						<td style="text-align:left;">3. I feel safe at my school.</td>
 						<td><%= (@answer3_sa * 100) / @school.students.count %>%</td>
 						<td><%= (@answer3_ag * 100) / @school.students.count %>%</td>
 						<td><%= (@answer3_dg * 100) / @school.students.count %>%</td>
 						<td><%= (@answer3_da * 100) / @school.students.count %>%</td>
 						<td><%= (@answer3_na * 100) / @school.students.count %>%</td>
 				    </tr><tr>
-						<td style="text-align:left">4. Students at my school reach out to help one another.</td>
+						<td style="text-align:left;">4. Students at my school reach out to help one another.</td>
 						<td><%= (@answer4_sa * 100) / @school.students.count %>%</td>
 						<td><%= (@answer4_ag * 100) / @school.students.count %>%</td>
 						<td><%= (@answer4_dg * 100) / @school.students.count %>%</td>
 						<td><%= (@answer4_da * 100) / @school.students.count %>%</td>
 						<td><%= (@answer4_na * 100) / @school.students.count %>%</td>
 				    </tr><tr>
-						<td style="text-align:left">5. My school faculty and staff actively work to create a positive, caring environment.</td>
+						<td style="text-align:left;">5. My school faculty and staff actively work to create a positive, caring environment.</td>
 						<td><%= (@answer5_sa * 100) / @school.students.count %>%</td>
 						<td><%= (@answer5_ag * 100) / @school.students.count %>%</td>
 						<td><%= (@answer5_dg * 100) / @school.students.count %>%</td>
 						<td><%= (@answer5_da * 100) / @school.students.count %>%</td>
 						<td><%= (@answer5_na * 100) / @school.students.count %>%</td>
 				    </tr><tr>
-						<td style="text-align:left">6. Appreciating diversity is an important part of my school’s culture.</td>
+						<td style="text-align:left;">6. Appreciating diversity is an important part of my school’s culture.</td>
 						<td><%= (@answer6_sa * 100) / @school.students.count %>%</td>
 						<td><%= (@answer6_ag * 100) / @school.students.count %>%</td>
 						<td><%= (@answer6_dg * 100) / @school.students.count %>%</td>
@@ -291,35 +283,35 @@
 						<td><%= (@answer7_da * 100) / @school.students.count %>%</td>
 						<td><%= (@answer7_na * 100) / @school.students.count %>%</td>
 				    </tr><tr>
-						<td style="text-align:left">8. This presentation influenced my commitment to respecting and including others.</td>
+						<td style="text-align:left;">8. This presentation influenced my commitment to respecting and including others.</td>
 						<td><%= (@answer8_sa * 100) / @school.students.count %>%</td>
 						<td><%= (@answer8_ag * 100) / @school.students.count %>%</td>
 						<td><%= (@answer8_dg * 100) / @school.students.count %>%</td>
 						<td><%= (@answer8_da * 100) / @school.students.count %>%</td>
 						<td><%= (@answer8_na * 100) / @school.students.count %>%</td>
 				    </tr><tr>
-						<td style="text-align:left">9. This presentation gave me useful ideas for what to do if I witness bullying or cruelty.</td>
+						<td style="text-align:left;">9. This presentation gave me useful ideas for what to do if I witness bullying or cruelty.</td>
 						<td><%= (@answer9_sa * 100) / @school.students.count %>%</td>
 						<td><%= (@answer9_ag * 100) / @school.students.count %>%</td>
 						<td><%= (@answer9_dg * 100) / @school.students.count %>%</td>
 						<td><%= (@answer9_da * 100) / @school.students.count %>%</td>
 						<td><%= (@answer9_na * 100) / @school.students.count %>%</td>
 				    </tr><tr>
-						<td style="text-align:left">10. The character values discussed in H.E.A.R. are important to me.</td>
+						<td style="text-align:left;">10. The character values discussed in H.E.A.R. are important to me.</td>
 						<td><%= (@answer10_sa * 100) / @school.students.count %>%</td>
 						<td><%= (@answer10_ag * 100) / @school.students.count %>%</td>
 						<td><%= (@answer10_dg * 100) / @school.students.count %>%</td>
 						<td><%= (@answer10_da * 100) / @school.students.count %>%</td>
 						<td><%= (@answer10_na * 100) / @school.students.count %>%</td>
 				    </tr><tr>
-						<td style="text-align:left">11. The presenter communicated clearly and effectively.</td>
+						<td style="text-align:left;">11. The presenter communicated clearly and effectively.</td>
 						<td><%= (@answer11_sa * 100) / @school.students.count %>%</td>
 						<td><%= (@answer11_ag * 100) / @school.students.count %>%</td>
 						<td><%= (@answer11_dg * 100) / @school.students.count %>%</td>
 						<td><%= (@answer11_da * 100) / @school.students.count %>%</td>
 						<td><%= (@answer11_na * 100) / @school.students.count %>%</td>
 				    </tr><tr>
-						<td style="text-align:left">12. The presenter was knowledgeable on the topic.</td>
+						<td style="text-align:left;">12. The presenter was knowledgeable on the topic.</td>
 						<td><%= (@answer12_sa * 100) / @school.students.count %>%</td>
 						<td><%= (@answer12_ag * 100) / @school.students.count %>%</td>
 						<td><%= (@answer12_dg * 100) / @school.students.count %>%</td>
@@ -340,15 +332,11 @@
 	
 	<div style="page-break-after: always;"> </div> 
 	
-	<div class="row" style="margin-top: 2em;">  
-		<div class="col">
-			<img src="/img/HEAR-logo-black.svg" width="135px;">
-		</div>
-		<div class="col" style="text-align: center;">
-			<h1 style="font-size: 2em;">Student Survey Report</h1>
-		</div>
-		<div class="col">
-			<img src="/img/arng-no-ground.svg" class="float-end" width="54px;">
+	<div class="row" style="margin-top: 1em; margin-bottom: 3em;">  
+		<div class="col-md-12">
+			<img src="/img/arng-no-ground.svg" class="float-end" width="54px;" style="float: right;">
+			<img src="/img/HEAR-logo-black.svg" width="135px;" style="float: left;">
+			<h1 style="font-size: 2em; text-align: center;">Student Survey Report</h1>
 		</div>
 	</div>
 	
@@ -361,12 +349,12 @@
 				<table class="table table-striped table-sm">
 				  <thead>
 				    <tr>
-				      <th scope="col">Last name</th>
-				      <th scope="col">First name</th>
-				      <th scope="col" style="text-align:center">Grade</th>
-					  <th scope="col">Email</th>
-				      <th scope="col">Phone</th>
-					  <th scope="col">Guard Interest</th>
+				      <th style="text-align: left;">Last name</th>
+				      <th style="text-align: left;">First name</th>
+				      <th style="text-align: left;">Grade</th>
+					  <th style="text-align: left;">Email</th>
+				      <th style="text-align: left;">Phone</th>
+					  <th style="text-align: left;">Guard Interest</th>
 				    </tr>
 				  </thead>
 				  <tbody>
@@ -375,7 +363,7 @@
 				    <tr>
 				      <td><%= student.last_name %></td>
 				      <td><%= student.first_name %></td>
-					  <td style="text-align:center"><% if student.grade == 'Select one' %>Unknown<% else %><%= student.grade %><% end %></td>
+					  <td><% if student.grade == 'Select one' %>Unknown<% else %><%= student.grade %><% end %></td>
 					  <td><%= student.email %></td>
 				      <td><%= student.phone %></td>
 					  <td><% unless student.contact_me == nil %>More Guard info<% end %></td>
