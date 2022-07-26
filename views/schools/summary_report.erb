@@ -361,7 +361,7 @@
 				  </thead>
 				  <tbody>
 					  
-					<% @school.students.each do |student| %>
+					<% @school.students.sort_by(&:last_name).each do |student| %>
 				    <tr>
 				      <td><%= student.last_name %></td>
 				      <td><%= student.first_name %></td>
