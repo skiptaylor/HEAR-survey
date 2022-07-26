@@ -42,7 +42,7 @@ $(function() {
 // $(function() {
 // 	$(document).ready(function(){
 //  		setTimeout(function(){
-//  			$('div#alert').fadeOut('slow', function () {
+//  			$('div#alert').fadeOut('slow', function() {
 //  			$('div#alert').remove();
 //  	      });
 //  		}, 4000);

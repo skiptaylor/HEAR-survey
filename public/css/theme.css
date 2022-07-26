@@ -633,7 +633,7 @@ select.year {
 	opacity: 0.4;
 }
 
-div#alert {
+#alert {
 	display: none;
 	position: absolute;
 	width: 100%;
