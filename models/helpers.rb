@@ -2,6 +2,10 @@
 
 
   helpers do
+    
+    PDFKit.configure do |config|
+      config.wkhtmltopdf = '/usr/bin/wkhtmltopdf'
+    end
 
 
   # Inserts div#flash containing session[:flash], provided it isn't nil
