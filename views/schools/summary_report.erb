@@ -211,6 +211,7 @@
 				<p style="text-align: center; font-size: 22px; margin-top: 1em;">A. Student Participant Feedback Summary <small>(Total Participants = <strong><%= @school.students.count %></strong>)</small></p>
 	 			<p><strong>Grade</strong>&nbsp;&nbsp;&nbsp;&nbsp;
 					
+					
 					College: <strong><%= (@stud_gradec * 100) / @school.students.count %>%</strong>&nbsp;&nbsp;&nbsp;&nbsp;
 	 				Grade 12: <strong><%= (@stud_grade12 * 100) / @school.students.count %>%</strong>&nbsp;&nbsp;&nbsp;&nbsp;
 	 				Grade 11: <strong><%= (@stud_grade11 * 100) / @school.students.count %>%</strong>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -218,7 +219,7 @@
 					Grade 9: <strong><%= (@stud_grade9 * 100) / @school.students.count %>%</strong>&nbsp;&nbsp;&nbsp;&nbsp;
 	 				Other: <strong><%= (@stud_gradeother * 100) / @school.students.count %>%</strong>&nbsp;&nbsp;&nbsp;&nbsp;
 	 				Unknown: <strong><%= (@stud_gradeunknown * 100) / @school.students.count %>%</strong>
-	 			
+	 				
 				</p>
 				
 				<table id="summ" class="table table-bordered table-striped summ" style="margin-top: 1.3em;">
@@ -320,6 +321,7 @@
 						<td><%= (@answer12_da * 100) / @school.students.count %>%</td>
 						<td><%= (@answer12_na * 100) / @school.students.count %>%</td>
 				    </tr>
+					
 					
 				</table>
 				
