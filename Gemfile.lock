@@ -123,6 +123,8 @@ GEM
       rack-protection (= 2.2.2)
       sinatra (= 2.2.2)
       tilt (~> 2.0)
+    sinatra-flash (0.3.0)
+      sinatra (>= 1.0.0)
     stringex (1.5.1)
     tilt (2.0.11)
     uuidtools (2.2.0)
@@ -131,6 +133,7 @@ GEM
 
 PLATFORMS
   ruby
+  x86_64-linux
 
 DEPENDENCIES
   chassis-datamapper (~> 1.0.1)
@@ -148,6 +151,7 @@ DEPENDENCIES
   sinatra (>= 1.4.6)
   sinatra-chassis (>= 1.1.1)
   sinatra-contrib (>= 1.4.4)
+  sinatra-flash (~> 0.3.0)
   wkhtmltopdf-binary (~> 0.12.6.2)
   wkhtmltopdf-heroku (~> 2.12, >= 2.12.6.0)
 

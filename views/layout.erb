@@ -81,8 +81,8 @@
 				<p> </p>
 			</div>
 			<div class="col-md-6">
-				<p class="center" style="font-size: 0.7em;">&copy; <%= Time.now.strftime("%Y") %> <strong>Career Training Concepts Inc.</strong>
-				<br />All rights reserved. Reproduction in whole or in part without permission is prohibited.</p>
+				<p class="center" style="font-size: 0.7em;">&copy; <%= Time.now.strftime("%Y") %> <strong>Career Training Concepts Inc.</strong> &nbsp;&nbsp;All rights reserved.
+				<br />Reproduction in whole or in part without permission is prohibited.</p>
 			</div>
 			<div class="col-md-3 d-none d-sm-block">
 				<p style="padding-top: 12px;"><a href="/admin/signin" class="btn btn-mini btn-secondary">Admin</a></p>
@@ -94,17 +94,26 @@
 
 <script type="text/javascript">
 	 
- 	(function() {
-		(document).ready(function() {
-	 		setTimeout(function(){
-	 			$("#alert").fadeOut("slow", function() {
-	 			$("#alert").remove();
-	 	      });
-	 		}, 4000);
-	 	});
-   
-	}).call(this);	
-
+	// function Show_Div(alert) {
+// 	    if (false == $(alert).is(':visible')) {
+// 	        $(alert).fadeIn(250);
+// 	        setTimeout(function(){ $(alert).fadeOut() }, 5000);
+// 	    }
+// 	    else {
+// 	        $(alert).fadeOut(250);
+// 	    }
+// 	}
+	
+	// (function() {
+	// 	$(document).ready(function(){
+	// 		setTimeout(function(){
+	// 			$('div#alert').fadeOut("slow", function () {
+	// 			$('div#alert').remove();
+	// 	      });
+	// 		}, 4000);
+	// 	});
+	//
+	// }).call(this);
 </script>
 
 <script>

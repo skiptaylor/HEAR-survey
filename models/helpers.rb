@@ -13,14 +13,38 @@
   # Useful for user notifications
   # To use it, just set session[:flash] before rendering or redirecting
 
-      
+  # def flash
+  #   unless session[:flash].nil?
+  #     msg = session[:flash]
+  #     session[:flash] = nil
+  #     "<div id='flash'>#{msg}</div>"
+  #   end
+  # end
+  
 
-  	# session[:alert] = {
-    # 	style: 'alert-error',
-    # 	heading: 'This an error',
-    # 	message: 'It should be red!'
-    # }
-    
+	# session[:alert] = {
+  # 	style: 'alert-error',
+  # 	heading: 'This an error',
+  # 	message: 'It should be red!'
+  # }
+  
+  # def bootstrap_alert
+#     unless session[:alert].nil?
+#       session[:alert][:style]   ||= ''
+#       session[:alert][:heading] ||= ''
+#       session[:alert][:message] ||= ''
+#
+#       msg = ''
+#       msg << "<div class='alert #{session[:alert][:style]}'>"
+#       msg << "<a class='close' data-dismiss='alert'>x</a>"
+#       msg << "<h4 class='alert-heading'>#{session[:alert][:heading]}</h4>" unless session[:alert][:heading] == ''
+#       msg << "#{session[:alert][:message]}"
+#       msg << "</div>"
+#
+#       session[:alert] = nil
+#       msg
+#     end
+#   end
 
   # Redirects with javascript, useful for shadowboxes
 

@@ -9,6 +9,7 @@ gem 'sass', '>= 3.2.9'
 gem 'sinatra', '>= 1.4.6'
 gem 'sinatra-chassis', '>= 1.1.1', require: 'sinatra/chassis'
 gem 'sinatra-contrib', '>= 1.4.4', require: 'sinatra/contrib'
+gem 'sinatra-flash', '~> 0.3.0'
 
 gem 'rake', '~> 13.0', '>= 13.0.6'
 

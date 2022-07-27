@@ -633,7 +633,7 @@ select.year {
 	opacity: 0.4;
 }
 
-#alert {
+div#alert {
 	display: none;
 	position: absolute;
 	width: 100%;
@@ -642,12 +642,23 @@ select.year {
 	display: block;
 	background-color: #336df0;
 	opacity: 0.8;
-	padding: 4px 4px;
-	margin: 4px auto 0 auto;
+	padding: 3px 3px;
+	margin: 0 auto 0 auto;
 	text-align: center;
-	color: #ffffff;
+	color: #fff;
 	font-weight: 800;
 	z-index: 999;
+	animation: fadeOut 2s forwards;
+	animation-delay: 3.5s;
+}
+
+@keyframes fadeOut {
+    from {opacity: 0.8;}
+    to {opacity: 0;}
+}
+
+.fadeOut {
+   animation-name: fadeOut;
 }
 
 .dropdown-item {
