@@ -37,14 +37,12 @@ $(function() {
   });
 }).call(this);
 
+(function() {
+  $(window).load(function() {
+    return $('a#reset-password').click(function() {
+      return $('a#reset-password').attr('href', "/reset-password/" + ($('input#email').val()));
+    });
+  });
 
+}).call(this);
 
-// $(function() {
-// 	$(document).ready(function(){
-//  		setTimeout(function(){
-//  			$('div#alert').fadeOut('slow', function() {
-//  			$('div#alert').remove();
-//  	      });
-//  		}, 4000);
-//  	});
-// }).call(this);	

@@ -12,7 +12,7 @@
 
 .form-signin {
   width: 100%;
-  max-width: 330px;
+  max-width: 400px;
   padding: 15px;
   margin: auto;
 }
@@ -60,21 +60,92 @@
   <div class="container">
 	  <div class="signdiv">
     <form class="form-signin" method="post">
-		  <h1 class="h3 mb-3 font-weight-normal">Recruiter Sign in</h1>
-  <label for="inputEmail" class="sr-only">Email address</label>
-  <input type="email" name="email" id="email" class="form-control" placeholder="Email address" value="<%= params[:email] %>" required autofocus>
+		  <h1 class="h3 mb-3 font-weight-normal" style="text-align: center;">Recruiter Sign in</h1>
+  <label for="inputEmail" class="">Email address</label>
+  <input type="email" name="email" id="email" class="form-control" placeholder="" value="<%= params[:email] %>" autocomplete="off">
   
-  <label for="inputPassword" class="sr-only">Password</label>
-  <input type="password" name="password" id="password" class="form-control" placeholder="Personal password" value="<%= params[:password] %>" required>
+  <label for="inputPassword" class="" >Password</label>
+  <input type="password" name="password" id="password" class="form-control" placeholder="" value="<%= params[:password] %>" autocomplete="off">
+
+<p style="padding-top: 0.1em; Text-align: center; line-height: 1.2em;"><small><strong>Forget your password?</strong> <br />Fill in your account email address and we will email you a link to reset your password.<br /><a href="#" id="reset-password" class="btn btn-mini" style="margin-top: 12px;">Reset my password</a></small></p>
   
-  <div class="checkbox mb-3 text-center">
-    <label>
-      <a href="/recruiter/reset">Forget your password?</a>
-    </label>
-  </div>
-  <button class="btn btn-lg btn-primary" type="submit">Sign in</button>
-  <button onclick="goBack()" class="btn btn-secondary float-end">Cancel</button>
+  <button class="btn btn-success" style="margin-top: 0.1em;" type="submit">Sign in</button>
+  <button onclick="goBack()" class="btn btn-secondary float-end" style="margin-top: 0.1em;">Cancel</button>
+  
 </form>
 </div>
 </div>
 
+<script>
+(function() {
+
+  $(window).load(function() {
+    $('a.btn-danger').click(function() {
+      if (!confirm('This cannot be undone! Continue?')) {
+        return false;
+      }
+    });
+    $('a[rel="popover"]').hover(function() {
+      return $(this).popover('toggle');
+    });
+    $('div.link').click(function() {
+      if ($(this).attr('target') === '_blank') {
+        return window.open($(this).attr('data-url'));
+      } else {
+        return window.location = $(this).attr('data-url');
+      }
+    });
+    return $('a#reset-password').click(function() {
+      return $('a#reset-password').attr('href', "/reset-password/" + ($('input#email').val()));
+    });
+  });
+
+}).call(this);
+</script>
+
+<!-- <script>
+	(function() {
+		$(window).load(function() {
+			return $('a#reset-password').click(function() {
+				return $('a#reset-password').attr('href', "/reset-password/" + ($('input#email').val()));
+			});
+		});
+
+	}).call(this);
+
+</script> -->
+
+<script>
+	function createCookie(name,value,days) {
+		if (days) {
+			var date = new Date();
+			date.setTime(date.getTime()+(days*24*60*60*1000));
+			var expires = "; expires="+date.toGMTString();
+		}
+		else var expires = "";
+		document.cookie = name+"="+value+expires+"; path=/";
+	}
+
+	function readCookie(name) {
+		var nameEQ = name + "=";
+		var ca = document.cookie.split(';');
+		for(var i=0;i < ca.length;i++) {
+			var c = ca[i];
+			while (c.charAt(0)==' ') c = c.substring(1,c.length);
+			if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+		}
+		return null;
+	}
+
+	function eraseCookie(name) {
+		createCookie(name,"",-1);
+	}
+	
+	$(document).ready(function() {
+		var x = readCookie('agree');
+			if (x) {
+				$(tos).prop('checked', true);
+			}
+	});
+	
+</script>

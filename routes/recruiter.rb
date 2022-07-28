@@ -233,7 +233,7 @@ end
 
 
 
-get '/recruiters/reset-password/:email/?' do
+get '/reset-password/:email/?' do
 	params[:email].strip!
 	params[:email].downcase!
 	if recruiter = Recruiter.first(email: params[:email])
@@ -242,8 +242,8 @@ get '/recruiters/reset-password/:email/?' do
 		recruiter.save
 		Pony.mail(
 			to: recruiter.email,
-			from: 'no-reply@HEAR-Survey.com',
-			subject:'HEARb Survey password reset link',
+			from: 'no-reply@hear-survey.com',
+			subject:'HEAR Survey password reset link',
   		body: "This link takes you to a page where you can enter a temporary password. You should enter a permanent password on your profile page. Remember to Update Account to save. http://#{request.host}/new-password/#{user.pass_reset_key}. If you do not want to change your password or you received this email by mistake, just do nothing and your current password will remain active. NOTE: This password will expire in one day."
     )
 		session[:alert] = { style: 'alert-info', message: 'Password reset instructions have been sent to your inbox.' }
@@ -253,12 +253,12 @@ get '/recruiters/reset-password/:email/?' do
 	erb :'/recruiter/signin'
 end
 
-get '/recruiters/reset-password/?' do
+get '/reset-password/?' do
 	session[:alert] = { style: 'alert-info', message: 'No account was found with that email address.' }
 	erb :'/recruiter/signin'
 end
 
-get '/recruiters/new-password/:key/?' do
+get '/new-password/:key/?' do
 	if recruiter = Recruiter.first(pass_reset_key: params[:key], :pass_reset_date.gte => Chronic.parse('2 day ago'))
 		erb :'new-password'
 	else
@@ -267,10 +267,10 @@ get '/recruiters/new-password/:key/?' do
 	end
 end
 
-post '/recruiters/new-password/:key/?' do
+post '/new-password/:key/?' do
 	recruiter = Recruiter.first(pass_reset_key: params[:key])
 	recruiter.update(password: params[:password].downcase!)
-	session[:alert] = { message: 'You should now enter a new password and Update Account. This reset link expires after 1 day!', style: 'alert-success' }
+	session[:alert] = { message: 'You should now enter a new password and Save Account. This reset link expires after 1 day!', style: 'alert-success' }
 	signin recruiter.id
 end
 
