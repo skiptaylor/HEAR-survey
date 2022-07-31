@@ -11,7 +11,7 @@
 				</h3>
 				<p>
 					<%= @recruiter.address1 %><br />
-					<% unless @recruiter.address2 = "" %><%= @recruiter.address2 %><br /><% end %>
+					<% unless @recruiter.address2 == "" || @recruiter.address2 == nil %><%= @recruiter.address2 %><br /><% end %>
 					<%= @recruiter.city %> <%= @recruiter.state %> &nbsp;<%= @recruiter.zip %><br />
 				</p>
 				<p>
@@ -19,7 +19,7 @@
 					<%= @recruiter.phone %>
 				</p>	
 				
-				<p><a href="/recruiters/<%= @recruiter.id %>/edit/" class="btn btn-sm" >Edit recruiter</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/recruiters/signout" class="btn btn-secondary btn-sm" style="background-color: #000000;"><i class="icon-signout"> </i> &nbsp;Sign out</a></p>
+				<p><a href="/recruiters/<%= @recruiter.id %>/edit/" class="btn" >Edit recruiter</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/recruiters/signout" class="btn btn-secondary btn-sm" style="background-color: #000000;"><i class="icon-signout"> </i> &nbsp;Sign out</a></p>
 				<span style="color: #919191; font-size: 0.75;"><strong>PROTECT YOUR PRIVACY.</strong>
 				If you are using a public or shared device <strong>sign out</strong> when finished.</span> <br />
 			</div>
