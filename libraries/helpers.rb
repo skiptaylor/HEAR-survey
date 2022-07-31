@@ -1,5 +1,20 @@
 helpers do
   
+	def sign_in recruiter_id, msg = false
+		recruiter = Recruiter.get recruiter_id
+		session[:recruiter] = recruiter.id
+		session[:admin] = recruiter.admin?
+		if msg
+			session[:alert] = {
+				style: 'alert-success',
+				heading: 'Thank You!',
+				message: 'Payment Accepted.'
+			}
+		end
+		redirect '/recruiter/recprofile'
+	end
+  
+  
   def auth_recruiter
     unless session[:recruiter] || session[:admin]
       flash[:alert] = 'You do not have permission to see that page.'
