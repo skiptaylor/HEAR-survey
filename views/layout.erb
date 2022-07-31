@@ -16,7 +16,7 @@
 		<link type="text/css" rel="stylesheet" href="/css/buttons_altered.css" />
 		<link type="text/css" rel="stylesheet" href="/css/normalize.css" />
 		
-	  	<!-- <script type="text/javascript" src="/js/popper.min.js"></script> -->
+	  	<script type="text/javascript" src="/js/popper.min.js"></script>
 	  	<script type="text/javascript" src="/js/modal.js"></script>
 		<!-- <script type="text/javascript" src="/js/bootstrap.bundle.min.js"></script> -->
 		<script type="text/javascript" src="/js/bootstrap.min.js"></script>
@@ -94,9 +94,9 @@
 
 <script type="text/javascript">
 	 
-	(function() {
-	  (document).ready(function() {
-	    ('a.delete').click(function() {
+	$(function() {
+	  $(document).ready(function() {
+	    $('a.delete').click(function() {
 	      if (!confirm('This cannot be undone! Continue?')) {
 	        return false;
 	      }
@@ -104,9 +104,9 @@
 	  });
 	}).call(this);
 
-	(function() {
-	  (document).ready(function() {
-	    ('button.delete').click(function() {
+	$(function() {
+	  $(document).ready(function() {
+	    $('button.delete').click(function() {
 	      if (!confirm('This cannot be undone! Continue?')) {
 	        return false;
 	      }
