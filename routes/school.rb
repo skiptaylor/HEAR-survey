@@ -827,11 +827,11 @@ end
 #   erb :"/register"
 # end
 
-get '/schools/:id/delete/?' do
-  auth_recruiter
-  school = School.get(params[:id])
-  school.destroy
-  redirect "/schools/schools"
-end
+# get '/schools/:id/delete/?' do
+#   auth_recruiter
+#   school = School.get(params[:id])
+#   school.destroy
+#   redirect "/schools/schools"
+# end
 
 
