@@ -1,24 +1,21 @@
-  <div class="container">
-	  <div style="width: 400px; margin: 3em auto;">
-    <form class="form-signin" method="post">
-		  <h6 class="font-weight-normal" style="text-align: center; font-size: 2em;">Recruiter Sign in</h6>
-  <label for="inputEmail" class="">Email address</label>
-  <input type="email" name="email" id="email" class="form-control" placeholder="" value="<%= params[:email] %>" autocomplete="off">
+<div class="container">
+	<div style="width: 400px; margin: 3em auto;">
+		<form class="form-signin" method="post">
+			<h6 class="font-weight-normal" style="text-align: center; font-size: 2em;">Recruiter Sign in</h6>
+			<label for="inputEmail" class="">Email address</label>
+			<input type="email" name="email" id="email" class="form-control" style="padding: 12px;" value="<%= params[:email] %>" autocomplete="off">
   
-  <label for="inputPassword" class="" >Password</label>
-  <input type="password" name="password" id="password" class="form-control" placeholder="" value="<%= params[:password] %>" autocomplete="off">
+			<label for="inputPassword" class="" >Password</label>
+			<input type="password" name="password" id="password" class="form-control" style="padding: 12px;" value="<%= params[:password] %>" autocomplete="off">
 
-<p style="padding-top: 0.9em; Text-align: center; line-height: 1.2em;"><small><strong>Forget your password?</strong> <br />Fill in your account email address and we will email you a link to reset your password.<br /><a href="#" id="reset-password" class="btn btn-mini" style="margin-top: 12px;">Reset my password</a></small></p>
+			<p style="padding-top: 0.9em; Text-align: center; line-height: 1.2em;"><small><strong>Forget your password?</strong> <br />Fill in your account email address and we will email you a link to reset your password.<br /><a href="#" id="reset-password" class="btn btn-mini" style="margin-top: 12px;">Reset my password</a></small></p>
   
-  <button class="btn btn-success" type="submit">Sign in</button>
-  <button onclick="goBack()" class="btn btn-secondary float-end">Cancel</button>
+			<button class="btn btn-success" type="submit">Sign in</button>
+			<button onclick="goBack()" class="btn btn-secondary float-end">Cancel</button>
   
-</form>
+		</form>
+	</div>
 </div>
-</div>
-
-<script>
-</script>
 
 <!-- <script language="JavaScript" type="text/javascript">
 	(function() {
@@ -29,7 +26,7 @@
 		});
 
 	}).call(this);
-</script>  -->
+</script> -->
 
 <script language="JavaScript" type="text/javascript">
 	function createCookie(name,value,days) {
@@ -57,11 +54,24 @@
 		createCookie(name,"",-1);
 	}
 	
-	$(document).ready(function() {
-		var x = readCookie('agree');
-			if (x) {
-				$(tos).prop('checked', true);
-			}
+$(function() {
+	
+	$(window).load(function() {
+	  $('a[rel="popover"]').hover(function() {
+	    return $(this).popover('toggle');
+	  });
+	  $('div.link').click(function() {
+	    if ($(this).attr('target') === '_blank') {
+	      return window.open($(this).attr('data-url'));
+	    } else {
+	      return window.location = $(this).attr('data-url');
+	    }
+	  });
+	  return $('a#reset-password').click(function() {
+	    return $('a#reset-password').attr('href', "/reset-password/" + ($('input#email').val()));
+	  });
 	});
+	
+}).call(this);	
 	
 </script>

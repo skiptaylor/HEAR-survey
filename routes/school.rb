@@ -128,8 +128,8 @@ get '/schools/:id/summary_report/?' do
   @school = School.get(params[:id])
   @recruiter = Recruiter.get(params[:recruiter_id])
   @school.presentations = Presentation.all(:school_password => @school.school_password, :class_date => params[:presentation])
-  @school.students = Student.all(:school_password => @school.school_password)
-  
+  @school.students = Student.all(:school_password => @school.school_password, :class_date => @school.class_date)
+     
   @stud_gradec = 0
   @stud_grade12 = 0
   @stud_grade11 = 0
@@ -155,7 +155,8 @@ get '/schools/:id/summary_report/?' do
       else (student.grade == 'Select one')
         @stud_gradeunknown = (@stud_gradeunknown + 1)
       end
-
+    
+ 
   end
    
     @answer1_sa = 0
@@ -377,6 +378,8 @@ get '/schools/:id/summary_report/?' do
     end
     
   end
+  
+
     erb :'/schools/summary_report', layout: false
   
 end
@@ -386,7 +389,7 @@ post '/schools/:id/summary_report/?' do
   @school = School.get(params[:id])
   @recruiter = Recruiter.get(params[:recruiter_id])
   @school.presentations = Presentation.all(:school_password => @school.school_password, :class_date => params[:presentation])
-  @school.students = Student.all(:school_password => @school.school_password)
+  @school.students = Student.all(:school_password => @school.school_password, :class_date => @school.class_date)
   
   @stud_gradec = 0
   @stud_grade12 = 0

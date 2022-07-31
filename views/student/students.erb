@@ -1,11 +1,31 @@
 	<div class="container">	
 		<div class="row">  
 			<div class="col-md-12">
-				<a href="/admin/admin_edit" class="btn btn-small" style="margin-top: 12px; float: right;">Admin Index</a>
+				<a href="/admin/admin_edit" class="btn btn-info btn-small" style="margin-top: 12px; float: right;">Admin Index</a>
 				<h1 class="page-header">Student List</h1>
 			</div>
 		</div>
-		<div class="row"> 
+		
+		<div class="row">
+			<div class="col-md-6">
+				<form class="form-search form-inline" method="get">
+					<div class="input-group">
+		
+						<input type="text" class="search-query form-control" name="search" placeholder="Search Email" aria-label="Search email" aria-describedby="Search Email" value="<%= params[:search] %>">
+						<button class="btn btn-info" type="submit" >Find</button>
+		 
+					</div>
+				</form>
+			</div>
+		</div>
+		
+		
+		
+		
+		
+		
+		
+		<!-- <div class="row">
 			<div class="col-md-12" style="margin-bottom: 1em;">
 				<p class="pull-right">Total number of students: <strong><%= @student.count %></strong></p>
 				<form class="form-search" method="get">
@@ -15,24 +35,29 @@
 				</div>
 				</form>
 			</div>
-		</div>
+		</div> -->
 		<div class="row"> 
 			<div class="col-md-12">
-			<table class="table table-striped table-sm table-hover">
+				
+			<table class="table table-striped table-sm table-hover" style="margin-top: 1em;">
 					<tr class="table-success">
 						<th>Name</th>
 						<th>Email</th>
 						<th>School ID</th>
-						<th> </th>
+						
 					</tr>
 					<% @student.sort_by(&:updated_at).reverse.each do |student| %>
 					<tr>
 						<td><%= student.first_name %> <%= student.last_name %></td>
 						<td><%= student.email %></td>
 						<td><%= student.school_password %></td>
-						<td style="text-align: right;"><a href="/student/<%= student.id %>/student" class="btn btn-mini">Show</a></td>
+						
 					</tr>
 					<% end %>
+					<tr>
+						<th colspan="3"><small>Total number of students: <strong><%= @student.count %></strong></small>
+						</th>
+					</tr>
 				</table>
 				
 			</div>

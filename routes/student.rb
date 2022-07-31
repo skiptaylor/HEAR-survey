@@ -188,14 +188,28 @@ end
 
 
 
+# get '/student/students/?' do
+#   @subscription = Subscription.all
+#   @state = State.all
+#   @school = School.all
+#   @student = Student.all
+#
+#   erb :'/student/students'
+# end
+
 get '/student/students/?' do
-  @subscription = Subscription.all
-  @state = State.all
-  @school = School.all
-  @student = Student.all
+  auth_admin
+	@student = Student.all(order: [:updated_at.desc], limit: 100)
   
-  erb :'/student/students'
+	if params[:search] && !params[:search].nil?
+		@student = Student.all(:email.like => "%#{params[:search]}%", limit: 30) 
+  else
+		@student = Student.all(:email.not => nil, order: [:updated_at.desc], limit: 50)
+	end
+  
+	erb :'/student/students'
 end
+
 
 
 

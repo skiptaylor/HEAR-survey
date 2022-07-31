@@ -201,3 +201,13 @@ get "/admin/signout/?"  do
   redirect "/index"
 end
 
+
+get "/admin/:id/delete/?"  do
+  auth_admin
+  admin = Admin.get(params[:id])
+  admin.destroy
+  flash[:alert] = 'Admin deleted.'
+  redirect "/admin/admin"
+end
+
+

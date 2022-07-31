@@ -210,10 +210,10 @@
 					
 				<p style="text-align: center; font-size: 22px; margin-top: 1em;">A. Student Participant Feedback Summary <small>(Total Participants = <strong><%= @school.students.count %></strong>)</small></p>
 	 			<p><strong>Grade</strong>&nbsp;&nbsp;&nbsp;&nbsp;
-					
-					
+				
+
 					College: <strong><%= (@stud_gradec * 100) / @school.students.count %>%</strong>&nbsp;&nbsp;&nbsp;&nbsp;
-	 				Grade 12: <strong><%= (@stud_grade12 * 100) / @school.students.count %>%</strong>&nbsp;&nbsp;&nbsp;&nbsp;
+	 	 			Grade 12: <strong><%= (@stud_grade12 * 100) / @school.students.count %>%</strong>&nbsp;&nbsp;&nbsp;&nbsp;
 	 				Grade 11: <strong><%= (@stud_grade11 * 100) / @school.students.count %>%</strong>&nbsp;&nbsp;&nbsp;&nbsp;
 	 				Grade 10: <strong><%= (@stud_grade10 * 100) / @school.students.count %>%</strong>&nbsp;&nbsp;&nbsp;&nbsp;
 					Grade 9: <strong><%= (@stud_grade9 * 100) / @school.students.count %>%</strong>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -362,8 +362,9 @@
 				    </tr>
 				  </thead>
 				  <tbody>
-					  
+					 
 					<% @school.students.sort_by(&:last_name).each do |student| %>
+					<% if student.class_date == @school.class_date %>
 				    <tr>
 				      <td><%= student.last_name %></td>
 				      <td><%= student.first_name %></td>
@@ -373,7 +374,7 @@
 					  <td><% unless student.contact_me == nil %>More Guard info<% end %></td>
 				    </tr>
 					<% end %>
-						
+					<% end %>	
 				</table>
 				<!-- * Students had the option to enter their email address (not recorded) and phone number if they felt the National Guard Values discussed in H.E.A.R. were of interest and they wanted more information about the National Guard. -->
 				<br /><br />
