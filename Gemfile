@@ -4,6 +4,7 @@ ruby "2.7.6"
 
 gem 'chronic', '~> 0.9.1'
 gem 'jsmin', '>= 1.0.1'
+gem 'coffee-script', '~> 2.4', '>= 2.4.1'
 gem 'kramdown', '>= 0.14.2'
 gem 'sass', '>= 3.2.9'
 gem 'sinatra', '>= 1.4.6'

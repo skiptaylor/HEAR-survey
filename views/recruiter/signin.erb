@@ -6,12 +6,12 @@
 			<input type="email" name="email" id="email" class="form-control" style="padding: 12px;" value="<%= params[:email] %>" autocomplete="off">
   
 			<label for="inputPassword" class="" >Password</label>
-			<input type="password" name="password" id="password" class="form-control" style="padding: 12px;" value="<%= params[:password] %>" autocomplete="off">
-
-			<p style="padding-top: 0.9em; Text-align: center; line-height: 1.2em;"><small><strong>Forget your password?</strong> <br />Fill in your account email address and we will email you a link to reset your password.<br /><a href="#" id="reset-password" class="btn btn-mini" style="margin-top: 12px;">Reset my password</a></small></p>
+			<input type="password" name="password" id="password" class="form-control" style="padding: 12px; margin-bottom: 1em;" value="<%= params[:password] %>" autocomplete="off">
   
 			<button class="btn btn-success" type="submit">Sign in</button>
 			<button href="/" class="btn btn-secondary float-end">Cancel</button>
+			
+			<p style="Text-align: center; line-height: 1.2em;"><small><strong>Forget your password?</strong> <br />Fill in your account email address and we will email you a link to reset your password.<br /><a href="#" id="reset-password" class="btn btn-mini" style="margin-top: 12px;">Reset my password</a></small></p>
   
 		</form>
 	</div>
@@ -19,7 +19,7 @@
 
 <script language="JavaScript" type="text/javascript">
 	(function() {
-		$(window).load(function() {
+		$(window).ready(function() {
 			return $('a#reset-password').click(function() {
 				return $('a#reset-password').attr('href', "/reset-password/" + ($('input#email').val()));
 			});
