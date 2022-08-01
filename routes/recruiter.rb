@@ -253,12 +253,12 @@ get '/reset-password/:email/?' do
 	erb :'/recruiter/signin'
 end
 
-get '/reset-password/?' do
+get '/recruiter/reset-password/?' do
 	flash[:alert] = 'No account was found with that email address.'
 	erb :'/recruiter/signin'
 end
 
-get '/new-password/:key/?' do
+get '/recruiter/new-password/:key/?' do
 	if recruiter = Recruiter.first(pass_reset_key: params[:key], :pass_reset_date.gte => Chronic.parse('2 day ago'))
 		erb :'/recruiter/new-password'
 	else
@@ -267,7 +267,7 @@ get '/new-password/:key/?' do
 	end
 end
 
-post '/new-password/:key/?' do
+post '/recruiter/new-password/:key/?' do
 	recruiter = Recruiter.first(pass_reset_key: params[:key])
 	recruiter.update(password: params[:password].downcase!)
 	flash[:alert] = 'You should now enter a new password and Save Account. This reset link expires after 1 day!'
