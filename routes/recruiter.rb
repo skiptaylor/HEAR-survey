@@ -250,12 +250,12 @@ get '/reset-password/:email/?' do
 	else
 		flash[:alert] = 'No account was found with that email address.'
 	end
-	erb :'/recruiter/new-password'
+	erb :"signin"
 end
 
 get '/recruiter/reset-password/?' do
 	flash[:alert] = 'No account was found with that email address.'
-	erb :'/recruiter/signin'
+	erb :"signin"
 end
 
 get '/recruiter/new-password/:key/?' do
@@ -263,7 +263,7 @@ get '/recruiter/new-password/:key/?' do
 		erb :'/recruiter/new-password'
 	else
 		flash[:alert] = 'That password reset link has expired. Start over to get a new link.'
-		erb :'/recruiter/signin'
+		erb :"/recruiter/signin"
 	end
 end
 
