@@ -250,7 +250,7 @@ get '/reset-password/:email/?' do
 	else
 		flash[:alert] = 'No account was found with that email address.'
 	end
-	erb :'/recruiter/signin'
+	erb :'/recruiter/new-password'
 end
 
 get '/recruiter/reset-password/?' do
