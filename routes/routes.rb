@@ -170,12 +170,12 @@ get '/reset-password/:email/?' do
 	else
 		session[:alert] = { style: 'alert-info', message: 'No account was found with that email address.' }
 	end
-	erb :'sign-in'
+	erb :'/recruiter/signin'
 end
 
 get '/reset-password/?' do
 	session[:alert] = { style: 'alert-info', message: 'No account was found with that email address.' }
-	erb :'sign-in'
+	erb :'/recruiter/signin'
 end
 
 get '/new-password/:key/?' do
@@ -183,7 +183,7 @@ get '/new-password/:key/?' do
 		erb :'new-password'
 	else
 		session[:alert] = { message: 'That password reset link has expired. Start over to get a new link.', style: 'alert-info' }
-		erb :'/sign-in'
+		erb :'/recruiter/signin'
 	end
 end
 
