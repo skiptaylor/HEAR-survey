@@ -324,46 +324,46 @@ end
 
 
 
-get '/reset-password/:email/?' do
-	params[:email].strip!
-	params[:email].downcase!
-	if user = User.first(email: params[:email])
-		user.pass_reset_key = (0...8).map{65.+(rand(25)).chr}.join
-		user.pass_reset_date = Chronic.parse 'now'
-		user.save
-		Pony.mail(
-			to: user.email,
-			from: 'no-reply@eCareerDirection.com',
-			subject:'eCareerDirection password reset link',
-  		body: "This link takes you to a page where you can enter a temporary password. You should enter a permanent password on your profile page. Remember to Update Account to save. http://#{request.host}/new-password/#{user.pass_reset_key}. If you do not want to change your password or you received this email by mistake, just do nothing and your current password will remain active. NOTE: This password will expire in one day."
-    )
-		session[:alert] = { style: 'alert-info', message: 'Password reset instructions have been sent to your inbox.' }
-	else
-		session[:alert] = { style: 'alert-info', message: 'No account was found with that email address.' }
-	end
-	erb :'sign-in'
-end
-
-get '/reset-password/?' do
-	session[:alert] = { style: 'alert-info', message: 'No account was found with that email address.' }
-	erb :'sign-in'
-end
-
-get '/new-password/:key/?' do
-	if user = User.first(pass_reset_key: params[:key], :pass_reset_date.gte => Chronic.parse('2 day ago'))
-		erb :'new-password'
-	else
-		session[:alert] = { message: 'That password reset link has expired. Start over to get a new link.', style: 'alert-info' }
-		erb :'/sign-in'
-	end
-end
-
-post '/new-password/:key/?' do
-	user = User.first(pass_reset_key: params[:key])
-	user.update(password: params[:password].downcase!)
-	session[:alert] = { message: 'You should now enter a new password and Update Account. This reset link expires after 1 day!', style: 'alert-success' }
-	sign_in user.id
-end
+# get '/reset-password/:email/?' do
+#   params[:email].strip!
+#   params[:email].downcase!
+#   if user = User.first(email: params[:email])
+#     user.pass_reset_key = (0...8).map{65.+(rand(25)).chr}.join
+#     user.pass_reset_date = Chronic.parse 'now'
+#     user.save
+#     Pony.mail(
+#       to: user.email,
+#       from: 'no-reply@eCareerDirection.com',
+#       subject:'eCareerDirection password reset link',
+#       body: "This link takes you to a page where you can enter a temporary password. You should enter a permanent password on your profile page. Remember to Update Account to save. http://#{request.host}/new-password/#{user.pass_reset_key}. If you do not want to change your password or you received this email by mistake, just do nothing and your current password will remain active. NOTE: This password will expire in one day."
+#     )
+#     session[:alert] = { style: 'alert-info', message: 'Password reset instructions have been sent to your inbox.' }
+#   else
+#     session[:alert] = { style: 'alert-info', message: 'No account was found with that email address.' }
+#   end
+#   erb :'sign-in'
+# end
+#
+# get '/reset-password/?' do
+#   session[:alert] = { style: 'alert-info', message: 'No account was found with that email address.' }
+#   erb :'sign-in'
+# end
+#
+# get '/new-password/:key/?' do
+#   if user = User.first(pass_reset_key: params[:key], :pass_reset_date.gte => Chronic.parse('2 day ago'))
+#     erb :'new-password'
+#   else
+#     session[:alert] = { message: 'That password reset link has expired. Start over to get a new link.', style: 'alert-info' }
+#     erb :'/sign-in'
+#   end
+# end
+#
+# post '/new-password/:key/?' do
+#   user = User.first(pass_reset_key: params[:key])
+#   user.update(password: params[:password].downcase!)
+#   session[:alert] = { message: 'You should now enter a new password and Update Account. This reset link expires after 1 day!', style: 'alert-success' }
+#   sign_in user.id
+# end
 
 
 
