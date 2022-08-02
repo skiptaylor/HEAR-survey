@@ -239,8 +239,7 @@ get '/reset-password/:email/?' do
 	if recruiter = Recruiter.first(email: params[:email])
 		recruiter.pass_reset_key = (0...8).map{65.+(rand(25)).chr}.join
 		recruiter.pass_reset_date = Chronic.parse 'now'
-		recruiter.require "../../counselorexams-dev/routes/user"
-		save
+		recruiter.save
 		Pony.mail(
 			to: recruiter.email,
 			from: 'no-reply@hear-survey.com',
