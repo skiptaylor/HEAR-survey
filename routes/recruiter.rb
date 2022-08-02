@@ -244,12 +244,13 @@ get '/recruiter/reset-password/:email/?' do
 			to: recruiter.email,
 			from: 'no-reply@hear-survey.com',
 			subject:'HEAR Survey password reset link',
-  		body: "This link takes you to a page where you can enter a temporary password. You should enter a permanent password on your profile page. Remember to Update Account to save. http://#{request.host}/recruiter/new-password/#{recruiter.pass_reset_key}. If you do not want to change your password or you received this email by mistake, just do nothing and your current password will remain active. NOTE: This password will expire in one day."
+  		body: "This link takes you to a page where you can enter a temporary password. You should enter a permanent password on your profile page. Remember to Update Account to save. https://#{request.host}/recruiter/new-password/#{recruiter.pass_reset_key}. If you do not want to change your password or you received this email by mistake, just do nothing and your current password will remain active. NOTE: This password will expire in one day."
     )
 		flash[:alert] = 'Password reset instructions have been sent to your inbox.' 
 	else
 		flash[:alert] = 'No account was found with that email address.'
 	end
+  flash[:alert] = 'Password reset instructions have been sent to your inbox.' 
 	erb :"recruiter/signin"
 end
 
