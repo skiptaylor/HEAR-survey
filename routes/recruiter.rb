@@ -274,8 +274,9 @@ post '/recruiter/new-password/:key/?' do
 	recruiter.update(password: params[:password].downcase!)
 	flash[:alert] = 'You should now enter a new password and Save Account. This reset link expires after 1 day!'
 	session[:alert] = { message: 'You should now enter a new password and Update Account. This reset link expires after 1 day!', style: 'alert-success' }
+	session[:recruiter] = recruiter.id
   recruiter.save
-	sign_in recruiter.id
+  redirect '/recruiters/#{recruiter.id}/edit'
 end
 
 

@@ -1,11 +1,11 @@
 helpers do
   
-	def sign_in recruiter_id
-		recruiter = Recruiter.get recruiter_id
-		session[:recruiter] = recruiter.id
-		flash[:alert] = 'You should now enter a new password and Save Account. This reset link expires after 1 day!'
-		redirect '/recruiters/#{recruiter.id}/profile'
-	end
+  # def sign_in recruiter_id
+  #   recruiter = Recruiter.get recruiter_id
+  #   session[:recruiter] = recruiter.id
+  #   flash[:alert] = 'You should now enter a new password and Save Account. This reset link expires after 1 day!'
+  #   redirect '/recruiters/#{recruiter.id}/profile'
+  # end
   
   
   def auth_recruiter
