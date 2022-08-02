@@ -3,14 +3,7 @@ helpers do
 	def sign_in recruiter_id, msg = false
 		recruiter = Recruiter.get recruiter_id
 		session[:recruiter] = recruiter.id
-		session[:admin] = recruiter.admin?
-		if msg
-			session[:alert] = {
-				style: 'alert-success',
-				heading: 'Thank You!',
-				message: 'Payment Accepted.'
-			}
-		end
+		flash[:alert] = 'You do now signed in.'
 		redirect '/recruiter/recprofile'
 	end
   
