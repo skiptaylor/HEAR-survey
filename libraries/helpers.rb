@@ -3,8 +3,8 @@ helpers do
 	def sign_in recruiter_id, msg = false
 		recruiter = Recruiter.get recruiter_id
 		session[:recruiter] = recruiter.id
-		flash[:alert] = 'You do now signed in.'
-		redirect '/recruiters/register'
+		flash[:alert] = 'You are now signed in.'
+		redirect '/recruiters/:id/edit/'
 	end
   
   
