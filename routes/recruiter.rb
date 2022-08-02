@@ -262,7 +262,7 @@ end
 
 get '/recruiter/new-password/:key/?' do
 	if recruiter = Recruiter.first(pass_reset_key: params[:key], :pass_reset_date.gte => Chronic.parse('2 day ago'))
-		erb :'/recruiter/new-password'
+		erb :'recruiter/new-password'
 	else
 		flash[:alert] = 'That password reset link has expired. Start over to get a new link.'
 		erb :"/recruiter/signin"

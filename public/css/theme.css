@@ -640,16 +640,17 @@ div#alert {
 	font-family: 'Open Sans', sans-serif;
 	line-height: 2em;
 	display: block;
-	background-color: #336df0;
-	opacity: 0.8;
+	background-color: #ffd017;
+/*	background-color: #336df0;
+*/	opacity: 0.8;
 	padding: 3px 3px;
 	margin: 0 auto 0 auto;
 	text-align: center;
-	color: #fff;
+	color: #000;
 	font-weight: 800;
 	z-index: 999;
 	animation: fadeOut 2s forwards;
-	animation-delay: 3.5s;
+	animation-delay: 5s;
 }
 
 @keyframes fadeOut {
