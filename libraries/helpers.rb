@@ -4,7 +4,7 @@ helpers do
 		recruiter = Recruiter.get recruiter_id
 		session[:recruiter] = recruiter.id
 		flash[:alert] = 'You are now signed in.'
-		redirect '/recruiters/:id/edit/'
+		redirect '/recruiters/<%= session[:recruiter] %>/edit/'
 	end
   
   
