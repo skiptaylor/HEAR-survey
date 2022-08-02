@@ -249,6 +249,7 @@ get '/recruiter/reset-password/:email/?' do
 		flash[:alert] = 'Password reset instructions have been sent to your inbox.' 
 	else
 		flash[:alert] = 'No account was found with that email address.'
+    erb :"/recruiter/signin"
 	end
   flash[:alert] = 'Password reset instructions have been sent to your inbox.' 
 	erb :"recruiter/signin"
@@ -271,6 +272,7 @@ end
 post '/recruiter/new-password/:key/?' do
 	recruiter = Recruiter.first(pass_reset_key: params[:key])
 	recruiter.update(password: params[:password].downcase!)
+  recruiter.save
 	flash[:alert] = 'You should now enter a new password and Save Account. This reset link expires after 1 day!'
 	sign_in recruiter.id
 end
