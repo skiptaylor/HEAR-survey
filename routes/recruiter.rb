@@ -246,7 +246,6 @@ get '/recruiter/reset-password/:email/?' do
 			subject:'HEAR Survey password reset link',
   		body: "This link takes you to a page where you can enter a temporary password. You should enter a permanent password on your profile page. Remember to Update Account to save. https://#{request.host}/recruiter/new-password/#{recruiter.pass_reset_key}. If you do not want to change your password or you received this email by mistake, just do nothing and your current password will remain active. NOTE: This password will expire in one day."
     )
-		flash[:alert] = 'Password reset instructions have been sent to your inbox.' 
 	else
 		flash[:alert] = 'No account was found with that email address.'
     erb :"/recruiter/signin"
@@ -272,9 +271,8 @@ post '/recruiter/new-password/:key/?' do
 	recruiter = Recruiter.first(pass_reset_key: params[:key])
 	recruiter.update(password: params[:password].downcase!)
 	flash[:alert] = 'You should now enter a new password and Save Account. This reset link expires after 1 day!'
-	session[:alert] = { message: 'You should now enter a new password and Update Account. This reset link expires after 1 day!', style: 'alert-success' }
-	session[:recruiter] = recruiter.id
   recruiter.save
+  session[:recruiter] = recruiter.id
   redirect "/recruiters/#{session[:recruiter]}/edit"
 end
 
