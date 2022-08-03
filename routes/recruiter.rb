@@ -252,7 +252,7 @@ get '/recruiter/reset-password/:email/?' do
     erb :"/recruiter/signin"
 	end
   flash[:alert] = 'Password reset instructions have been sent to your inbox.' 
-	erb :"/recruiter/reset-password"
+	erb :"recruiter/signin"
 end
 
 get '/recruiter/reset-password/?' do
