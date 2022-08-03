@@ -1,3 +1,26 @@
+<style>
+.alert {
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
+</style>
+
 <div class="container">
 	<div style="width: 400px; margin: 3em auto;">
 		<form class="form-signin" method="post">
@@ -11,11 +34,19 @@
 			<button class="btn btn-success" type="submit">Sign in</button>
 			<button href="/" class="btn btn-secondary float-end">Cancel</button>
 			
-			<p style="Text-align: center; line-height: 1.2em;"><small><strong>Forget your password?</strong> <br />Fill in your account email address and we will email you a link to reset your password.<br /><a href="#" id="reset-password" class="btn btn-mini" style="margin-top: 12px;">Reset my password</a></small></p>
+			<p style="Text-align: center; line-height: 1.2em;"><small><strong>Forget your password?</strong> <br />Fill in your account email address and we will email you a link to reset your password.<br /><a href="#" id="reset-password" onclick="instrFunction()" class="btn btn-mini" style="margin-top: 12px;">Reset my password</a></small></p>
   
 		</form>
 	</div>
 </div>
+
+<script>
+function instrFunction() {
+  alert("Password reset instructions will be sent to your inbox.");
+}
+</script>
+
+
 
 <script language="JavaScript" type="text/javascript">
 	(function() {

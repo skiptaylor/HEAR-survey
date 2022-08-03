@@ -251,13 +251,12 @@ get '/recruiter/reset-password/:email/?' do
 		flash[:alert] = 'No account was found with that email address.'
     erb :"/recruiter/signin"
 	end
-  flash[:alert] = 'Password reset instructions have been sent to your inbox.' 
-	erb :"recruiter/signin"
+	erb :"/recruiter/signin"
 end
 
 get '/recruiter/reset-password/?' do
 	flash[:alert] = 'No account was found with that email address.'
-	erb :"recruiter/signin"
+	erb :"/recruiter/signin"
 end
 
 get '/recruiter/new-password/:key/?' do
