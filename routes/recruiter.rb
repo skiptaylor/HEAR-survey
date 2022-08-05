@@ -4,13 +4,11 @@ get "/recruiters/recruiters/?" do
   auth_admin
   @state = State.all
   
-  
 	@recruiter = Recruiter.all(order: [:updated_at.desc], limit: 50)
   
 	if params[:search] && !params[:search].nil?
 		@recruiter = Recruiter.all(:last_name.like => "%#{params[:search]}%", limit: 50) 
 	end
-
   
   erb :"/recruiter/recruiters"
 end
@@ -78,7 +76,6 @@ get "/recruiters/new/?"  do
 end
 
 post "/recruiters/new/?"  do 
-    
   state = State.all
   recruiter = Recruiter.create(
     :email            => session[:recr],
@@ -211,6 +208,82 @@ post "/recruiters/signin/?" do
   end
 end
 
+
+
+
+
+
+
+
+
+get "/recruiters/password-reset/?"  do
+  
+  erb :'/recruiter/password-reset'
+end
+
+post "/recruiters/password-reset/?"  do
+ 
+  params[:email].strip!
+  
+  if recruiter = Recruiter.first(:email => params[:email])
+    
+    session[:recTemp] = recruiter.id
+
+    session[:rec_new] = params[:email]
+
+    params[:pas_code] = rand(1000..5000).to_s
+
+    session[:verifyPass] = params[:pas_code]
+  
+    if settings.production?
+      Pony.mail(
+        headers: { 'Content-Type' => 'text/html' },
+        to: "#{params[:email]}",
+        from: "noreply@hear-survey.herokuapp.com",
+        subject: "Here is your HEAR Survey password rest code.",
+        body: "Here is your password rest code for your <b>HEAR Survey</b> account: <b>#{params[:pas_code]}</b>"
+      )
+      flash[:alert] = 'Reset code was sent to your inbox.'
+      redirect '/recruiters/reset'
+    else
+      flash[:alert] = 'Reset code would have been sent in production mode.'
+      redirect '/recruiters/reset'
+    end
+
+  else
+    flash[:alert] = 'We can\'t find an account with this email,'
+    erb :"/recruiter/password-reset"
+  end
+
+end
+
+get "/recruiters/reset/?"  do
+  
+  erb :'/recruiter/reset'
+end
+
+post "/recruiters/reset/?"  do
+  
+  if
+    params[:pas_code] = session[:verifyPass]
+    
+    redirect "/recruiters/#{session[:recTemp]}/edit"
+  else 
+    flash[:alert] = 'Code is not valid. Try again.'
+  end
+    
+  redirect '/recruiters/reset'
+end
+
+
+
+
+
+
+
+
+
+
 get '/recruiters/:id/profile/?' do
   auth_recruiter
   @school = School.all
@@ -228,56 +301,6 @@ get '/recruiters/:id/profile/?' do
    
   erb :"/recruiter/recprofile"
 end
-
-
-
-
-
-get '/recruiter/reset-password/:email/?' do
-	params[:email].strip!
-	params[:email].downcase!
-	if recruiter = Recruiter.first(email: params[:email])
-		recruiter.pass_reset_key = (0...8).map{65.+(rand(25)).chr}.join
-		recruiter.pass_reset_date = Chronic.parse 'now'
-		recruiter.save
-		Pony.mail(
-			to: recruiter.email,
-			from: 'no-reply@hear-survey.com',
-			subject:'HEAR Survey password reset link',
-  		body: "This link takes you to a page where you can enter a temporary password. You should enter a permanent password on your profile page. Remember to Update Account to save. https://#{request.host}/recruiter/new-password/#{recruiter.pass_reset_key}. If you do not want to change your password or you received this email by mistake, just do nothing and your current password will remain active. NOTE: This password will expire in one day."
-    )
-	else
-		flash[:alert] = 'No account was found with that email address.'
-    erb :"/recruiter/signin"
-	end
-	erb :"/recruiter/signin"
-end
-
-get '/recruiter/reset-password/?' do
-	flash[:alert] = 'No account was found with that email address.'
-	erb :"/recruiter/signin"
-end
-
-get '/recruiter/new-password/:key/?' do
-	if recruiter = Recruiter.first(pass_reset_key: params[:key], :pass_reset_date.gte => Chronic.parse('2 day ago'))
-		erb :'/recruiter/new-password'
-	else
-		flash[:alert] = 'That password reset link has expired. Start over to get a new link.'
-		erb :"/recruiter/signin"
-	end
-end
-
-post '/recruiter/new-password/:key/?' do
-	recruiter = Recruiter.first(pass_reset_key: params[:key])
-	recruiter.update(password: params[:password].downcase!)
-	flash[:alert] = 'You should now enter a new password and Save Account. This reset link expires after 1 day!'
-  recruiter.save
-  session[:recruiter] = recruiter.id
-  redirect "/recruiters/#{session[:recruiter]}/edit"
-end
-
-
-
 
 
 get '/recruiters/register/?' do

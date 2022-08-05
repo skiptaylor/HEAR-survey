@@ -34,30 +34,32 @@
 			<button class="btn btn-success" type="submit">Sign in</button>
 			<button href="/" class="btn btn-secondary float-end">Cancel</button>
 			
-			<p style="Text-align: center; line-height: 1.2em;"><small><strong>Forget your password?</strong> <br />Fill in your account email address and we will email you a link to reset your password.<br /><a href="#" id="reset-password" onclick="instrFunction()" class="btn btn-mini" style="margin-top: 12px;">Reset my password</a></small></p>
+			<p style="Text-align: center; line-height: 0.2em;"><small><strong>Forget your password?</strong> <br /><a href="/recruiters/password-reset" id="password-reset" onclick="instrFunction()" class="btn btn-mini" style="margin-top: 12px;">Reset my password</a></small></p>
+			
+			<!-- <p style="Text-align: center; line-height: 0.2em;"><small><strong>Forget your password?</strong> <br /><a href="#" id="password-reset" onclick="instrFunction()" class="btn btn-mini" style="margin-top: 12px;">Reset my password</a></small></p> -->
   
 		</form>
 	</div>
 </div>
 
-<script>
+<!-- <script>
 function instrFunction() {
   alert("Password reset instructions will be sent to your inbox. This may a minute after you close the message.");
 }
-</script>
+</script> -->
 
 
 
-<script language="JavaScript" type="text/javascript">
+<!-- <script language="JavaScript" type="text/javascript">
 	(function() {
 		$(window).ready(function() {
-			return $('a#reset-password').click(function() {
-				return $('a#reset-password').attr('href', "/recruiter/reset-password/" + ($('input#email').val()));
+			return $('a#password-reset').click(function() {
+				return $('a#password-reset').attr('href', "/recruiter/password-reset/" + ($('input#email').val()));
 			});
 		});
 
 	}).call(this);
-</script>
+</script> -->
 
 <script language="JavaScript" type="text/javascript">
 	function createCookie(name,value,days) {
