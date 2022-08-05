@@ -267,7 +267,7 @@ post "/recruiters/reset/?"  do
   if
     params[:pas_code] = session[:verifyPass]
     
-    redirect "/recruiters/#{session[:recTemp]}/edit"
+    redirect "/recruiters/#{session[:recTemp]}/new-password"
   else 
     flash[:alert] = 'Code is not valid. Try again.'
   end
@@ -275,8 +275,20 @@ post "/recruiters/reset/?"  do
   redirect '/recruiters/reset'
 end
 
+get "/recruiters/:id/new-password/?"  do
+  @recruiter = Recruiter.get(params[:id])
+  erb :'/recruiter/new-password'
+end
 
-
+post "/recruiters/:id/new-password/?" do
+  recruiter = Recruiter.get(params[:id])
+  recruiter.password == (recruiter.password == nil)
+  recruiter.update(
+    :password         => params[:password]
+  )
+  session[:recruiter] = recruiter.id
+  redirect "/recruiters/#{recruiter.id}/profile"
+end
 
 
 
