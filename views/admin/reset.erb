@@ -1,0 +1,32 @@
+<div class="container">	
+	<div class="row">  
+		<div class="col-md-12">
+			<h1 class="page-header">Admin Password Reset</h1>
+		</div>
+		<div class="col-md-12">
+			<p class="lead">Enter your code to continue.</p>
+		</div>
+	</div>
+		
+	<form method="post" id="create_admin">
+					
+	<div class="form-row">
+		<div class="form-group col-md-6">
+			<input type="text" id="pass_code" name="pass_code" class="form-control" placeholder="" value="<%= params[:pass_code] %>" required />
+		</div>
+	</div>
+	<% if settings.development? %>
+		<%= session[:verifyPas] %><br>
+		recId: <%= session[:adminTemp] %>
+	<% end %>
+	<div class="form-row">
+		<div class="form-group col-md-12">
+			<br />
+			<input class="btn btn-success" style="margin-right: 14px;" type="submit" value="Continue" /> &nbsp;<a href="/admin/signin/" class="btn btn-secondary">Cancel</a> 
+		</div>
+	</div> <!-- /row -->
+	</form>
+</div>
+	
+	
+	

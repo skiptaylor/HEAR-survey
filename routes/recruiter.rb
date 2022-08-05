@@ -277,12 +277,14 @@ end
 
 get "/recruiters/:id/new-password/?"  do
   @recruiter = Recruiter.get(params[:id])
+  @recruiter.password = (@recruiter.password = nil)
+  @recruiter.save
   erb :'/recruiter/new-password'
 end
 
 post "/recruiters/:id/new-password/?" do
   recruiter = Recruiter.get(params[:id])
-  recruiter.password == (recruiter.password == nil)
+  
   recruiter.update(
     :password         => params[:password]
   )

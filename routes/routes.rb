@@ -153,46 +153,92 @@ end
 #   erb :"/admin/admin"
 # end
 
-get '/reset-password/:email/?' do
-	params[:email].strip!
-	params[:email].downcase!
-	if admin = Admin.first(email: params[:email])
-		admin.pass_reset_key = (0...8).map{65.+(rand(25)).chr}.join
-		admin.pass_reset_date = Chronic.parse 'now'
-		admin.save
-		Pony.mail(
-			to: admin.email,
-			from: 'no-reply@eCareerDirection.com',
-			subject:'eCareerDirection password reset link',
-  		body: "This link takes you to a page where you can enter a temporary password. You should enter a permanent password on your profile page. Remember to Update Account to save. http://#{request.host}/new-password/#{admin.pass_reset_key}. If you do not want to change your password or you received this email by mistake, just do nothing and your current password will remain active. NOTE: This password will expire in one hour."
-    )
-		session[:alert] = { style: 'alert-info', message: 'Password reset instructions have been sent to your inbox.' }
-	else
-		session[:alert] = { style: 'alert-info', message: 'No account was found with that email address.' }
-	end
-	erb :'/recruiter/signin'
+
+
+
+
+
+get "/admin/password-reset/?"  do
+  @admin = Admin.all
+    
+  erb :'/admin/password-reset'
 end
 
-get '/reset-password/?' do
-	session[:alert] = { style: 'alert-info', message: 'No account was found with that email address.' }
-	erb :'/recruiter/signin'
+post "/admin/password-reset/?"  do
+ 
+  params[:email].strip!
+  
+  if admin = Admin.first(:email => params[:email])
+    
+    session[:adminTemp] = admin.id
+
+    session[:admin_new] = params[:email]
+
+    params[:pass_code] = rand(1000..5000).to_s
+
+    session[:verifyPas] = params[:pass_code]
+  
+    if settings.production?
+      Pony.mail(
+        headers: { 'Content-Type' => 'text/html' },
+        to: "#{params[:email]}",
+        from: "noreply@hear-survey.herokuapp.com",
+        subject: "Here is your HEAR Survey Admin password rest code.",
+        body: "Here is your password rest code for your <b>HEAR Survey</b> Admin account: <b>#{params[:pass_code]}</b>"
+      )
+      flash[:alert] = 'Reset code was sent to your inbox.'
+      redirect '/admin/reset'
+    else
+      flash[:alert] = 'Reset code would have been sent in production mode.'
+      redirect '/admin/reset'
+    end
+
+  else
+    flash[:alert] = 'We can\'t find an account with that email,'
+    erb :"/admin/password-reset"
+  end
+
 end
 
-get '/new-password/:key/?' do
-	if admin = Admin.first(pass_reset_key: params[:key], :pass_reset_date.gte => Chronic.parse('1 hours ago'))
-		erb :'new-password'
-	else
-		session[:alert] = { message: 'That password reset link has expired. Start over to get a new link.', style: 'alert-info' }
-		erb :'/recruiter/signin'
-	end
+get "/admin/reset/?"  do
+  
+  erb :'/admin/reset'
 end
 
-post '/new-password/:key/?' do
-	admin = Admin.first(pass_reset_key: params[:key])
-	admin.update(password: params[:password].downcase!)
-	session[:alert] = { message: 'You should now enter a new password and Update Account. This reset link expires after 1 day!', style: 'alert-success' }
-	sign_in admin.id
+post "/admin/reset/?"  do
+  
+  if
+    params[:pass_code] = session[:verifyPas]
+    
+    redirect "/admin/#{session[:adminTemp]}/new-password"
+  else 
+    flash[:alert] = 'Code is not valid. Try again.'
+  end
+    
+  redirect '/admin/reset'
 end
+
+get "/admin/:id/new-password/?"  do
+  @admin = Admin.get(params[:id])
+  @admin.password = (@admin.password = nil)
+  @admin.save
+  erb :'/admin/new-password'
+end
+
+post "/admin/:id/new-password/?" do
+  admin = Admin.get(params[:id])
+  
+  admin.update(
+    :password         => params[:password]
+  )
+  session[:admin] = admin.id
+  redirect "/admin/admin_edit"
+end
+
+
+
+
+
 
 get "/admin/signout/?"  do
   session[:admin] = nil
@@ -202,12 +248,12 @@ get "/admin/signout/?"  do
 end
 
 
-get "/admin/:id/delete/?"  do
-  auth_admin
-  admin = Admin.get(params[:id])
-  admin.destroy
-  flash[:alert] = 'Admin deleted.'
-  redirect "/admin/admin"
-end
+# get "/admin/:id/delete/?"  do
+#   auth_admin
+#   admin = Admin.get(params[:id])
+#   admin.destroy
+#   flash[:alert] = 'Admin deleted.'
+#   redirect "/admin/admin"
+# end
 
 
