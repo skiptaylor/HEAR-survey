@@ -40,7 +40,7 @@ class School
         code = code.to_i + 1
       end
       code = ("%02d" % code.to_i).to_s if code.to_i < 10
-      s.school_password = "ph#{s.zip}#{code}"
+      s.school_password = "ng#{s.zip}#{code}"
     end
   end
   
