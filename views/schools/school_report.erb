@@ -2,7 +2,7 @@
 	<div class="row">  
 		<div class="col-md-12">
 			<% if session[:recruiter] %>
-			<a href="/recruiters/<%= session[:recruiter] %>/profile" style="margin-top: 12px;" class="btn float-end">Recruiter Account</a>
+			<a href="/recruiters/<%= session[:recruiter] %>/profile" style="margin-top: 12px;" class="btn float-end">ARNG Rep Account</a>
 			<% end %>
 			<h1 class="page-header">Class Report</h1>
 		</div>
@@ -14,7 +14,7 @@
 			</p>
 			<p>
 				<strong>School ID:</strong> &nbsp; <%= @school.school_password %> <br />
-				<strong>Recruiter:</strong> &nbsp; <%= @school.recruiter.rank %> <%= @school.recruiter.first_name %> <%= @school.recruiter.last_name %><br />
+				<strong>ARNG Rep:</strong> &nbsp; <%= @school.recruiter.rank %> <%= @school.recruiter.first_name %> <%= @school.recruiter.last_name %><br />
 			</p>
 		</div>		
 		<div class=" col-md-7">
