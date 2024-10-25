@@ -1,6 +1,6 @@
 configure :development do
 	DataMapper::Logger.new $stdout, :debug
-	DataMapper.setup :default, 'postgres://localhost:5432/hear-survey-db'
+	DataMapper.setup :default, 'postgres://localhost:5432/hear-survey-24-db'
 end
 
 configure :production do

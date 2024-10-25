@@ -10,7 +10,7 @@ require 'pdfkit'
 
 disable :protection
 enable :sessions
-set :session_secret, 'secret123'
+set :session_secret, '66f381c3fed2c48dd6dd749b0b3c5665d4e51f768e4922b23744313aa871441083ec15b6a2320fc773f2791fef72f8c221197f907b355b23894cc2a5f187b2e7'
 
 
 ['settings', 'libraries', 'models', 'routes'].each do |directory|

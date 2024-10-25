@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby "2.7.6"
+ruby "3.1.4"
 
 gem 'chronic', '~> 0.9.1'
 gem 'jsmin', '>= 1.0.1'
@@ -26,3 +26,5 @@ gem 'dm-postgres-adapter', '~> 1.2.0', group: :production
 gem 'pdfkit', '~> 0.8.6'
 gem 'wkhtmltopdf-binary', '~> 0.12.6.2'
 gem 'wkhtmltopdf-heroku', '~> 2.12', '>= 2.12.6.0'
+
+gem "rackup", "~> 2.1"
