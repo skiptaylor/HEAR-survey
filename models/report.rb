@@ -1,15 +1,8 @@
-class Report
-	include DataMapper::Resource
-
-	timestamps :at, :on
-	property   :deleted_at, ParanoidDateTime
-	property 	 :id, 				Serial
-
-  property :name,           String
-  property :body,           Text
-  property :program,        String
+class Report < Sequel::Model
+  plugin :timestamps
   
-  belongs_to :school, required: false
-  belongs_to :presentation, required: false
+  many_to_one :school, required: false
+  many_to_one :presentation, required: false
 
 end
+

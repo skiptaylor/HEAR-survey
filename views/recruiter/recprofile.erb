@@ -95,7 +95,7 @@
 						
 						<td><%= school.school_password %></td>
 						<td style="text-align: right;"></td>
-						<td style="text-align: right;"><a href="/schools/<%= school.id %>/edit" class="btn btn-mini">Edit</a> &nbsp; &nbsp; &nbsp; <a href="/schools/<%= school.id %>/school_report" class="btn btn-mini btn-info">Get Reports</a></td>
+						<td style="text-align: right;"><a href="/schools/<%= school.id %>/edit" class="btn btn-mini">Edit</a> &nbsp; &nbsp; &nbsp; <% unless school.students.count == 0 %><a href="/schools/<%= school.id %>/school_report" class="btn btn-mini btn-primary">Get Reports</a><% else %><a href="" class="btn btn-mini btn-info">No Class Yet</a><% end %></td>
 					</tr>
 					<% end %>
 					<% end %>

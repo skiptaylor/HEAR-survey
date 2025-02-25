@@ -20,7 +20,8 @@ end
 get "/student/create/?" do 
   @subscription = Subscription.all
   @school = School.all
-  @presentation = Presentation.all
+  @presentation = Presentation
+  @student = Student.new
   erb :'student/create'
 end
 
@@ -85,12 +86,11 @@ post '/student/create/?' do
                 
                   @presentation = Presentation.create(
                     :class_date  => @student.created_at,
-                    :school_password  => @student.school_password,
-                    :id => @student.presentation_id
+                    :school_password  => @student.school_password
                   )
                   
                   @presentation.save
-                                    
+                                     
               end
               
               @student.presentation_id = @presentation.id
@@ -101,10 +101,9 @@ post '/student/create/?' do
                   @grade = Grade.create(
                     :class_date  => @student.created_at,
                     :school_password  => @student.school_password,
-                    :presentation_id => @student.presentation_id,
-                    :id => @student.grade_id
+                    :presentation_id => @student.presentation_id
                   )
-                  
+                                    
                   @grade.save
                   
                 end
@@ -112,7 +111,18 @@ post '/student/create/?' do
                 @grade.id = @student.grade_id
                 @student.save
                   
-             
+                if @school = School.first(:school_password => params[:school_password])
+                   @student.school_id = @school.id
+                end
+                
+                @student.save
+                
+                if @school = School.first(:school_password => params[:school_password])
+                   @presentation.school_id = @school.id
+                end
+              
+               @presentation.save 
+                  
                                       
               redirect '/student/survey'
           
@@ -152,7 +162,7 @@ get '/student/survey/?' do
   @subscription = Subscription.all
   @state = State.all
   @school = School.all
-  @student = Student.get(session[:student])
+  @student = Student[session[:student]]
   
   erb :'/student/survey'
 end
@@ -162,7 +172,7 @@ post '/student/survey/?' do
   subscription = Subscription.all
   state = State.all
   school = School.all
-  student = Student.get(session[:student])
+  student = Student[session[:student]]
   student.update(
     :question_1       => params[:question_1], 
     :question_2       => params[:question_2], 
@@ -199,20 +209,14 @@ end
 
 get '/student/students/?' do
   auth_admin
-	@student = Student.all(order: [:updated_at.desc], limit: 100)
+	@student = Student.order(:updated_at).limit(100)
   
 	if params[:search] && !params[:search].nil?
-		@student = Student.all(:email.like => "%#{params[:search]}%", limit: 30) 
-  else
-		@student = Student.all(:email.not => nil, order: [:updated_at.desc], limit: 50)
+		@student = @student.where(Sequel.like(:last_name, "%#{params[:search].strip}%"))
 	end
-  
+    
 	erb :'/student/students'
 end
-
-
-
-
 
 # get '/student/reports/report/report_profile/?' do
 #   @subscription = Subscription.all

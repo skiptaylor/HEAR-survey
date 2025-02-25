@@ -1,4 +1,4 @@
-	<div class="container">	
+ 	<div class="container">	
 		<div class="row">  
 			<div class="col-md-12">
 				<a href="/admin/admin_edit" class="btn btn-info btn-small" style="margin-top: 12px; float: right;">Admin Index</a>
@@ -11,10 +11,11 @@
 				<form class="form-search form-inline" method="get">
 					<div class="input-group">
 		
-						<input type="text" class="search-query form-control" name="search" placeholder="Search Email" aria-label="Search email" aria-describedby="Search Email" value="<%= params[:search] %>">
-						<button class="btn btn-info" type="submit" >Find</button>
-		 
+						<input type="text" class="search-query form-control" name="search" placeholder="Search last name - case sensitive" aria-label="Search email" aria-describedby="Search Email" value="<%= params[:search] %>">
+						<button class="btn btn-info" type="submit" >Find</button>&nbsp;
+		 			 <a href="/student/students" class="btn btn-info" style="float: right;">Reset</a>
 					</div>
+					
 				</form>
 			</div>
 		</div>
@@ -39,7 +40,7 @@
 		<div class="row"> 
 			<div class="col-md-12">
 				
-			<table class="table table-striped table-sm table-hover" style="margin-top: 1em;">
+			<table class="table table-striped table-sm table-hover" style="margin-top: 1em; margin-bottom: 6em;">
 					<tr class="table-success">
 						<th>Name</th>
 						<th>Email</th>
@@ -55,7 +56,7 @@
 					</tr>
 					<% end %>
 					<tr>
-						<th colspan="3"><small>Total number of students: <strong><%= @student.count %></strong></small>
+						<th colspan="3"><small style="color: #3f8557;">Number of students shown: <strong><%= @student.count %></strong></small>
 						</th>
 					</tr>
 				</table>

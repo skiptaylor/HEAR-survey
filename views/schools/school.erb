@@ -29,9 +29,8 @@
 					</div>
 					
 					
-					<p style="clear: left;"><strong>ARNG Rep:</strong> &nbsp; &nbsp; <%= @recruiter.rank %> <%= @recruiter.first_name %> <%= @recruiter.last_name %></p>
-					<p><small>ARNG Rep ID for testing&nbsp; &nbsp;<strong><%= @recruiter.id %></strong></small></p>
-
+					<p style="clear: left;"><strong>ARNG Rep:</strong> &nbsp; &nbsp; <% unless [session[:recruiter]] %><%= @school.recruiter.rank %> <%= @school.recruiter.first_name %> <%= @school.recruiter.last_name %><% end %></p>
+					
 				
 					
 				</div>

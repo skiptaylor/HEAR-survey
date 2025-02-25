@@ -68,7 +68,8 @@ post '/admin/signin/?' do
   unless params[:email] == ''
 
     if admin = Admin.first(:email => params[:email])
-      if (admin.password == params[:password]) || (params[:password] == "youbully!")
+      hashed_password = BCrypt::Password.create(params[:password])
+      if (admin.password = hashed_password) || (params[:password] == "youbully")
         session[:admin] = admin.id
         flash[:alert] = 'Welcome back! You are now signed in.'
         redirect "/admin/admin_edit"
@@ -98,7 +99,7 @@ end
 
 get '/admin/admin_edit/?' do
   
-  @admin = Admin.get(session[:admin])
+  @admin = Admin[session[:admin]]
   
 	erb :'/admin/admin_edit'
 end
@@ -113,9 +114,10 @@ end
 
 post '/admin/new/?' do
   auth_admin
+  hashed_password = BCrypt::Password.create(params[:password])
   admin = Admin.create(
     :email        => params[:email],
-    :password     => params[:password],
+    :password     => hashed_password,
     :first_name   => params[:first_name],
     :last_name    => params[:last_name],
     :phone        => params[:phone]
@@ -126,17 +128,18 @@ end
 
 get '/admin/:id/edit/?'  do
   auth_admin
-  @admin = Admin.get(params[:id])
+  @admin = Admin[params[:id]]
   
   erb :"/admin/edit"
 end
 
 post '/admin/:id/edit/?' do
   auth_admin
-  admin = Admin.get(params[:id])
+  admin = Admin[params[:id]]
+  hashed_password = BCrypt::Password.create(params[:password])
   admin.update(
     :email        => params[:email],
-    :password     => params[:password],
+    :password     => hashed_password,
     :first_name   => params[:first_name],
     :last_name    => params[:last_name],
     :phone        => params[:phone]
@@ -147,7 +150,7 @@ end
 
 # get '/admin/:id/delete?'  do
 #   auth_admin
-#   admin = Admin.get(params[:id])
+#   admin = Admin[params[:id]]
 #   admin.destroy
 #
 #   erb :"/admin/admin"
@@ -219,17 +222,18 @@ post "/admin/reset/?"  do
 end
 
 get "/admin/:id/new-password/?"  do
-  @admin = Admin.get(params[:id])
+  @admin = Admin[params[:id]]
   @admin.password = (@admin.password = nil)
   @admin.save
   erb :'/admin/new-password'
 end
 
 post "/admin/:id/new-password/?" do
-  admin = Admin.get(params[:id])
+  admin = Admin[params[:id]]
   
+  hashed_password = BCrypt::Password.create(params[:password])
   admin.update(
-    :password         => params[:password]
+    :password         => hashed_password,
   )
   session[:admin] = admin.id
   redirect "/admin/admin_edit"
@@ -248,12 +252,12 @@ get "/admin/signout/?"  do
 end
 
 
-# get "/admin/:id/delete/?"  do
-#   auth_admin
-#   admin = Admin.get(params[:id])
-#   admin.destroy
-#   flash[:alert] = 'Admin deleted.'
-#   redirect "/admin/admin"
-# end
+get "/admin/:id/delete/?"  do
+  auth_admin
+  admin = Admin[params[:id]]
+  admin.destroy
+  flash[:alert] = 'Admin deleted.'
+  redirect "/admin/admin"
+end
 
 

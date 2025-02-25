@@ -1,15 +1,4 @@
-get '/schools/schools/?' do
-  auth_recruiter
-	@school = School.all(order: [:updated_at.desc], limit: 100)
-  
-	if params[:search] && !params[:search].nil?
-		@school = School.all(:zip.like => "%#{params[:search]}%", limit: 30) 
-  else
-		@school = School.all(:school_name.not => nil, order: [:updated_at.desc], limit: 100)
-	end
-  
-	erb :'/schools/schools'
-end
+# -----------  Admin school create  ------------
 
 get '/schools/create/?' do
   auth_recruiter
@@ -21,40 +10,9 @@ end
 
 post '/schools/create/?' do
   auth_recruiter
+  
   state = State.all
-  recruiter = Recruiter.all
-  school = School.create(
-    :date_modified          => params[:date_modified],
-    :first_name             => params[:first_name],
-    :last_name              => params[:last_name],
-    :email                  => params[:email],
-    :phone                  => params[:phone],
-    :school_name            => params[:school_name],
-    :address1               => params[:address1],
-    :address2               => params[:address2],
-    :city                   => params[:city],
-    :state                  => params[:state],
-    :zip                    => params[:zip],
-    :school_password        => params[:school_password],         
-    :class_date             => params[:class_date]                         
-  )                                                                          
-                                                                             
-  redirect "/schools/schools"                                    
-end                                                                          
-
-
-get '/schools/new/?' do
-  auth_recruiter
-  @state = State.all
-  @recruiter = Recruiter.all
-  @school = School.new
-  erb :'/schools/edit_school'
-end
-
-post '/schools/new/?' do
-  auth_recruiter
-  state = State.all
-  recruiter = Recruiter.all
+  recruiter = Recruiter.all  
   school = School.create(
     :school_id              => params[:school_id],
     :date_modified          => params[:date_modified],
@@ -68,37 +26,195 @@ post '/schools/new/?' do
     :city                   => params[:city],
     :state                  => params[:state],
     :zip                    => params[:zip],
-    :school_password        => params[:school_password],         
-    :class_date             => params[:class_date],                                                           
-    :recruiter_id           => params[:recruiter_id]                         
+    :class_date             => params[:class_date],                                                       
+    :recruiter_id           => session[:recruiter],
+    :school_password        => params[:school_password]          
 )                                                                          
   
+    if school.school_password == ''
+      zips = []
+      passwords = School.where(zip: school.zip).map { |school| zips << school.school_password }
+      passwords = passwords.sort_by{ |a, b| a <=> b }
+      if passwords.count == 0
+        code = '01'
+      else
+        code = passwords.count
+      end
+      code = ("%02d" % code.to_i).to_s if code.to_i < 10
+      school.school_password = "ng#{school.zip}#{code}"
+    end
+ 
+    school.save
+                                                                               
+  redirect "/schools/schools"                                    
+end  
+
+# -----------  Recruiuter school create  ------------                                                                        
+
+get '/schools/new/?' do
+  auth_recruiter
+  @state = State.all
+  @recruiter = Recruiter[session[:recruiter]]
+  @school = School.new
+  
+  erb :'/schools/edit_school'
+end
+
+post '/schools/new/?' do
+  auth_recruiter
+  
+  state = State.all
+  recruiter = Recruiter[session[:recruiter]] 
+  school = School.create(
+    :school_id              => params[:school_id],
+    :date_modified          => params[:date_modified],
+    :first_name             => params[:first_name],
+    :last_name              => params[:last_name],
+    :email                  => params[:email],
+    :phone                  => params[:phone],
+    :school_name            => params[:school_name],
+    :address1               => params[:address1],
+    :address2               => params[:address2],
+    :city                   => params[:city],
+    :state                  => params[:state],
+    :zip                    => params[:zip],
+    :class_date             => params[:class_date],                                                       
+    :recruiter_id           => session[:recruiter],
+    :school_password        => params[:school_password]             
+)                                                                          
+  
+  if school.school_password == ''
+    zips = []
+    passwords = School.where(zip: school.zip).map { |school| zips << school.school_password }
+    passwords = passwords.sort_by{ |a, b| a <=> b }
+    if passwords.count == 0
+      code = '01'
+    else
+      code = passwords.count
+    end
+    code = ("%02d" % code.to_i).to_s if code.to_i < 10
+    school.school_password = "ng#{school.zip}#{code}"
+  end
+
   school.recruiter_id = session[:recruiter]
   school.save
   
   redirect "/schools/#{school.id}/school"
 end
 
-
 get '/schools/:id/school/?' do
   auth_recruiter
   @state = State.all
-  @recruiter = Recruiter.get(session[:recruiter])
-  @school = School.get(params[:id])
+  @recruiter = Recruiter[session[:recruiter]]
+  @school = School[params[:id]]
   erb :"/schools/school"
 end
 
+get '/schools/schools/?' do
+  auth_recruiter
+	@school = School.order(:updated_at).limit(100)
+  
+	if params[:search] && !params[:search].nil?
+		@school = School.where(Sequel.like(:school_name, "%#{params[:search]}%"))
+	end
+  
+	erb :'/schools/schools'
+end
 
+# -----------  Admin school edit  ------------
+ 
+ get '/schools/:id/edit_admin/?' do
+   auth_admin
+   @recruiter = Recruiter.all
+   @state = State.all
+   @school = School[params[:id]]
+   erb :"/schools/edit_school_arng"
+ end
 
+ post '/schools/:id/edit_admin/?' do
+   auth_admin
+   recruiter = Recruiter.all
+   state = State.all
+   school = School[params[:id]]
+   school.update(
+     :school_id              => params[:school_id],
+     :date_modified          => params[:date_modified],
+     :first_name             => params[:first_name],
+     :last_name              => params[:last_name],
+     :email                  => params[:email],
+     :phone                  => params[:phone],
+     :school_name            => params[:school_name],
+     :address1               => params[:address1],
+     :address2               => params[:address2],
+     :city                   => params[:city],
+     :state                  => params[:state],
+     :zip                    => params[:zip],
+     :school_password        => params[:school_password],         
+     :class_date             => params[:class_date],                                                           
+     :recruiter_id           => params[:recruiter_id]                         
+   )                                                                          
 
-# ----------------  Recruiter Reportas (1)  --------------------
+   redirect "/schools/#{params[:id]}/school"
+
+ end
+   
+ get '/schools/:id/delete/?' do
+   auth_admin
+
+   school = School[params[:id]]
+   school.destroy
+   
+   erb :"/schools/schools"
+ end
+
+# -----------  Admin school edit  ------------
+
+ get '/schools/:id/edit/?' do
+   auth_recruiter
+   @recruiter = Recruiter.all
+   @state = State.all
+   @school = School[params[:id]]
+ 
+   erb :"/schools/edit_school_arng"
+ end
+
+ post '/schools/:id/edit/?' do
+   auth_recruiter
+   recruiter = Recruiter.all
+   state = State.all
+   school = School[params[:id]]
+ 
+   school.update(
+     :school_id              => params[:school_id],
+     :date_modified          => params[:date_modified],
+     :first_name             => params[:first_name],
+     :last_name              => params[:last_name],
+     :email                  => params[:email],
+     :phone                  => params[:phone],
+     :school_name            => params[:school_name],
+     :address1               => params[:address1],
+     :address2               => params[:address2],
+     :city                   => params[:city],
+     :state                  => params[:state],
+     :zip                    => params[:zip],
+     :school_password        => params[:school_password],         
+     :class_date             => params[:class_date],                                                           
+     :recruiter_id           => params[:recruiter_id]                         
+   )                                                                          
+ 
+   redirect "/schools/#{params[:id]}/school"
+ 
+ end
+ 
+ 
+# ----------------  Recruiter Reports (1)  --------------------
 
 get '/schools/:id/school_report/?' do
   
-  @school = School.get(params[:id])
-  @recruiter = Recruiter.get(params[:recruiter_id])
-  @school.presentations = Presentation.all(:school_password => @school.school_password)
-  @school.students = Student.all(:school_password => @school.school_password, :class_date => params[:presentation])
+  @school = School[params[:id]]
+  @recruiter = Recruiter[params[:recruiter_id]]
+  @presentations = Presentation[:school_password => @school.school_password]
+  @students = Student[:school_password => @school.school_password, :class_date => params[:presentation]]
      
   @school.class_date = params[:presentation]
   @school.save
@@ -119,16 +235,12 @@ end
 # end
 
 
-
-
-
-
 get '/schools/:id/summary_report/?' do
   
-  @school = School.get(params[:id])
-  @recruiter = Recruiter.get(params[:recruiter_id])
-  @school.presentations = Presentation.all(:school_password => @school.school_password, :class_date => params[:presentation])
-  @school.students = Student.all(:school_password => @school.school_password, :class_date => @school.class_date)
+  @school = School[params[:id]]
+  @recruiter = Recruiter[params[:recruiter_id]]
+  @presentations = Presentation[:school_password => @school.school_password, :class_date => params[:presentation]]
+  @students = Student[:school_password => @school.school_password, :class_date => @school.class_date]
      
   @stud_gradec = 0
   @stud_grade12 = 0
@@ -386,10 +498,10 @@ end
 
 post '/schools/:id/summary_report/?' do
 
-  @school = School.get(params[:id])
-  @recruiter = Recruiter.get(params[:recruiter_id])
-  @school.presentations = Presentation.all(:school_password => @school.school_password, :class_date => params[:presentation])
-  @school.students = Student.all(:school_password => @school.school_password, :class_date => @school.class_date)
+  @school = School[params[:id]]
+  @recruiter = Recruiter[params[:recruiter_id]]
+  @presentations = Presentation[:school_password => @school.school_password, :class_date => params[:presentation]]
+  @students = Student[:school_password => @school.school_password, :class_date => @school.class_date]
   
   @stud_gradec = 0
   @stud_grade12 = 0
@@ -639,6 +751,7 @@ post '/schools/:id/summary_report/?' do
 
   end
 
+
   PDFKit.configure do |config|
       config.default_options = {
         :print_media_type => true,
@@ -647,21 +760,23 @@ post '/schools/:id/summary_report/?' do
         :margin_right     => '0.5in',
         :margin_bottom    => '0.5in',
         :margin_left      => '0.5in',
-        :javascript_delay => 001
+        :javascript_delay => 003
       }
     end
 
     content_type 'application/pdf'
 
     if settings.development?
-      kit = PDFKit.new("http://localhost:4567/schools/1/summary_report")
+      kit = PDFKit.new("http://localhost:9292/schools/#{@school.id}/summary_report")
     elsif settings.production?
-      kit = PDFKit.new("https://hear-survey.herokuapp.com/schools/#{@school.id}/summary_report")
+      kit = PDFKit.new("https://hear-survey.com/schools/#{@school.id}/summary_report")
     end
 
     pdf = kit.to_pdf
+  end
 
-end
+
+
 
 
 
@@ -745,93 +860,19 @@ end
 #   erb :"/arng/schools/edit_school"
 # end
 
-get '/schools/:id/edit_admin/?' do
-  auth_admin
-  @recruiter = Recruiter.all
-  @state = State.all
-  @school = School.get(params[:id])
-  erb :"/schools/edit_school_arng"
-end
 
-post '/schools/:id/edit_admin/?' do
-  auth_admin
-  recruiter = Recruiter.all
-  state = State.all
-  school = School.get(params[:id])
-  school.update(
-    :school_id              => params[:school_id],
-    :date_modified          => params[:date_modified],
-    :first_name             => params[:first_name],
-    :last_name              => params[:last_name],
-    :email                  => params[:email],
-    :phone                  => params[:phone],
-    :school_name            => params[:school_name],
-    :address1               => params[:address1],
-    :address2               => params[:address2],
-    :city                   => params[:city],
-    :state                  => params[:state],
-    :zip                    => params[:zip],
-    :school_password        => params[:school_password],         
-    :class_date             => params[:class_date],                                                           
-    :recruiter_id           => params[:recruiter_id]                         
-  )                                                                          
 
-  redirect "/schools/#{params[:id]}/school"
 
-end
 
-get '/schools/:id/edit/?' do
-  auth_recruiter
-  @recruiter = Recruiter.all
-  @state = State.all
-  @school = School.get(params[:id])
-  
-  erb :"/schools/edit_school_arng"
-end
 
-post '/schools/:id/edit/?' do
-  auth_recruiter
-  recruiter = Recruiter.all
-  state = State.all
-  school = School.get(params[:id])
-  school.update(
-    :school_id              => params[:school_id],
-    :date_modified          => params[:date_modified],
-    :first_name             => params[:first_name],
-    :last_name              => params[:last_name],
-    :email                  => params[:email],
-    :phone                  => params[:phone],
-    :school_name            => params[:school_name],
-    :address1               => params[:address1],
-    :address2               => params[:address2],
-    :city                   => params[:city],
-    :state                  => params[:state],
-    :zip                    => params[:zip],
-    :school_password        => params[:school_password],         
-    :class_date             => params[:class_date],                                                           
-    :recruiter_id           => params[:recruiter_id]                         
-  )                                                                          
-  
-  redirect "/schools/#{params[:id]}/school"
-  
-end
-
-# get '/register/?' do
-#   auth_recruiter
-#   @school = School.all
-#   unless params[:zip]
-#     @results = []
-#   else
-#     @results = School.all(school_zip: params[:zip].strip.downcase)
-#   end
-#   erb :"/register"
+# zips = []
+# passwords = School.where(zip: school.zip).map { |school| zips << school.school_password }
+# passwords = passwords
+# if passwords.count == 0
+#   code = '01'
+# else
+#   code = zips.count
 # end
-
-# get '/schools/:id/delete/?' do
-#   auth_recruiter
-#   school = School.get(params[:id])
-#   school.destroy
-#   redirect "/schools/schools"
-# end
-
+# code = ("%02d" % code.to_i).to_s if code.to_i < 10
+# school.school_password = "ng#{school.zip}#{code}"
 

@@ -1,30 +1,47 @@
+require 'rubygems'
 require 'bundler/setup'
+
 Bundler.require
 
 require 'sinatra'
+require 'sinatra/base'
 require 'sinatra/chassis/helpers'
-require 'dm-timestamps'
-require 'dm-validations'
-require 'dm-migrations'
+require 'sequel'
+require 'sinatra/sequel'
+require 'sinatra/reloader' if development?
 require 'pdfkit'
 
-disable :protection
-enable :sessions
-set :session_secret, '149e7d40e7b1b3e64775c262c0765022f373f6f5298a6784ea87247ad7261432'
 
-
-['settings', 'libraries', 'models', 'routes'].each do |directory|
-	Dir["./#{directory}/**/*.rb"].each { |file| require file }
-end
+Dotenv.load
 
 configure :production do
   before do
     unless request.request_method == 'POST'
       unless request.url.include? "https://www."
-        redirect "https://www.hearsurvey.com#{request.path}"
+        redirect ENV.fetch('DOMAIN')
       end
     end
   end
 end
 
-DataMapper.finalize
+configure do
+
+  use Rack::Protection, :except => :session_hijacking
+  enable :sessions
+  use Rack::Session::Cookie, :key => 'rack.session',
+                             :secret => 'ea5ae1d8519ae482821e24372f2b683098a2bb149fd85429bc3aa24d310ec58d',
+                             :expire_after => ENV.fetch("EXPIRE").to_i
+  set :database,       ENV.fetch('DATABASE_URL')
+  set :session_secret, ENV.fetch('SESSION_SECRET')
+  set :views,          ['./views', "#{File.dirname(__FILE__)}/views"]
+
+end
+
+require_directory([
+  'config',
+  'settings',
+  'helpers',
+  'libraries',
+  'models',
+  'routes'
+])

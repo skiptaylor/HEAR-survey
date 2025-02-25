@@ -2,9 +2,9 @@
 #
 # Be sure to set your own session secret.
 
-enable :sessions
-
-set :session_secret, '149e7d40e7b1b3e64775c262c0765022f373f6f5298a6784ea87247ad7261432!'
-
-set :protection, except: :session_hijacking
-
+# enable :sessions
+#
+# set :session_secret, '7c2c0099663012650133c8cd698417a02036d039937d89607a1723168645495b!'
+#
+# set :protection, except: :session_hijacking
+#

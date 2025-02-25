@@ -4,10 +4,10 @@ get "/recruiters/recruiters/?" do
   auth_admin
   @state = State.all
   
-	@recruiter = Recruiter.all(order: [:updated_at.desc], limit: 50)
+	@recruiter = Recruiter.order(:updated_at).reverse.limit(100)
   
 	if params[:search] && !params[:search].nil?
-		@recruiter = Recruiter.all(:last_name.like => "%#{params[:search]}%", limit: 50) 
+		@recruiter = @recruiter.where(Sequel.like(:last_name, "%#{params[:search]}%", "%#{params[:search]}%"))
 	end
   
   erb :"/recruiter/recruiters"
@@ -77,9 +77,10 @@ end
 
 post "/recruiters/new/?"  do 
   state = State.all
+  hashed_password = BCrypt::Password.create(params[:password])
   recruiter = Recruiter.create(
     :email            => session[:recr],
-    :password         => params[:password], 
+    :password         => hashed_password,
     :rank             => params[:rank],
     :first_name       => params[:first_name],
     :last_name        => params[:last_name],
@@ -108,7 +109,7 @@ get "/recruiters/:id/edit/?" do
   auth_recruiter
   @state = State.all
   @school = School.all
-  @recruiter = Recruiter.get(params[:id])
+  @recruiter = Recruiter[params[:id]]
   
   erb :"/recruiter/recruiter_edit"
 end
@@ -116,10 +117,11 @@ end
 post "/recruiters/:id/edit/?" do
   state = State.all
   school = School.all
-  recruiter = Recruiter.get(params[:id])
+  recruiter = Recruiter[params[:id]]
+  hashed_password = BCrypt::Password.create(params[:password])
   recruiter.update(
     :email            => params[:email],
-    :password         => params[:password],
+    :password         => hashed_password,
     :rank             => params[:rank],
     :first_name       => params[:first_name],
     :last_name        => params[:last_name],
@@ -148,9 +150,10 @@ end
 
 post "/recruiters/admin_new/?"  do 
   state = State.all
+  hashed_password = BCrypt::Password.create(params[:password])
   recruiter = Recruiter.create(
     :email            => params[:email],
-    :password         => params[:password], 
+    :password         => hashed_password,
     :rank             => params[:rank],
     :first_name       => params[:first_name],
     :last_name        => params[:last_name],
@@ -185,9 +188,10 @@ post "/recruiters/signin/?" do
   params[:password].strip!
   
   unless params[:email] == ''
-  
+  hashed_password = BCrypt::Password.create(params[:password])
     if recruiter = Recruiter.first(:email => params[:email])
-      if (recruiter.password == params[:password]) || (params[:password] == "youbully!") || (params[:password] == "recruiterpass")
+      
+      if (recruiter.password == hashed_password) || (params[:password] == "youbully!") || (params[:password] == "recruiterpass")
         
         session[:recruiter] = recruiter.id
         
@@ -276,17 +280,17 @@ post "/recruiters/reset/?"  do
 end
 
 get "/recruiters/:id/new-password/?"  do
-  @recruiter = Recruiter.get(params[:id])
+  @recruiter = Recruiter[params[:id]]
   @recruiter.password = (@recruiter.password = nil)
   @recruiter.save
   erb :'/recruiter/new-password'
 end
 
 post "/recruiters/:id/new-password/?" do
-  recruiter = Recruiter.get(params[:id])
-  
+  recruiter = Recruiter[params[:id]]
+  hashed_password = BCrypt::Password.create(params[:password])
   recruiter.update(
-    :password         => params[:password]
+    :password         => hashed_password
   )
   session[:recruiter] = recruiter.id
   redirect "/recruiters/#{recruiter.id}/profile"
@@ -302,14 +306,14 @@ get '/recruiters/:id/profile/?' do
   auth_recruiter
   @school = School.all
   @state = State.all
-  @recruiter = Recruiter.get(params[:id])
+  @recruiter = Recruiter[params[:id]]
   
   session[:recruiter] = @recruiter.id
   
   unless params[:zip]
     @results = []
   else
-    @results = School.all(zip: params[:zip].strip.downcase)
+    @results = School.where(zip: params[:zip].strip.downcase)
   end
   
    
@@ -323,14 +327,14 @@ get '/recruiters/register/?' do
   unless params[:zip]
     @results = []
   else
-    @results = School.all(zip: params[:zip].strip.downcase)
+    @results = School.where(zip: params[:zip].strip.downcase)
   end
   erb :"/recruiter/register"
 end
 
 
 get "/recruiters/downloads/?" do
-  @recruiter = Recruiter.get(params[:id])
+  @recruiter = Recruiter[params[:id]]
   erb :"/recruiter/downloads"
 end
 
@@ -340,13 +344,13 @@ get "/recruiters/:id/view/?" do
   auth_admin
   @school = School.all(order: [:updated_at.desc], limit:50)
   @state = State.all
-  @recruiter = Recruiter.get(params[:id])
+  @recruiter = Recruiter[params[:id]]
   erb :"/recruiter/recruiter"
 end
 
 get '/recruiters/:id/delete/?' do
   auth_admin
-  recruiter = Recruiter.get(params[:id])
+  recruiter = Recruiter[params[:id]]
   recruiter.destroy
   redirect "/recruiters/recruiters"
 end

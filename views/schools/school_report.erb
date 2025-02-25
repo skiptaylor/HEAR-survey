@@ -19,15 +19,17 @@
 		</div>		
 		<div class=" col-md-7">
 			<form method="get" id="school_report">
-			<p><strong>Select Class</strong></p>
+			<p><strong>Select Class Date</strong></p>
 			<p>
 				<select type="text" id="presentation" name="presentation" class="form-control col-sm-6" value="<%= @presentation %>">
-					<option value="Select Class Date">Select Class Date</option>
+					
 					<% @school.presentations.each do |pres| %>
-					<option value="<%= pres.class_date %>" <%= 'selected' if pres.class_date == @school.class_date %>><%= format_day(pres.class_date) %></option>
+					<option value="<%= pres.class_date %>" <%= 'selected' if pres.class_date == @school.class_date %>><%= format_day(pres.class_date) %></option><button type="submit" class="btn btn-primary pull-right" style="margin-top: 14px;">Show Class</button>
 					<% end %>
 				</select>
+				<% unless @school.students.count == 0 %>
 				<button type="submit" class="btn btn-primary" style="margin-top: 14px;">Show Class</button>
+				<% end %>
 			</p>
 			</form>				
 			
@@ -36,7 +38,7 @@
 				<div class="col">
 					<form method="post">
 					<div class="col">
-						<% unless params[:presentation] == nil || @school.students.count == 0 || @school.class_date == "Select Class Date" %>
+						<% unless params[:presentation] == nil || @school.students.count == 0 %>
 						<p><strong>Student Survey Report</strong></p>
 						<p><a href="/schools/<%= @school.id %>/summary_report" class="btn btn-success">View</a></p>
 						<% end %>
