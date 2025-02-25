@@ -6,6 +6,7 @@ gem 'chronic',              '~> 0.10', '>= 0.10.2'
 gem 'dotenv',               '~> 2.8', '>= 2.8.1'
 
 gem 'sinatra-activerecord', '~> 2.0', '>= 2.0.28'
+gem 'coffee-script',      '~> 2.4.1'
 gem 'json',                 '~> 2.7', '>= 2.7.1'
 gem 'rack',                 '~> 2.2', '>= 2.2.10'
 gem 'foreman',              '~> 0.87.2'
