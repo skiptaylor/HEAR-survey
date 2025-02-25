@@ -4,5 +4,6 @@
 /log/*
 !/log/messages.log
 .sass-cache
+.ENV
 
 sendgrid.env
